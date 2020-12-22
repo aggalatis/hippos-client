@@ -14,7 +14,8 @@
   "license": "ISC",
   "devDependencies": {
     "electron": "^5.0.13",
-    "electron-packager": "^15.0.0"
+    "electron-packager": "^15.0.0",
+    "electron-rebuild": "^2.3.4"
   },
   "dependencies": {
     "chosen-js": "^1.8.7",

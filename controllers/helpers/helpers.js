@@ -157,7 +157,6 @@ HelpersClass.prototype.submitLicense = function (uniqueID , ipAddress) {
 
 
             if (response.status === 200) {
-                console.log("200")
                 if (response.message != "") {
 
                   self.toastr("error", response.message)

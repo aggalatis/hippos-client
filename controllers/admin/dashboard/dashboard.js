@@ -9,6 +9,10 @@ let DashboardClass = function () {
         location.reload();
     })
 
+    setInterval(function() {
+        window.location.reload();
+    }, 300000)
+
 }
 
 DashboardClass.prototype.initializeSummaryCards = function() {
@@ -66,6 +70,39 @@ DashboardClass.prototype.initializeButtons = function() {
     $('#print-income').on('click', function() {
 
 
+        $.ajax({
+            url: self.Helpers.LOCAL_API + "ManageIncome/Reports/X",
+            type: 'GET',
+            dataType: 'json',
+            data: '',
+            success: function (response) {
+
+                if (response.status === 200) {
+                    console.log(response.data)
+                    swal({
+                        title: "Επιτυχία Αποστολής!",
+                        text: "Επιτυχής Αποστολή Ταμείου!",
+                        type: "success",
+                        showCancelButton: false,
+                        showConfirmButton: true,
+                        cancelButtonText: "Άκυρο",
+                        confirmButtonColor: "#2fdc17",
+                        confirmButtonText: "OK"
+
+                    })
+
+                } else {
+
+                    self.Helpers.toastrServerError();
+
+                }
+
+            },
+            error: function (jqXHR, textStatus) {
+
+                self.Helpers.swalServerError();
+            }
+        });
 
 
     })
