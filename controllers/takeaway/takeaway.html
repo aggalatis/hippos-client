@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>S-POS TAKE-AWAY</title>
+    <!-- jQuery -->
+    <!-- normalize & reset style -->
+    <link rel="stylesheet" href="../../assets/css/normalize.min.css" type='text/css'>
+    <link rel="stylesheet" href="../../assets/css/reset.min.css" type='text/css'>
+    <link rel="stylesheet" href="../../assets/css/jquery-ui.css" type='text/css'>
+    <link rel="stylesheet" href="../../assets/js/amaranjs/css/animate.min.css" type='text/css'>
+    <link rel="stylesheet" href="../../assets/js/amaranjs/css/amaran.min.css" type='text/css'>
+    <link rel="stylesheet" href="../../assets/vendor/toastr/toastr.min.css">
+    <link href="../../assets/css/customcss/general.css" rel="stylesheet">
+    <link href="../../assets/css/customcss/categories.css" rel="stylesheet">
+    <link href="../../assets/datatables/datatables.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../assets/numpad/css/easy-numpad.css">
+
+    <!--<link rel="stylesheet" href="../../../assets/ubuntu_f/css.css" type='text/css'>-->
+
+    <!-- google lato font -->
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,700,900,300' rel='stylesheet' type='text/css'>
+    <!-- Bootstrap Core CSS -->
+    <link href="../../assets/css/bootstrap.min.css" rel="stylesheet">
+    <!-- bootstrap-horizon -->
+    <link href="../../assets/css/bootstrap-horizon.css" rel="stylesheet">
+    <!-- datatable style -->
+
+
+    <!-- font awesome -->
+    <link rel="stylesheet" href="../../assets/css/font-awesome.min.css">
+    <link href="../../assets/css/animate.min.css" rel="stylesheet">
+
+    <!-- include summernote css-->
+    <link href="../../assets/css/summernote.css" rel="stylesheet">
+    <!-- waves -->
+    <link rel="stylesheet" href="../../assets/css/waves.min.css">
+    <!-- daterangepicker -->
+    <link rel="stylesheet" type="text/css" href="../../assets/css/daterangepicker.css"/>
+    <!-- css for the preview keyset extension -->
+    <link href="../../assets/css/keyboard-previewkeyset.css" rel="stylesheet">
+    <!-- keyboard widget style -->
+    <link href="../../assets/css/keyboard.css" rel="stylesheet">
+    <!-- Select 2 style -->
+    <link href="../../assets/css/select2.min.css" rel="stylesheet">
+    <!-- Sweet alert swal -->
+    <link rel="stylesheet" type="text/css" href="../../assets/css/sweetalert.css">
+    <!-- datepicker css -->
+    <link rel="stylesheet" type="text/css" href="../../assets/css/bootstrap-datepicker.min.css">
+    <link rel="stylesheet" type="text/css" href="../../assets/js/notifIt/css/notifIt.css">
+    <link rel="stylesheet" type="text/css" href="../../assets/js/overhang.js-master/dist/overhang.min.css">
+    <!-- Custom CSS -->
+    <link href="../../assets/css/Style-Light.css" rel="stylesheet">
+    <link href="takeaway.css" rel="stylesheet">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+
+
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+
+    <![endif]-->
+
+
+</head>
+
+
+<body>
+<div class="modal" id="discount-modal" data-backdrop="static" tabindex="-1" role="dialog"
+     aria-labelledby="discountModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: #0c0c0c">
+                <h4 class="modal-title">Έκπτωση παραγγελίας</h4>
+            </div>
+            <div class="modal-body">
+                <h4 style="text-align: center;text-decoration: underline">Επιλογή προϊόντων για έκπτωση</h4>
+                <br/>
+                <table id="order-cart-table" class="display" width="100%"></table>
+            </div>
+            <div class="row" id="discount_amount_div"
+                 style="display: none; width: 90%; padding-left: 10%; padding-right: 10%">
+                <label id="discount_amount_label" for="discount_amount"></label>
+                <input type="text" name="discount_amount" class="easy-get easy-put form-control" id="discount_amount">
+
+            </div>
+
+            <div class="modal-footer">
+                <button style="width: 32%" id="percent_discount_btn" type="button" class="btn btn-success">Έκπτωση
+                    ποσοστού (%)
+                </button>
+                <button style="width: 32%" id="amount_discount_btn" type="button" class="btn btn-warning" disabled>
+                    Έκπτωση ποσού (€)
+                </button>
+                <button style="width: 64%;display: none" id="final_discount_btn" type="button" class="btn btn-info">
+                    Εφαρμογή έκπτωσης
+                </button>
+                <button style="width: 32%" id="close-discount-modal" type="button" class="btn btn-danger"
+                        data-dismiss="discount-modal">Άκυρο
+                </button>
+            </div>
+
+        </div>
+    </div>
+</div>
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header" style="margin-bottom: 21px;width: 122px">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#" onClick="window.location.reload()"><img
+                    src="../../assets/files/Setting/4aea179c3ba1a4028640514112911cf9.png" alt="logo"
+                    style='max-height: 45px; max-width: 200px'></a>
+
+
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li class="navbar-username"></li>
+                <li class="flat-box"><a class="logout" title="Log out"><i class="fa fa-sign-out fa-lg"></i></a></li>
+            </ul>
+        </div>
+        <!-- Brand and toggle get grouped for better mobile display -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+
+<!-- Page Content -->
+<div class="container-fluid">
+
+
+    <div class="col-md-2 col-sm-2 col-lg-2 left-side" id="categories-div">
+        <div class="row">
+            <div class="row row-horizon">
+
+                <h4 id="categories_paginator">Προϊόντα</h4>
+
+            </div>
+
+        </div>
+        <div class="outer-div">
+            <div id="append-products">
+
+            </div>
+        </div>
+
+
+    </div>
+    <div class="col-md-6 col-sm-6 col-lg-6 left-side" id="products-div">
+        <div class="row">
+            <div class="row row-horizon">
+
+                <h4 id="products_paginator">Πληκτρολόγιο</h4>
+
+            </div>
+
+        </div>
+        <div class="row">
+
+            <input id="numpad-input" type="text">
+            <button id="delete-numpad" class="btn btn-danger">DEL</button>
+
+        </div>
+        <div class="row">
+            <button class='numpad-btn' data-number="1" style="margin-left: 3%">
+                1
+            </button>
+            <button class='numpad-btn' data-number="2">
+                2
+            </button>
+            <button class='numpad-btn' data-number="3">
+                3
+            </button>
+            <button class='numpad-btn' data-number="4" style="margin-left: 3%">
+                4
+            </button>
+            <button class='numpad-btn' data-number="5">
+                5
+            </button>
+            <button class='numpad-btn' data-number="6">
+                6
+            </button>
+            <button class='numpad-btn' data-number="7" style="margin-left: 3%">
+                7
+            </button>
+            <button class='numpad-btn' data-number="8">
+                8
+            </button>
+            <button class='numpad-btn' data-number="9">
+                9
+            </button>
+                <button class='numpad-btn' data-number="0" style="margin-left: 3%">
+                0
+            </button>
+            <button class='confirm-numpad-btn'>
+                OK
+            </button>
+
+        </div>
+
+
+    </div>
+    <div class="col-md-4 col-sm-4 col-lg-4 left-side" id="cart-div">
+        <div class="row">
+            <div class="row row-horizon" id="cart-header-div">
+                <div class="col-md-12 group-title-div">
+                    <h4>Καλάθι προϊόντων</h4>
+                </div>
+            </div>
+            <div>
+                <div class="cart-product-quantity-div">
+                    <h5 class="cart-product-text">Ποσ.</h5>
+                </div>
+                <div class="cart-product-name-div">
+                    <h5 class="cart-product-text">Όνομα προϊόντος</h5>
+                </div>
+                <div class="cart-product-price-div">
+                    <h5 class="cart-product-text">Τιμή (€)</h5>
+                </div>
+            </div>
+            <div id="append-cart-div">
+
+
+            </div>
+            <div class="row row-horizon" id="abilities-buttons-div">
+
+                <button class="ability-btn btn-success" id="plus-product-btn"><i class="fa fa-plus"></i></button>
+                <button class="ability-btn btn-warning" id="minus-product-btn"><i class="fa fa-minus"></i></button>
+                <button class="ability-btn btn-danger" id="delete-product-btn"><i class="fa fa-times"></i></button>
+                <button class="ability-btn btn-info" id="discount-product-btn"><i class="fa fa-percent"></i></button>
+                <button class="ability-btn btn-primary" id="invoice-btn"><i class="fa fa-file"></i></button>
+                <button class="ability-btn btn-success" id="cash-card-btn">ΜΕΤΡΗΤΑ</button>
+
+            </div>
+            <div class="row row-horizon" id="sum-order-div">
+                <p id="cart-sum-start-price" class="order-stats" style="border-right: 2px solid white;">Αρχική τιμή:
+                    0,00 €</p>
+                <p id="cart-sum-discount" class="order-stats" style="border-left: 2px solid white;">Έκπτωση: 0,00 €</p>
+
+            </div>
+            <div class="row row-horizon" id="send-order-btn-div">
+                <button class="btn-success" id="send-order-btn">0,00 €</button>
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+</div>
+
+
+</div>
+
+<!-- /.container -->
+
+
+<!-- slim scroll script -->
+</body>
+
+<script>if (typeof module === 'object') {
+    window.module = module;
+    module = undefined;
+}
+
+</script>
+
+<!-- normal script imports etc  -->
+<script src="../../assets/js/jquery-2.2.2.min.js"></script>
+<script src="../../assets/js/jquery-ui.min.js"></script>
+
+<script type="text/javascript" src="../../assets/js/jquery-validation-1.19.0/dist/jquery.validate.js"></script>
+
+<!-- dalatable scripts -->
+<!--<script src="../../../assets/datatables/js/dataTables.bootstrap.js"></script>-->
+
+
+<script type="text/javascript" src="../../assets/js/loading.js"></script>
+<script type="text/javascript" src="../../assets/js/jquery.slimscroll.min.js"></script>
+<!-- waves material design effect -->
+<script type="text/javascript" src="../../assets/js/waves.min.js"></script>
+<!-- Bootstrap Core JavaScript -->
+<script type="text/javascript" src="../../assets/js/bootstrap.min.js"></script>
+<!-- keyboard widget dependencies -->
+<script type="text/javascript" src="../../assets/js/jquery.keyboard.js"></script>
+<script type="text/javascript" src="../../assets/js/jquery.keyboard.extension-all.js"></script>
+<script type="text/javascript" src="../../assets/js/jquery.keyboard.extension-extender.js"></script>
+<script type="text/javascript" src="../../assets/js/jquery.keyboard.extension-typing.js"></script>
+<script type="text/javascript" src="../../assets/js/jquery.mousewheel.js"></script>
+
+<!-- select2 plugin script -->
+<script type="text/javascript" src="../../assets/js/select2.min.js"></script>
+<script type="text/javascript" src="../../assets/vendor/toastr/toastr.js"></script>
+
+<!-- summernote js -->
+<script src="../../assets/js/summernote.js"></script>
+<!-- chart.js script -->
+<script src="../../assets/js/Chart.js"></script>
+<!-- moment JS -->
+<script type="text/javascript" src="../../assets/js/moment.min.js"></script>
+<!-- Include Date Range Picker -->
+<script type="text/javascript" src="../../assets/js/daterangepicker.js"></script>
+<!-- Sweet Alert swal -->
+<script src="../../assets/js/sweetalert.min.js"></script>
+<!-- datepicker script -->
+<script src="../../assets/js/bootstrap-datepicker.min.js"></script>
+<!-- creditCardValidator script -->
+<script src="../../assets/js/jquery.creditCardValidator.js"></script>
+<!-- creditCardValidator script -->
+<script src="../../assets/js/credit-card-scanner.js"></script>
+<script src="../../assets/js/jquery.redirect.js"></script>
+<script src="../../assets/js/bootstrap-checkbox.min.js"></script>
+<script type="text/javascript" src="../../assets/js/mousetrap.min.js"></script>
+
+<!--<script src="../../../assets/js/Mobile-first-Virtual-Keyboard-Plugin-With-jQuery-Bootstrap-jQBTK/jqbtk.js"></script>-->
+<!-- ajax form -->
+<script src="../../assets/datatables/datatables.min.js"></script>
+<script src="../../assets/js/jquery.form.min.js"></script>
+<script src="../../assets/js/toast.js"></script>
+<script src="../../assets/js/jquery.mask.min.js"></script>
+
+<script src="../../assets/js/notifIt/js/notifIt.min.js"></script>
+<script src="../../assets/js/overhang.js-master/dist/overhang.min.js"></script>
+<script type="text/javascript" src="../../assets/numpad/js/easy-numpad.js"></script>
+<script src="takeaway.js"></script>
+<script src="../helpers/helpers.js"></script>
+<script src="../helpers/template.js"></script>
+
+
+<script type="text/javascript">
+    const {remote} = require('electron')
+    const electron = require('electron')
+    const session = require('electron')
+
+
+    const {app, BrowserWindow} = require('electron').remote;
+    const {ipcRenderer} = electron;
+    let myTakeaway = new TakeawayClass();
+    new TemplateClass();
+
+    $(document).ready(function () {
+
+
+    });
+
+
+</script>
+
+
+</html>

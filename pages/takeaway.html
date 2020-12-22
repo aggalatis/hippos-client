@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>SP8 POS </title>
+    <!-- jQuery -->
+    <!-- normalize & reset style -->
+    <link rel="stylesheet" href="../assets/css/normalize.min.css" type='text/css'>
+    <link rel="stylesheet" href="../assets/css/reset.min.css" type='text/css'>
+    <link rel="stylesheet" href="../assets/css/jquery-ui.css" type='text/css'>
+    <link rel="stylesheet" href="../assets/js/amaranjs/css/animate.min.css" type='text/css'>
+    <link rel="stylesheet" href="../assets/js/amaranjs/css/amaran.min.css" type='text/css'>
+
+
+    <!--<link rel="stylesheet" href="../../../assets/ubuntu_f/css.css" type='text/css'>-->
+
+    <!-- google lato font -->
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,700,900,300' rel='stylesheet' type='text/css'>
+    <!-- Bootstrap Core CSS -->
+    <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
+    <!-- bootstrap-horizon -->
+    <link href="../assets/css/bootstrap-horizon.css" rel="stylesheet">
+    <!-- datatable style -->
+    <link href="../assets/datatables/css/dataTables.bootstrap.css" rel="stylesheet">
+    <!-- font awesome -->
+    <link rel="stylesheet" href="../assets/css/font-awesome.min.css">
+    <link href="../assets/css/animate.min.css" rel="stylesheet">
+
+    <!-- include summernote css-->
+    <link href="../assets/css/summernote.css" rel="stylesheet">
+    <!-- waves -->
+    <link rel="stylesheet" href="../assets/css/waves.min.css">
+    <!-- daterangepicker -->
+    <link rel="stylesheet" type="text/css" href="../assets/css/daterangepicker.css"/>
+    <!-- css for the preview keyset extension -->
+    <link href="../assets/css/keyboard-previewkeyset.css" rel="stylesheet">
+    <!-- keyboard widget style -->
+    <link href="../assets/css/keyboard.css" rel="stylesheet">
+    <!-- Select 2 style -->
+    <link href="../assets/css/select2.min.css" rel="stylesheet">
+    <!-- Sweet alert swal -->
+    <link rel="stylesheet" type="text/css" href="../assets/css/sweetalert.css">
+    <!-- datepicker css -->
+    <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap-datepicker.min.css">
+    <link rel="stylesheet" type="text/css" href="../assets/js/notifIt/css/notifIt.css">
+    <link rel="stylesheet" type="text/css" href="../assets/js/overhang.js-master/dist/overhang.min.css">
+    <!--<link rel="stylesheet" type="text/css" href="../../../assets/js/Mobile-first-Virtual-Keyboard-Plugin-With-jQuery-Bootstrap-jQBTK/jqbtk.css">-->
+    <!-- Custom CSS -->
+    <link href="../assets/css/Style-Light.css" rel="stylesheet">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+
+
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+
+    <![endif]-->
+
+
+</head>
+
+
+<body>
+
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header" style="margin-bottom: 21px;width: 122px">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#"><img
+                    src="../assets/files/Setting/4aea179c3ba1a4028640514112911cf9.png" alt="logo"
+                    style='max-height: 45px; max-width: 200px'></a>
+
+
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li class="flat-box">
+                    <button style="margin-top: 9px" type="button" class="btn btn-primary temp-orders-btn">
+                        Saved Orders <span class="badge badge-light temp-badge"></span>
+                        <span class="sr-only"></span>
+                    </button>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li style="margin-top: 10px;">
+                    <img class="img-circle topbar-userpic hidden-xs" src="../assets/img/Avatar.jpg" width="30px"
+                         height="30px">
+                    <span class="hidden-xs"> &nbsp;&nbsp;<span class="login-user"></span></span>
+                </li>
+
+                <li class="flat-box"><a class="logout" title="Log out"><i class="fa fa-sign-out fa-lg"></i></a></li>
+            </ul>
+        </div>
+
+        <!-- Brand and toggle get grouped for better mobile display -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+
+<!-- Page Content -->
+<div class="container-fluid">
+    <div class="row">
+
+        <div class="col-md-4 left-side">
+            <div class="row">
+                <div class="row row-horizon">
+               <span class="holdList">
+                  <!-- list Holds goes here -->
+                   <a href="javascript:void(0)" id="add-customer-modal">
+               <span class="fa-stack fa-lg" data-tippy='Εισαγωγή νέου πελάτη'>
+                  <i class="fa fa-square fa-stack-2x grey"></i>
+                  <i class="fa fa-user-plus fa-stack-1x fa-inverse dark-blue"></i>
+               </span>
+                </a>
+
+               </span>
+                    <span></span>
+                </div>
+            </div>
+            <div class="col-xs-8">
+            </div>
+            <div class="col-xs-4 client-add">
+            </div>
+            <div class="row">
+
+                <div class="col-sm-6">
+                    <h3>Πελάτης</h3>
+
+                    <select class="js-select-options form-control customerSelect" id="customerSelect"
+                            name="customerSelect">
+
+                    </select>
+                </div>
+
+                <div class="col-sm-6">
+                    <h3>Πωλητής</h3>
+
+                    <select class="js-select-options form-control" id="salemanSelect" name="salemanSelect">
+
+                    </select>
+                </div>
+
+            </div>
+
+
+            <div class="col-sm-12" style="margin-top: 0.5em">
+                <h4>Αναζήτηση παραγγελίας</h4>
+                <span id="append-searchorder-input">
+                                    <input type="text" lang="en" autofocus id="search-order"
+                                           class="form-control search-order"
+                                           placeholder="barcode scanner">
+
+                </span>
+
+            </div>
+
+            <span id="append-barcode-order"/>
+
+
+        </div>
+        <div class="col-md-8 right-side nopadding">
+            <div class="col-sm-6">
+                <div id="searchContaner">
+                    <span id="append-barcode">
+                        <input type="text" lang="en" autofocus id="barcode" disabled class="form-control barcode"
+                               placeholder="Barcode Scanner">
+                    </span>
+                </div>
+            </div>
+
+            <div class="col-sm-6">
+                <div id="searchContaner">
+                    <span id="append-storage">
+                        <input type="text" lang="en" autofocus id="barcode-storage" class="form-control barcode-storage"
+                               placeholder="Barcode Storage">
+                    </span>
+                </div>
+            </div>
+
+
+            <div class="col-xs-5 table-header">
+                <h3>ΠΡΟΪΟΝ</h3>
+            </div>
+            <div class="col-xs-1 table-header">
+                <h3>ΤΙΜΗ</h3>
+            </div>
+            <div class="col-xs-3 table-header nopadding">
+                <h3>ΠΟΣΟΤΗΤΑ</h3>
+            </div>
+            <div class="col-xs-1 table-header nopadding">
+                <h3 class="text-left">ΕΚΠΤΩΣΗ</h3>
+            </div>
+            <div class="col-xs-2 table-header nopadding text-right">
+                <h3>ΣΥΝΟΛΟ</h3>
+            </div>
+
+
+            <div id="productList" style="overflow: hidden; width: auto; height: 318px;">
+                <span id="appendStoreButton" style="display:none">
+                    <div class="add-cart-to-temp"><button style="margin-bottom: 20px" type="button"
+                                                          class="btn btn-green btn-block col-md-6 flat-box-btn saveToTemp"><h5
+                            class="text-bold"> ΑΠΟΘΗΚΕΥΣΗ ΠΑΡΑΓΓΕΛΙΑΣ</h5></button></div>
+                </span>
+                <span id="appendProducts"/>
+
+
+                <!-- product List goes here  -->
+            </div>
+
+            <div class="footer-section">
+                <div class="table-responsive col-sm-12 totalTab">
+                    <table class="table">
+                        <tr>
+                            <td class="active" width="40%">Σύνολο προ έκπτωσης</td>
+                            <td class="whiteBg" width="60%"><span id="Subtot"
+                                                                  style="vertical-align:-webkit-baseline-middle"></span>
+
+                                <span class="float-right"><b id="ItemsNum">0 </b> Τεμάχια</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="active">ΦΠΑ
+                            </td>
+                            <td class="whiteBg"><input type="checkbox" id="tax-free-id" name="tax-free-id">
+                                <span class="float-right"><span style="background-color: aliceblue">ΦΠΑ</span>
+                                    <b id="taxValue">0.00 €</b></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="active">Έκπτωση</td>
+                            <td class="whiteBg"><span class="float-left"><b id="DiscountValue">0,00 €</b></span>
+                                <input type="text" onchange="" id="discount"
+                                       style="background-color: aliceblue; visibility: hidden"
+                                       class="total-input discount-input" placeholder="N/A"
+                                       maxlength="5">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="active">Έκπτωση Επιστροφής</td>
+                            <td class="whiteBg"><span class="float-left">
+                                <input type="text" disabled onchange="" id="discount-return"
+                                       style="background-color: aliceblue; "
+                                       class="total-input discount-return" placeholder="N/A"
+                                       maxlength="5">
+                                </span>
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="active" style="font-size: 20px">Σύνολο</td>
+                            <td class="whiteBg light-blue text-bold"><span id="total"
+                                                                           style="font-size: 20px">0.00</span></td>
+                        </tr>
+                    </table>
+                </div>
+
+                <button style="visibility: hidden" type="button" data-target="#cancelCart" data-toggle="modal"
+                        class="btn btn-red col-md-6 flat-box-btn cancel-cart"><h5
+                        class="text-bold">ΑΚΥΡΩΣΗ</h5></button>
+                <button type="button" class="btn btn-green col-md-6 flat-box-btn addPayment"><h5 class="text-bold">
+                    ΠΛΗΡΩΜΗ</h5></button>
+            </div>
+            <!-- product list section -->
+
+        </div>
+    </div>
+</div>
+
+<!-- /.container -->
+
+
+<!-- Modal -->
+<div class="modal " id="AddSale" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Πληρωμή</h4>
+            </div>
+            <div class="modal-body">
+
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <img src="../assets/files/Setting/4aea179c3ba1a4028640514112911cf9.png" alt="logo"
+                             style='max-height: 45px; max-width: 200px;margin-top: 10px;'>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <h3>Αρ. Απόδειξης &nbsp;&nbsp;&nbsp; <span id="receipt-number-lbl"
+                                                               class="label label-default"></span></h3>
+
+                </div>
+
+                <br/>
+                <br/>
+                <hr/>
+
+                <div class="col-sm-6">
+                    <label for="payment-customerName">Τύπος παραστατικού</label>
+
+                    <br/>
+                    <select style="width: 18em" class="js-select-options  docTypePayment" id="docTypePayment"
+                            name="docTypePayment">
+                    </select>
+                </div>
+
+
+                <div class="col-sm-6">
+
+                    <div class="form-group">
+                        <label for="print-returned-card">Εκτύπωση κάρτας επιστροφής</label> <br/>
+                        <input type="checkbox" data-group-cls="btn-group-sm" id="print-returned-card"
+                               name="print-returned-card"
+                               data-off-title="ΟΧΙ" data-on-title="ΝΑΙ">
+
+                    </div>
+                </div>
+
+                <br/>
+                <br/>
+                <hr/>
+
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="payment-customerName">Όνομα πελάτη</label>
+                        <input type="text" name="payment-customerName" class="form-control"
+                               id="payment-customerName" disabled/>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="payment-salesman-name">Όνομα πωλητή</label>
+                        <input type="text" name="payment-salesman-name" class="form-control"
+                               id="payment-salesman-name" disabled/>
+
+                    </div>
+                </div>
+
+                <div class="col-sm-7">
+
+                    <div class="form-group">
+                        <label for="payment-method">Τρόπος πληρωμής</label><br/>
+                        <div class="input-group">
+                            <div id="radioBtn" class="btn-group append-payment-method">
+                                <a class="btn btn-primary btn-sm active set-off" data-toggle="fun"
+                                   data-title="off">Επιλογή</a>
+                                <a class="btn btn-primary btn-sm notActive set-card" data-toggle="fun"
+                                   data-title="karta">ΚΑΡΤΑ</a>
+                                <a class="btn btn-primary btn-sm notActive set-cash" data-toggle="fun"
+                                   data-title="cash">ΜΕΤΡΗΤΑ</a>
+                                <a class="btn btn-danger btn-sm notActive set-cash-card" data-toggle="fun"
+                                   data-title="cash-card">ΜΙΚΤΟΣ</a>
+                            </div>
+                            <input type="hidden" name="payment-method" id="payment-method">
+                        </div>
+
+                        <!--<input type="checkbox" id="payment-method" name="payment-method" data-off-title="ΚΑΡΤΑ"
+                               checked data-on-title="ΜΕΤΡΗΤΑ">-->
+
+                    </div>
+                </div>
+                <div class="col-sm-5">
+
+                    <div class="form-group">
+                        <label for="tax-free-id">Tax Free</label> <br/>
+                        <input type="checkbox" id="tax-free-id-payment" name="tax-free-id-payment" disabled
+                               data-off-title="ΟΧΙ" data-on-title="ΝΑΙ">
+
+                    </div>
+                </div>
+
+
+                <div class="col-sm-12">
+
+                    <div class="alert alert-success" role="alert">
+                        <h4 class="alert-heading">Σύνολο απόδειξης</h4>
+                        <h3 class="mb-0"><span id="total-amount" style="font-size: 49px;"/></h3>
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+
+                    <!-- Μετρητά!-->
+                    <div class="form-group display-cash" style="display: none">
+                        <label for="paid">Μετρητά</label> <br/>
+                        <input type="text" name="cash-paid" class="form-control"
+                               id="cash-paid" style="height: 158px;font-size: 54px;"/>
+
+                    </div>
+
+                    <!-- Κάρτα!-->
+                    <div class="form-group display-card" style="display: none">
+                        <label for="paid">Kάρτα</label> <br/>
+                        <input type="text" name="card-paid" class="form-control"
+                               id="card-paid" style="height: 158px;font-size: 54px;color: red"/>
+
+                    </div>
+
+                </div>
+
+                <div class="col-sm-6">
+
+
+                    <div class="form-group">
+                        <label for="paid">Ρέστα πελάτη</label> <br/>
+                        <div class="alert alert-info" style="height: 157px;" role="alert">
+                            <h3 class="mb-0" style="margin-top: 35px"><span id="resta" style="font-size: 52px;"/> 0,00 €
+                            </h3>
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+                <br/>
+                <div class="col-sm-12">
+                    <label for="payment-notes">Σημειώσεις</label> <br/>
+                    <textarea class="form-control" name="payment-notes" rows="5" id="payment-notes"></textarea>
+
+
+                </div>
+
+
+                <div class="col-sm-12" style="margin-top: 10px;">
+                </div>
+
+
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default cancel-payment-modal" data-dismiss="modal">Aκύρωση
+                </button>
+                <button type="button" class="btn btn-add print-receipt" id="print-receipt">Εκτύπωση</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /.Modal -->
+
+
+<!-- Modal ticket -->
+<div class="modal fade" id="ticket" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document" id="ticketModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="ticket"><?=label("Receipt");?></h4>
+            </div>
+            <div class="modal-body" id="modal-body">
+                <div id="printSection">
+                    <!-- Ticket goes here -->
+                    <center><h1 style="color:black"><?=label("empty");?></h1></center>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default hiddenpr"
+                        data-dismiss="modal"><?=label("Close");?></button>
+                <button type="button" class="btn btn-add hiddenpr" href="javascript:void(0)" onClick="pdfreceipt()">
+                    PDF
+                </button>
+                <button type="button" class="btn btn-add hiddenpr" onclick="email()"><?=label("email");?></button>
+                <button type="button" class="btn btn-add hiddenpr" onclick="PrintTicket()"><?=label("print");?></button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /.Modal -->
+
+<!-- Modal add user -->
+<div class="modal addCustomer" id="AddCustomer" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form id="add-customer-form" name="add-customer-form" method="post">
+
+
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Εισαγωγή Νέου πελάτη</h4>
+                </div>
+
+                <div class="modal-body">
+
+
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label for="name">Όνομα πελάτη</label>
+                            <fieldset class="form-group position-relative validate">
+                                <input type="text" autofocus required name="name" class="form-control" id="name"
+                                       placeholder="Όνομα">
+                            </fieldset>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label for="occupation">Επάγγελμα</label>
+                            <input type="text" name="occupation" class="form-control" id="occupation"
+                                   placeholder="Επάγγελμα">
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="occupation">ΔΟΥ</label>
+                            <input type="text" name="tax_office" class="form-control" id="tax_office" placeholder="ΔΟΥ">
+                        </div>
+
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="occupation">ΑΦΜ</label>
+                            <input type="text" name="vat_number" class="form-control" id="vat_number" placeholder="ΑΦΜ">
+                        </div>
+                    </div>
+
+                    <div class="col-sm-8">
+
+                        <div class="form-group">
+                            <label for="address">Διεύθυνση</label>
+                            <input type="text" name="address" class="form-control" id="address" placeholder="Διεύθυνση">
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+
+                        <div class="form-group">
+                            <label for="address">ΤΚ</label>
+                            <input type="text" name="postal_code" class="form-control" id="postal_code"
+                                   placeholder="Ταχ. Κωδικός">
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+
+                        <div class="form-group">
+                            <label for="city">Περιοχή</label>
+                            <input type="text" name="city" class="form-control" id="city" placeholder="Περιοχή">
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+
+                        <div class="form-group">
+                            <label for="country">Χώρα</label>
+                            <input type="text" name="country" class="form-control" value="Ελλάδα" id="country"
+                                   placeholder="Χώρα">
+                        </div>
+                    </div>
+
+                    <div class="col-sm-3">
+
+                        <div class="form-group">
+                            <label for="phone">Τηλέφωνο</label>
+                            <input type="number" name="phone" class="form-control" id="phone" placeholder="Τηλέφωνο">
+                        </div>
+
+                    </div>
+
+                    <div class="col-sm-6">
+
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" name="email" class="form-control" id="email" placeholder="Email">
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+
+                        <div class="form-group">
+                            <label for="discount">Έκπτωση</label>
+                            <input type="number" name="discount-value" class="form-control" id="discount-value"
+                                   placeholder="%">
+                        </div>
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Κλείσιμο</button>
+                    <button type="submit" class="btn btn-add " id="add-customer">Αποθήκευση
+                    </button>
+                </div>
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+<!-- /.Modal -->
+
+<div class="modal fade" id="_cancelCart" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Διαγραφή λίστας</h4>
+            </div>
+            <div class="modal-body">
+                <div id="closeregsection">
+                    <!-- close register detail goes here -->
+                    Είστε βέβαιοι για την διαγραφή των προϊόντων απο την λίστα αγορών;
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a href="javascript:void(0)"
+                   class="btn btn-red col-md-12 flat-box-btn " id="cancel-cart">Διαγραφή καλαθιού</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /.Modal -->
+
+
+<!-- slim scroll script -->
+</body>
+
+<script>if (typeof module === 'object') {
+    window.module = module;
+    module = undefined;
+}
+
+</script>
+
+<!-- normal script imports etc  -->
+<script src="../assets/js/jquery-2.2.2.min.js"></script>
+<script src="../assets/js/jquery-ui.min.js"></script>
+
+<script type="text/javascript" src="../assets/js/jquery-validation-1.19.0/dist/jquery.validate.js"></script>
+
+<!-- dalatable scripts -->
+<!--<script src="../../../assets/datatables/js/dataTables.bootstrap.js"></script>-->
+
+
+<script type="text/javascript" src="../assets/js/loading.js"></script>
+<script type="text/javascript" src="../assets/js/jquery.slimscroll.min.js"></script>
+<!-- waves material design effect -->
+<script type="text/javascript" src="../assets/js/waves.min.js"></script>
+<!-- Bootstrap Core JavaScript -->
+<script type="text/javascript" src="../assets/js/bootstrap.min.js"></script>
+<!-- keyboard widget dependencies -->
+<script type="text/javascript" src="../assets/js/jquery.keyboard.js"></script>
+<script type="text/javascript" src="../assets/js/jquery.keyboard.extension-all.js"></script>
+<script type="text/javascript" src="../assets/js/jquery.keyboard.extension-extender.js"></script>
+<script type="text/javascript" src="../assets/js/jquery.keyboard.extension-typing.js"></script>
+<script type="text/javascript" src="../assets/js/jquery.mousewheel.js"></script>
+
+<!-- select2 plugin script -->
+<script type="text/javascript" src="../assets/js/select2.min.js"></script>
+
+
+<!-- summernote js -->
+<script src="../assets/js/summernote.js"></script>
+<!-- chart.js script -->
+<script src="../assets/js/Chart.js"></script>
+<!-- moment JS -->
+<script type="text/javascript" src="../assets/js/moment.min.js"></script>
+<!-- Include Date Range Picker -->
+<script type="text/javascript" src="../assets/js/daterangepicker.js"></script>
+<!-- Sweet Alert swal -->
+<script src="../assets/js/sweetalert.min.js"></script>
+<!-- datepicker script -->
+<script src="../assets/js/bootstrap-datepicker.min.js"></script>
+<!-- creditCardValidator script -->
+<script src="../assets/js/jquery.creditCardValidator.js"></script>
+<!-- creditCardValidator script -->
+<script src="../assets/js/credit-card-scanner.js"></script>
+<script src="../assets/js/jquery.redirect.js"></script>
+<script src="../assets/js/bootstrap-checkbox.min.js"></script>
+<script type="text/javascript" src="../assets/js/mousetrap.min.js"></script>
+
+<!--<script src="../../../assets/js/Mobile-first-Virtual-Keyboard-Plugin-With-jQuery-Bootstrap-jQBTK/jqbtk.js"></script>-->
+<!-- ajax form -->
+<script src="../assets/js/jquery.form.min.js"></script>
+<script src="../assets/js/toast.js"></script>
+<script src="../assets/js/jquery.mask.min.js"></script>
+<script src="../assets/js/jquery.maskMoney.js"></script>
+<script src="../assets/js/notifIt/js/notifIt.min.js"></script>
+<script src="../assets/js/overhang.js-master/dist/overhang.min.js"></script>
+
+
+
+
+
+
+<script type="text/javascript">
+    const {remote} = require('electron')
+    const electron = require('electron')
+    const session = require('electron')
+
+
+    const {app, BrowserWindow} = require('electron').remote;
+    const {ipcRenderer} = electron;
+
+
+    console.log(document.cookie)
+
+    $(document).ready(function () {
+
+
+
+
+
+
+    });
+
+
+
+
+</script>
+
+
+</html>

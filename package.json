@@ -1,0 +1,26 @@
+{
+  "name": "S-POS",
+  "version": "1.0.0",
+  "description": "POS System From MindTV LTD",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "install": "electron-rebuild",
+    "dist": "build",
+    "package-win64": "electron-packager . SPOS --overwrite --asar=true --platform=win32 --arch=all --icon=assets/icons/win/icon.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"SPOS\"",
+    "package-win": "electron-packager . SPOS --overwrite --asar=true --platform=win32 --arch=ia32 --icon=assets/icons/win/icon.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"SPOS\""
+  },
+  "author": "MIND TV",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^5.0.13",
+    "electron-packager": "^15.0.0"
+  },
+  "dependencies": {
+    "chosen-js": "^1.8.7",
+    "ip": "^1.1.5",
+    "keyboard": "0.0.1",
+    "node-machine-id": "^1.1.12",
+    "virtual": "^0.2.0"
+  }
+}
