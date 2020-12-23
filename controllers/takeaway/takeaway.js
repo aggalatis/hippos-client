@@ -422,7 +422,8 @@ TakeawayClass.prototype.initializeCartButtons = function () {
                     "customer_id": 1,
                     "order_payment_method": typeOfPayment,
                     "products": self.cartProducts,
-                    "totals": self.orderTotals
+                    "totals": self.orderTotals,
+                    "datetime": self.Helpers.getTodayDate()
 
                 }
 

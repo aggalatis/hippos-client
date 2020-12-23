@@ -1,7 +1,7 @@
 {
   "name": "S-POS",
   "version": "1.0.0",
-  "description": "POS System From MindTV LTD",
+  "description": "POS System From NG INVEST",
   "main": "main.js",
   "scripts": {
     "start": "electron .",

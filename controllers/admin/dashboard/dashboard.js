@@ -76,9 +76,9 @@ DashboardClass.prototype.initializeButtons = function() {
             dataType: 'json',
             data: '',
             success: function (response) {
-
+                console.log(response)
                 if (response.status === 200) {
-                    console.log(response.data)
+
                     swal({
                         title: "Επιτυχία Αποστολής!",
                         text: "Επιτυχής Αποστολή Ταμείου!",
@@ -100,6 +100,48 @@ DashboardClass.prototype.initializeButtons = function() {
             },
             error: function (jqXHR, textStatus) {
 
+                self.Helpers.swalServerError();
+            }
+        });
+
+
+    })
+
+    $('#close-income').on('click', function() {
+
+        $(this).attr('disabled', 'disabled')
+
+        $.ajax({
+            url: self.Helpers.LOCAL_API + "ManageIncome/Reports/Z",
+            type: 'GET',
+            dataType: 'json',
+            data: '',
+            success: function (response) {
+                if (response.status === 200) {
+
+                    swal({
+                        title: "Επιτυχία Κλεισίματος!",
+                        text: "Επιτυχής Κλείσιμο Ταμείου!",
+                        type: "success",
+                        showCancelButton: false,
+                        showConfirmButton: true,
+                        cancelButtonText: "Άκυρο",
+                        confirmButtonColor: "#2fdc17",
+                        confirmButtonText: "OK"
+
+                    }, function () {
+                        window.location.reload()
+                    })
+
+                } else {
+                    $(this).attr('disabled', null)
+                    self.Helpers.toastrServerError();
+
+                }
+
+            },
+            error: function (jqXHR, textStatus) {
+                $(this).attr('disabled', null)
                 self.Helpers.swalServerError();
             }
         });
