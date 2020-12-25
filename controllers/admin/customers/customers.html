@@ -63,6 +63,50 @@
 
 <! MODALS-->
 
+<div class="modal " id="customers-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Χρήστης</h4>
+            </div>
+            <div class="modal-body">
+
+                <input type="text" name="user_id" class="form-control" id="user_id" style="display: none">
+                <div class="form-group col-md-12 col-sm-12">
+                    <label for="user_fullname">Όνοματεπώνυμο</label>
+                    <input type="text" name="product_name" class="form-control" id="user_fullname">
+                </div>
+                <div class="form-group col-md-12 col-sm-12">
+                    <label for="user_name">Όνομα χρήστη</label>
+                    <input type="text" name="user_name" class="form-control" id="user_name">
+                </div>
+                <div class="form-group col-md-12 col-sm-12">
+                    <label for="user_password">Κωδικός χρήστη</label>
+                    <input type="password" name="user_password" class="form-control" id="user_password">
+                </div>
+                <div class="form-group col-md-12 col-sm-12">
+                    <label for="user_role_id">Ιδιότητα χρήστη</label>
+                    <select class="form-control" name="user_role_id" id="user_role_id">
+                    </select>
+                </div>
+                <div class="form-group col-md-12 col-sm-12">
+                    <label>
+                        <input type="checkbox" name="user_deleted" id="user_deleted">
+                        <span class="label-text">Ανενεργός</span>
+                    </label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Aκύρωση
+                </button>
+                <button type="button" class="btn btn-add" id="save-user">Αποθήκευση</button>
+            </div>
+
+        </div>
+    </div>
+</div>
 
 
 <! END OF MODALS-->
@@ -87,7 +131,7 @@
             <ul class="nav navbar-nav">
 
                 <li class="flat-box waves-effect waves-block">
-                    <a id="load-dashboard-refresh" href="#">
+                    <a id="load-dashboard" href="#">
                         <i class="fa fa-align-justify">
 
                         </i> Ταμείο</a>
@@ -128,43 +172,31 @@
 <div class="container">
     <div class="row" style="margin-top:2%;">
         <div class="col-md-12">
-            <div class="tab-pane fade active in" id="users-income">
-                <h4>Προτιμήσεις Καταλόγου</h4>
-                <hr/>
-                <div class="form-group col-md-6 col-sm-6">
-                    <label for="categories_per_page">Κατηγορίες ανά σελίδα:</label>
-                    <input type="number" name="categories_per_page" class="form-control" id="categories_per_page">
-                </div>
-                <div class="form-group col-md-6 col-sm-6">
-                    <label for="products_per_page">Προϊόντα ανά σελίδα:</label>
-                    <input type="number" name="products_per_page" class="form-control" id="products_per_page">
-                </div>
-                <div class="form-group col-md-3 col-sm-3">
-                    <label for="categories_height">Ύψος κατηγοριών:</label>
-                    <input type="text" name="categories_height" class="form-control" id="categories_height">
-                </div>
-                <div class="form-group col-md-3 col-sm-3">
-                    <label for="categories_width">Πλάτος κατηγοριών:</label>
-                    <input type="text" name="categories_width" class="form-control" id="categories_width">
-                </div>
-                <div class="form-group col-md-3 col-sm-3">
-                    <label for="products_height">Ύψος προϊόντων:</label>
-                    <input type="text" name="products_height" class="form-control" id="products_height">
-                </div>
-                <div class="form-group col-md-3 col-sm-3">
-                    <label for="products_width">Πλάτος προϊόντων:</label>
-                    <input type="text" name="products_width" class="form-control" id="products_width">
-                </div>
+            <div class="tab-pane fade active in" id="pricelists">
+                <button id="create-user" type="button" class="btn btn-success" style="float: right">Δημιουργία
+                    χρήστη
+                </button>
+                <h3>Πίνακας χρηστών</h3>
+                <table id="users-table" class="cell-border" style="width:100%">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Ονοματεπώνυμο</th>
+                        <th>Όνομα χρήστη</th>
+                        <th>Ιδιότητα χρήστη</th>
+                        <th>Κατάσταση</th>
+                        <th>Ημερ. Δημιουργίας</th>
+                        <th>Ενέργειες</th>
 
-                <div class="form-group col-md-12 col-sm-12" style="padding-left: 20%;padding-right: 20%">
-                    <button id="save_catelogue_preferences" class="btn btn-info"  style="width: 48%">Αποθήκευση προτιμήσεων καταλόγου</button>
-                    <button id="catelogue_restore_default" class="btn btn-warning"  style="width: 48%">Επαναφορά προεπιλεγμένων</button>
-                </div>
+                    </tr>
+                    </thead>
+
+
+                </table>
 
             </div>
         </div>
     </div>
-</div>
 </div>
 
 <!-- /.container -->
@@ -236,8 +268,9 @@
 <script src="../../../assets/js/notifIt/js/notifIt.min.js"></script>
 <script src="../../../assets/js/overhang.js-master/dist/overhang.min.js"></script>
 <script src="../../../assets/js/overhang.js-master/dist/overhang.min.js"></script>
-<script src="preferences.js"></script>
+<script src="users.js"></script>
 <script src="../../helpers/helpers.js"></script>
+<script src="../../helpers/template.js"></script>
 
 
 <script type="text/javascript">
@@ -246,10 +279,12 @@
     const session = require('electron')
     const {app, BrowserWindow} = require('electron').remote;
     const {ipcRenderer} = electron;
-
-    let myUsers = new preferencesClass();
+    new TemplateClass();
+    let myUsers = new usersClass();
 
     $(document).ready(function () {
+
+        myUsers.bindClickEventOnButtons();
 
 
 

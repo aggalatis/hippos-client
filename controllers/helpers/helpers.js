@@ -56,7 +56,7 @@ HelpersClass.prototype.swalServerError  = function() {
         cancelButtonText: "Άκυρο",
         confirmButtonColor: "#d9534f",
         confirmButtonText: "OK",
-        closeOnConfirm: true,
+        closeOnConfirm: true
 
     })
 

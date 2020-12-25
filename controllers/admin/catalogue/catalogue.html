@@ -64,106 +64,6 @@
 
 <! MODALS-->
 
-<div class="modal " id="pricelist-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
-                </button>
-                <h4 class="modal-title">Τιμοκατάλογος</h4>
-            </div>
-            <div class="modal-body">
-
-                <input type="text" name="pricelist_id" class="form-control" id="pricelist_id" style="display: none">
-                <div class="form-group col-md-12 col-sm-12">
-                    <label for="pricelist_name">Όνομα τιμοκαταλόγου</label>
-                    <input type="text" name="pricelist_name" class="form-control" id="pricelist_name" required>
-                </div>
-                <div class="form-group col-md-12 col-sm-12">
-                    <label for="pricelist_mode_id">Επιλογή Λειτουργίας</label>
-                    <select class="form-control" name="pricelist_mode_id" id="pricelist_mode_id">
-
-                    </select>
-                </div>
-                <div class="form-group col-md-12 col-sm-12">
-                    <label>
-                        <input type="checkbox" name="pricelist_deleted" id="pricelist_deleted">
-                        <span class="label-text">Ανενεργός</span>
-                    </label>
-                </div>
-
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default cancel-payment-modal" data-dismiss="modal">Aκύρωση
-                </button>
-                <button type="button" class="btn btn-add print-receipt" id="save-pricelist">Αποθήκευση</button>
-            </div>
-
-        </div>
-    </div>
-</div>
-
-
-<div class="modal " id="category-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
-                </button>
-                <h4 class="modal-title">Κατηγορία</h4>
-            </div>
-            <div class="modal-body">
-
-                <input type="text" name="category_id" class="form-control" id="category_id" style="display: none">
-                <div class="form-group col-md-12 col-sm-12">
-                    <label for="pricelist_name">Όνομα κατηγορίας</label>
-                    <input type="text" name="category_name" class="form-control" id="category_name" required>
-                </div>
-
-                <div class="form-group col-md-12 col-sm-12">
-                    <label for="category_color">Χρώμα κατηγορίας</label>
-                    <input type="color" name="category_color" class="form-control" id="category_color">
-                </div>
-
-
-                <div class="form-group col-md-6 col-sm-6">
-                    <label for="category_order">Θέση</label>
-                    <input type="text" name="category_order" class="form-control" id="category_order">
-                </div>
-                <div class="form-group col-md-6 col-sm-6">
-                    <label for="category_font_size">Μέγεθος γραμματοσειράς</label>
-                    <input type="text" name="category_font_size" class="form-control" id="category_font_size" required>
-                </div>
-
-                <div class="form-group col-md-12 col-sm-12">
-                    <label>
-                        <input type="checkbox" name="category_is_subcategory" id="category_is_subcategory" value="1">
-                        <span class="label-text">Υποκατηγορία</span>
-                    </label>
-                    &nbsp;&nbsp;&nbsp;
-                    <label>
-                        <input type="checkbox" name="category_deleted" id="category_deleted" value="1">
-                        <span class="label-text">Ανενεργή</span>
-                    </label>
-                </div>
-
-                <div id ="div_category_root_category" class="form-group col-md-12 col-sm-12" hidden>
-                    <label for="category_root_category">Κεντρική κατηγορία</label>
-                    <select class="form-control" name="category_root_category" id="category_root_category">
-                    </select>
-                </div>
-
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default cancel-payment-modal" data-dismiss="modal">Aκύρωση
-                </button>
-                <button type="button" class="btn btn-add print-receipt" id="save-category">Αποθήκευση</button>
-            </div>
-
-        </div>
-    </div>
-</div>
-
 <div class="modal " id="product-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -175,16 +75,25 @@
             <div class="modal-body">
 
                 <input type="text" name="product_id" class="form-control" id="product_id" style="display: none">
-                <div class="form-group col-md-12 col-sm-12">
+                <div class="form-group col-md-6 col-sm-6">
                     <label for="product_name">Όνομα προϊόντος</label>
                     <input type="text" name="product_name" class="form-control" id="product_name" required>
                 </div>
 
-                <div class="form-group col-md-12 col-sm-12">
+                <div class="form-group col-md-6 col-sm-6">
                     <label for="product_color">Χρώμα προϊόντος</label>
                     <input type="color" name="product_color" class="form-control" id="product_color">
                 </div>
-
+                <div class="form-group col-md-6 col-sm-6">
+                    <label for="product_price">Τιμή</label>
+                    <input type="text" name="product_price" class="form-control" id="product_price" required>
+                </div>
+                <div class="form-group col-md-6 col-sm-6">
+                    <label for="product_vat">Φ.Π.Α</label>
+                    <select type="text" name="product_vat" class="form-control" id="product_vat" required>
+                        <option value="initialize" selected disabled>Επιλογή Φ.Π.Α.</option>
+                    </select>
+                </div>
 
                 <div class="form-group col-md-6 col-sm-6">
                     <label for="product_order">Θέση</label>
@@ -196,19 +105,9 @@
                 </div>
 
                 <div class="form-group col-md-12 col-sm-12">
-                    <label for="product_category_id">Κατηγορία</label>
-                    <select class="form-control" name="product_category_id" id="product_category_id">
-                    </select>
-                </div>
-                <div class="form-group col-md-12 col-sm-12">
                     <label>
                         <input type="checkbox" name="product_deleted" id="product_deleted">
                         <span class="label-text">Ανενεργό</span>
-                    </label>
-                    &nbsp;&nbsp;
-                    <label>
-                        <input type="checkbox" name="product_weighed" id="product_weighed" >
-                        <span class="label-text">Ζυγιζόμενο</span>
                     </label>
                     &nbsp;&nbsp;
                     <label>
@@ -227,35 +126,6 @@
     </div>
 </div>
 
-<div class="modal " id="prices-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
-                </button>
-                <h4 class="modal-title">Τιμές</h4>
-            </div>
-            <div class="modal-body">
-
-                <input type="text" name="prices_product_id" class="form-control" id="prices_product_id" style="display: none">
-                <div class="form-group col-md-12 col-sm-12">
-                    <label for="prices_product_name">Όνομα προϊόντος</label>
-                    <input type="text" name="prices_product_name" class="form-control" id="prices_product_name" disabled>
-                </div>
-                <div class="form-group col-md-12 col-sm-12" id ="append-pricelist-prices">
-
-                </div>
-            </div>
-
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Aκύρωση
-                </button>
-                <button type="button" class="btn btn-add" id="save-prices">Αποθήκευση</button>
-            </div>
-
-        </div>
-    </div>
-</div>
 
 <! END OF MODALS-->
 
@@ -279,28 +149,28 @@
             <ul class="nav navbar-nav">
 
                 <li class="flat-box waves-effect waves-block">
-                    <a class="nav-choise" href="../dashboard/dashboard.html">
+                    <a id="load-dashboard" href="#">
                         <i class="fa fa-align-justify">
 
-                        </i> Ταμπλό</a>
+                        </i> Ταμείο</a>
                 </li>
                 <li class="flat-box waves-effect waves-block">
-                    <a href="../catalogue/catalogue.html">
+                    <a id="load-catalogue" href="#">
                         <i class="fa fa-book">
 
                         </i> Κατάλογος</a>
                 </li>
                 <li class="flat-box waves-effect waves-block">
-                    <a href="../users/users.html">
+                    <a id="load-users" href="#">
                         <i class="fa fa-users">
 
                         </i> Χρήστες</a>
                 </li>
                 <li class="flat-box waves-effect waves-block">
-                    <a href="../preferences/preferences.html">
-                        <i class="fa fa-ellipsis-h">
+                    <a id="load-customers" href="#">
+                        <i class="fa fa-briefcase">
 
-                        </i> Προτιμήσεις</a>
+                        </i> Πελάτες</a>
                 </li>
             </ul>
 
@@ -317,116 +187,36 @@
 
 
 <!-- Page Content -->
+<!-- Page Content -->
 <div class="container">
     <div class="row" style="margin-top:2%;">
         <div class="col-md-12">
-            <!-- tab navigation -->
-            <ul class="nav nav-tabs">
-                <li class="active"><a href="#pricelists" data-toggle="tab" aria-expanded="true"><i
-                        class="fa fa-bookmark" aria-hidden="true"></i> Τιμοκατάλογοι</a></li>
-                <li class=""><a href="#categories" data-toggle="tab" aria-expanded="false"><i class="fa fa-folder-open"
-                                                                                              aria-hidden="true"></i>
-                    Κατηγορίες</a></li>
-                <li class=""><a href="#products" data-toggle="tab" aria-expanded="false"><i class="fa fa-glass"
-                                                                                            aria-hidden="true"></i>
-                    Προιόντα</a></li>
-                <li class=""><a href="#extras" data-toggle="tab" aria-expanded="false"><i class="fa fa-info"
-                                                                                          aria-hidden="true"></i>
-                    Ιδιότητες</a></li>
-            </ul>
+            <div class="tab-pane fade active in" id="products">
+                <button id="create-product" type="button" class="btn btn-success" style="float: right">Δημιουργία
+                    προϊόντος
+                </button>
+                <h3>Πίνακας προϊόντων</h3>
+                <table id="products-table" class="cell-border" style="width:100%">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Όνομα προϊόντος</th>
+                        <th>Ελεύθερη τιμή</th>
+                        <th>Τιμή προϊόντος</th>
+                        <th>Φ.Π.Α.</th>
+                        <th>Μεγεθος Γραμματοσειράς</th>
+                        <th>Χρώμα</th>
+                        <th>Χρώμα</th>
+                        <th>Κατάσταση</th>
+                        <th>Θέση</th>
+                        <th>Ενέργειες</th>
 
-            <!-- tab sections -->
-            <div class="tab-content">
-                <!-- General pricelists tab -->
-                <div class="tab-pane fade active in" id="pricelists">
-                    <button id="create-pricelist" type="button" class="btn btn-success" style="float: right">Δημιουργία
-                        τιμοκαταλόγου
-                    </button>
-                    <h3>Πίνακας τιμοκαταλόγων</h3>
-
-
-                    <table id="pricelists-table" class="cell-border" style="width:100%">
-                        <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Όνομα</th>
-                            <th>Λειτουργία</th>
-                            <th>Ημερ. Δημιουργίας</th>
-                            <th>Κατάσταση</th>
-                            <th>Ημερ. Διαγραφής</th>
-                            <th>Ενέργειες</th>
-
-                        </tr>
-                        </thead>
+                    </tr>
+                    </thead>
 
 
-                    </table>
+                </table>
 
-                </div>
-                <!-- Categories tab -->
-                <div class="tab-pane fade" id="categories">
-
-                    <button id="create-category" type="button" class="btn btn-success" style="float: right">Δημιουργία
-                        κατηγορίας
-                    </button>
-                    <h3>Πίνακας κατηγοριών</h3>
-                    <br>
-
-                    <table id="categories-table" class="cell-border" style="width:100%">
-                        <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Όνομα</th>
-                            <th>Χρώμα</th>
-                            <th>Υποκατηγορία</th>
-                            <th>Κεντρική κατηγορία</th>
-                            <th>Σειρά</th>
-                            <th>Μέγεθος γραμμάτων</th>
-                            <th>Κατάσταση</th>
-                            <th>Ενέργειες</th>
-
-                        </tr>
-                        </thead>
-
-
-                    </table>
-
-
-                </div>
-                <!-- Products tab -->
-                <div class="tab-pane fade" id="products">
-
-                    <button id="create-product" type="button" class="btn btn-success" style="float: right">Δημιουργία
-                        προϊόντος
-                    </button>
-                    <h3>Πίνακας προϊόντων</h3>
-                    <br>
-
-                    <table id="products-table" class="cell-border" style="width:100%">
-                        <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Όνομα</th>
-                            <th>Κατηγορία</th>
-                            <th>Ελεύθυερη τιμή</th>
-                            <th>Ζυγιζόμενο</th>
-                            <th>Γραμματοσειρά</th>
-                            <th>Χρώμα</th>
-                            <th>Θέση</th>
-                            <th>Κατάσταση</th>
-                            <th>Ενέργειες</th>
-
-                        </tr>
-                        </thead>
-
-
-                    </table>
-
-                </div>
-                <!-- Extras tab -->
-                <div class="tab-pane fade" id="extras">
-
-                </div>
             </div>
         </div>
     </div>
@@ -503,6 +293,7 @@
 <script src="../../../assets/js/overhang.js-master/dist/overhang.min.js"></script>
 <script src="catalogue.js"></script>
 <script src="../../helpers/helpers.js"></script>
+<script src="../../helpers/template.js"></script>
 
 
 <script type="text/javascript">
@@ -511,13 +302,12 @@
     const session = require('electron')
     const {app, BrowserWindow} = require('electron').remote;
     const {ipcRenderer} = electron;
-
+    new TemplateClass();
     let myCatalogue = new CatalogueClass();
 
     $(document).ready(function () {
 
-        myCatalogue.bindEventsOnButtons();
-        myCatalogue.initializeSelects();
+
 
     });
 

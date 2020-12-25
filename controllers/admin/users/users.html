@@ -131,28 +131,28 @@
             <ul class="nav navbar-nav">
 
                 <li class="flat-box waves-effect waves-block">
-                    <a class="nav-choise" href="../dashboard/dashboard.html">
+                    <a id="load-dashboard-refresh" href="#">
                         <i class="fa fa-align-justify">
 
-                        </i> Ταμπλό</a>
+                        </i> Ταμείο</a>
                 </li>
                 <li class="flat-box waves-effect waves-block">
-                    <a href="../catalogue/catalogue.html">
+                    <a id="load-catalogue" href="#">
                         <i class="fa fa-book">
 
                         </i> Κατάλογος</a>
                 </li>
                 <li class="flat-box waves-effect waves-block">
-                    <a href="../users/users.html">
+                    <a id="load-users" href="#">
                         <i class="fa fa-users">
 
                         </i> Χρήστες</a>
                 </li>
                 <li class="flat-box waves-effect waves-block">
-                    <a href="../preferences/preferences.html">
-                        <i class="fa fa-ellipsis-h">
+                    <a id="load-customers" href="#">
+                        <i class="fa fa-briefcase">
 
-                        </i> Προτιμήσεις</a>
+                        </i> Πελάτες</a>
                 </li>
             </ul>
 
@@ -197,7 +197,6 @@
             </div>
         </div>
     </div>
-</div>
 </div>
 
 <!-- /.container -->
@@ -271,6 +270,7 @@
 <script src="../../../assets/js/overhang.js-master/dist/overhang.min.js"></script>
 <script src="users.js"></script>
 <script src="../../helpers/helpers.js"></script>
+<script src="../../helpers/template.js"></script>
 
 
 <script type="text/javascript">
@@ -279,7 +279,7 @@
     const session = require('electron')
     const {app, BrowserWindow} = require('electron').remote;
     const {ipcRenderer} = electron;
-
+    new TemplateClass();
     let myUsers = new usersClass();
 
     $(document).ready(function () {

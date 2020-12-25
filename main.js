@@ -126,6 +126,25 @@ win_admin.webContents.on('did-finish-load', () => {
 
 })
 
+ipcMain.on('loadAdminDashboard', (event, arg) => {
+
+    win_admin.loadFile('controllers/admin/dashboard/dashboard.html')
+
+win_admin.webContents.on('did-finish-load', () => {
+    win_admin.webContents.send('userData', arg)
+})
+
+})
+
+ipcMain.on('loadCustomers', (event, arg) => {
+
+    win_admin.loadFile('controllers/admin/customers/customers.html')
+
+win_admin.webContents.on('did-finish-load', () => {
+    win_admin.webContents.send('userData', arg)
+})
+
+})
 
 ipcMain.on('loadDashboard', (event, arg) => {
 

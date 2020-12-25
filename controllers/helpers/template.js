@@ -12,7 +12,8 @@ TemplateClass.prototype.bindPageLoads = function() {
 
     let self = this;
     $('#load-dashboard').on('click', function() {
-        ipcRenderer.send('loadDashboard', self.userData)
+
+        ipcRenderer.send('loadAdminDashboard', self.userData)
 
     })
 
@@ -30,6 +31,11 @@ TemplateClass.prototype.bindPageLoads = function() {
 
     $('#load-preferences').on('click', function() {
         ipcRenderer.send('loadPreferences', self.userData)
+
+    })
+
+    $('#load-customers').on('click', function() {
+        ipcRenderer.send('loadCustomers', self.userData)
 
     })
 }
