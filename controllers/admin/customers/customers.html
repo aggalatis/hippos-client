@@ -50,6 +50,7 @@
     <!--<link rel="stylesheet" type="text/css" href="../../../assets/js/Mobile-first-Virtual-Keyboard-Plugin-With-jQuery-Bootstrap-jQBTK/jqbtk.css">-->
     <!-- Custom CSS -->
     <link href="../../../assets/css/Style-Light.css" rel="stylesheet">
+    <link href="customers.css" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -69,39 +70,67 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
                 </button>
-                <h4 class="modal-title">Χρήστης</h4>
+                <h4 class="modal-title">Πελάτης</h4>
             </div>
             <div class="modal-body">
 
-                <input type="text" name="user_id" class="form-control" id="user_id" style="display: none">
+                <input type="text" name="customer_id" class="form-control" id="customer_id" style="display: none">
+                <div class="form-group col-md-6 col-sm-6">
+                    <label for="customer_vat_number">ΑΦΜ</label>
+                    <input type="number" name="customer_vat_number" class="form-control" id="customer_vat_number">
+                </div>
+                <div class="form-group col-md-6 col-sm-6">
+                    <label for="customer_vat_number">Αναζήτηση ΑΦΜ στην ΑΑΔΕ</label>
+                    <button name="search-customer" class="form-control btn-success" id="search-customer"><i
+                            class="fa fa-refresh"></i></button>
+                </div>
+
+
                 <div class="form-group col-md-12 col-sm-12">
-                    <label for="user_fullname">Όνοματεπώνυμο</label>
-                    <input type="text" name="product_name" class="form-control" id="user_fullname">
+                    <label for="customer_fullname">Επωνυμία</label>
+                    <input type="text" name="customer_fullname" class="form-control" id="customer_fullname">
                 </div>
                 <div class="form-group col-md-12 col-sm-12">
-                    <label for="user_name">Όνομα χρήστη</label>
-                    <input type="text" name="user_name" class="form-control" id="user_name">
+                    <label for="customer_bussiness">Δραστηριότητα</label>
+                    <input type="text" name="customer_bussiness" class="form-control" id="customer_bussiness">
                 </div>
-                <div class="form-group col-md-12 col-sm-12">
-                    <label for="user_password">Κωδικός χρήστη</label>
-                    <input type="password" name="user_password" class="form-control" id="user_password">
+                <div class="form-group col-md-6 col-sm-6">
+                    <label for="customer_tax_office">ΔΟΥ</label>
+                    <input type="text" name="customer_tax_office" class="form-control" id="customer_tax_office">
                 </div>
-                <div class="form-group col-md-12 col-sm-12">
-                    <label for="user_role_id">Ιδιότητα χρήστη</label>
-                    <select class="form-control" name="user_role_id" id="user_role_id">
-                    </select>
+                <div class="form-group col-md-6 col-sm-6">
+                    <label for="customer_phone">Τηλέφωνο</label>
+                    <input type="text" name="customer_phone" class="form-control" id="customer_phone">
                 </div>
-                <div class="form-group col-md-12 col-sm-12">
-                    <label>
-                        <input type="checkbox" name="user_deleted" id="user_deleted">
-                        <span class="label-text">Ανενεργός</span>
-                    </label>
+                <div class="form-group col-md-6 col-sm-6">
+                    <label for="customer_address">Διεύθυνση</label>
+                    <input type="text" name="customer_address" class="form-control" id="customer_address">
+                </div>
+                <div class="form-group col-md-6 col-sm-6">
+                    <label for="customer_address_number">Αριθμός</label>
+                    <input type="text" name="customer_address_number" class="form-control" id="customer_address_number">
+                </div>
+                <div class="form-group col-md-6 col-sm-6">
+                    <label for="customer_area">Περιοχή</label>
+                    <input type="text" name="customer_area" class="form-control" id="customer_area">
+                </div>
+                <div class="form-group col-md-6 col-sm-6">
+                    <label for="customer_postal_code">Τ.Κ.</label>
+                    <input type="text" name="customer_postal_code" class="form-control" id="customer_postal_code">
+                </div>
+                <div class="form-group col-md-6 col-sm-6">
+                    <label for="customer_load">ΦΟΡΤΩΣΗ</label>
+                    <input type="text" name="customer_load" class="form-control" id="customer_load">
+                </div>
+                <div class="form-group col-md-6 col-sm-6">
+                    <label for="customer_destination">ΠΡΟΟΡΙΣΜΟΣ</label>
+                    <input type="text" name="customer_destination" class="form-control" id="customer_destination">
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Aκύρωση
                 </button>
-                <button type="button" class="btn btn-add" id="save-user">Αποθήκευση</button>
+                <button type="button" class="btn btn-add" id="save-customer">Αποθήκευση</button>
             </div>
 
         </div>
@@ -154,9 +183,15 @@
 
                         </i> Πελάτες</a>
                 </li>
+                <li class="flat-box waves-effect waves-block">
+                    <a id="load-preferences" href="#">
+                        <i class="fa fa-cogs">
+
+                        </i> Ρυθμίσεις</a>
+                </li>
             </ul>
 
-            <ul class="nav navbar-nav navbar-right" >
+            <ul class="nav navbar-nav navbar-right">
                 <li class="navbar-username"></li>
                 <li class="flat-box"><a class="logout" title="Log out"><i class="fa fa-sign-out fa-lg"></i></a></li>
             </ul>
@@ -173,19 +208,24 @@
     <div class="row" style="margin-top:2%;">
         <div class="col-md-12">
             <div class="tab-pane fade active in" id="pricelists">
-                <button id="create-user" type="button" class="btn btn-success" style="float: right">Δημιουργία
-                    χρήστη
+                <button id="create-customer" type="button" class="btn btn-success" style="float: right">Δημιουργία
+                    πελάτη
                 </button>
-                <h3>Πίνακας χρηστών</h3>
-                <table id="users-table" class="cell-border" style="width:100%">
+                <h3>Πίνακας Πελατών</h3>
+                <table id="customers-table" class="cell-border" style="width:100%">
                     <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Ονοματεπώνυμο</th>
-                        <th>Όνομα χρήστη</th>
-                        <th>Ιδιότητα χρήστη</th>
-                        <th>Κατάσταση</th>
-                        <th>Ημερ. Δημιουργίας</th>
+                        <th>Επωνυμία</th>
+                        <th>Επάγγελμα</th>
+                        <th>ΑΦΜ</th>
+                        <th>ΔΟΥ</th>
+                        <th>Τηλέφωνο</th>
+                        <th>Διεύθυνση</th>
+                        <th>Αριθμός</th>
+                        <th>Περιοχή</th>
+                        <th>Τ.Κ.</th>
+
                         <th>Ενέργειες</th>
 
                     </tr>
@@ -268,9 +308,10 @@
 <script src="../../../assets/js/notifIt/js/notifIt.min.js"></script>
 <script src="../../../assets/js/overhang.js-master/dist/overhang.min.js"></script>
 <script src="../../../assets/js/overhang.js-master/dist/overhang.min.js"></script>
-<script src="users.js"></script>
+<script src="customers.js"></script>
 <script src="../../helpers/helpers.js"></script>
 <script src="../../helpers/template.js"></script>
+<script src="../../helpers/govermentAPI.js"></script>
 
 
 <script type="text/javascript">
@@ -280,15 +321,11 @@
     const {app, BrowserWindow} = require('electron').remote;
     const {ipcRenderer} = electron;
     new TemplateClass();
-    let myUsers = new usersClass();
+    let myCustomers = new customersClass();
 
     $(document).ready(function () {
 
-        myUsers.bindClickEventOnButtons();
-
-
-
-
+        myCustomers.bindClickEventOnButtons();
 
 
     });

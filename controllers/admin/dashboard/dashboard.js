@@ -32,14 +32,14 @@ DashboardClass.prototype.initializeSummaryCards = function() {
 
                     switch(response.data[i].order_payment_method) {
                         case 'cash':
-                            $('#sum-cash').html(response.data[i].income_count.toFixed(2) + " €")
+                            $('#sum-cash').html(parseFloat(response.data[i].income_count).toFixed(2) + " €")
                             break;
                         case 'card':
-                            $('#sum-card').html(response.data[i].income_count.toFixed(2) + " €")
+                            $('#sum-card').html(parseFloat(response.data[i].income_count).toFixed(2) + " €")
                             break;
                         case 'summary':
                             $('#sum-customers').html(response.data[i].customer_count + "  ")
-                            $('#sum-income').html(response.data[2].income_count.toFixed(2) + " €")
+                            $('#sum-income').html(parseFloat(response.data[2].income_count).toFixed(2) + " €")
                             break;
                         default:
                             break;

@@ -120,7 +120,7 @@ LoginClass.prototype.submitLoginForm = function() {
                 console.log(response)
 
 
-                if (response.user.user_role_id === 2) {
+                if (response.user.user_role_id === "2") {
 
                     ipcRenderer.send('loadDashboard', response.user)
 
