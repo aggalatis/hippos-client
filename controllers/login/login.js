@@ -16,7 +16,6 @@ let LoginClass = function () {
 
     setTimeout(function() {
 
-
         if (self.Helpers.serverKeyStatus == true) {
 
 

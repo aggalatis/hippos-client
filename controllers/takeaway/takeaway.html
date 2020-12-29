@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>S-POS TAKE-AWAY</title>
+    <title>S-POS</title>
     <!-- jQuery -->
     <!-- normalize & reset style -->
     <link rel="stylesheet" href="../../assets/css/normalize.min.css" type='text/css'>
@@ -71,8 +71,13 @@
 
 
 <body>
+
+<!--START MODALS-->
+<!--START MODALS-->
+<!--START MODALS-->
+<!--START MODALS-->
 <div class="modal" id="discount-modal" data-backdrop="static" tabindex="-1" role="dialog"
-     aria-labelledby="discountModalLabel">
+           aria-labelledby="discountModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header" style="background-color: #0c0c0c">
@@ -108,6 +113,53 @@
         </div>
     </div>
 </div>
+
+<div class="modal" id="invoice-modal" data-backdrop="static" tabindex="-1" role="dialog"
+     aria-labelledby="discountModalLabel">
+    <div class="modal-dialog" role="document" style="width: 90%">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: #0c0c0c">
+                <h4 class="modal-title">Έκδοση Τιμολογίου</h4>
+            </div>
+            <div class="modal-body">
+                <h3>Πελάτες</h3>
+                <table id="customers-table" class="cell-border" style="width:100%">
+                    <thead>
+                    <tr>
+                        <th>Επωνυμία</th>
+                        <th>Επάγγελμα</th>
+                        <th>ΑΦΜ</th>
+                        <th>Διεύθυνση</th>
+                        <th>Αριθμός</th>
+                        <th>Περιοχή</th>
+
+                    </tr>
+                    </thead>
+
+
+                </table>
+
+            </div>
+
+            <div class="modal-footer">
+
+                <button style="width: 32%" id="create-new-customer" type="button" class="btn btn-success">Προσθήκη πελάτη
+                </button>
+                <button style="width: 32%" id="choose-customer" type="button" class="btn btn-warning" disabled>Επιλογή πελάτη
+                </button>
+                <button style="width: 32%" id="close-invoice-modal" type="button" class="btn btn-danger"
+                        data-dismiss="invoice-modal">Άκυρο
+                </button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!--END MODALS-->
+<!--END MODALS-->
+<!--END MODALS-->
+<!--END MODALS-->
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="container-fluid">
         <div class="navbar-header" style="margin-bottom: 21px;width: 122px">
@@ -204,7 +256,7 @@
             <button class='numpad-btn' data-number="9">
                 9
             </button>
-                <button class='numpad-btn' data-number="0" style="margin-left: 3%">
+            <button class='numpad-btn' data-number="0" style="margin-left: 3%">
                 0
             </button>
             <button class='confirm-numpad-btn'>

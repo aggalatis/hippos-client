@@ -24,6 +24,7 @@ let TakeawayClass = function () {
     this.orderTotals = {};
     this.countNumpadNumbers = [];
     this.counter = 0;
+    this.selectedCustomer = null;
 
 
 }
@@ -389,6 +390,7 @@ TakeawayClass.prototype.emptyCartAndData = function () {
     self.orderTotals = {};
     self.selectedProductsForDiscount = [];
     self.typeOfDiscount = 0;
+    self.selectedCustomer = null;
 
     $('#append-cart-div').html("");
     $('#cart-sum-start-price').html("Αρχική τιμή: 0,00 €")
@@ -414,54 +416,106 @@ TakeawayClass.prototype.initializeCartButtons = function () {
 
                 typeOfPayment = "card";
             }
-            var orderObj = {
+            if (self.selectedCustomer === null) {
+                //This is a receipt
+                var orderObj = {
 
-                orderData: {
-                    "user_id": self.Helpers.userData.user_id,
-                    "user_name": self.Helpers.userData.user_name,
-                    "customer_id": 1,
-                    "order_payment_method": typeOfPayment,
-                    "products": self.cartProducts,
-                    "totals": self.orderTotals,
-                    "datetime": self.Helpers.getTodayDate()
-
-                }
-
-            }
-
-            console.log(orderObj)
-
-            $.ajax({
-                contentType: 'application/json',
-                url: self.Helpers.LOCAL_API + 'Orders',
-                type: 'POST',
-                dataType: 'json',
-                data: JSON.stringify(orderObj),
-                success: function (response) {
-
-                    if (response.status === 200) {
-
-                        self.Helpers.toastr("success", "Επιτυχής καταχώρηση παραγγελίας.")
-                        $('#cash-card-btn').html("ΜΕΤΡΗΤΑ");
-                        $('#cash-card-btn').removeClass('btn-success')
-                        $('#cash-card-btn').removeClass('btn-danger')
-                        $('#cash-card-btn').addClass('btn-success')
-                        self.emptyCartAndData();
-
-                    } else {
-
-                        self.Helpers.toastr("error", "Αποτυχία αποστολής παραγγελίας. Δοκιμάστε ξανά.")
+                    orderData: {
+                        "user_id": self.Helpers.userData.user_id,
+                        "user_name": self.Helpers.userData.user_name,
+                        "customer_id": 1,
+                        "order_payment_method": typeOfPayment,
+                        "products": self.cartProducts,
+                        "totals": self.orderTotals,
+                        "datetime": self.Helpers.getTodayDate()
 
                     }
 
-
-                },
-                error: function (jqXHR, textStatus) {
-
-                    alert("Request failed: " + textStatus);
-
                 }
-            });
+
+                console.log(orderObj)
+
+                $.ajax({
+                    contentType: 'application/json',
+                    url: self.Helpers.LOCAL_API + 'Orders',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: JSON.stringify(orderObj),
+                    success: function (response) {
+
+                        if (response.status === 200) {
+
+                            self.Helpers.toastr("success", "Επιτυχής καταχώρηση παραγγελίας.")
+                            $('#cash-card-btn').html("ΜΕΤΡΗΤΑ");
+                            $('#cash-card-btn').removeClass('btn-success')
+                            $('#cash-card-btn').removeClass('btn-danger')
+                            $('#cash-card-btn').addClass('btn-success')
+                            self.emptyCartAndData();
+
+                        } else {
+
+                            self.Helpers.toastr("error", "Αποτυχία αποστολής παραγγελίας. Δοκιμάστε ξανά.")
+
+                        }
+
+
+                    },
+                    error: function (jqXHR, textStatus) {
+
+                        self.Helpers.toastrServerError()
+
+                    }
+                });
+
+            } else {
+                //this is an invoice
+                swal({
+                    title: "Αποστολή Τιμολογίου?",
+                    text: "Είστε σίγουροι πως θέλετε να εκδώσετε τιμολόγιο? Το τιμολόγιο θα αποσταλεί στην ΑΑΔΕ για πιστοποίηση.",
+                    type: "warning",
+                    showCancelButton: true,
+                    cancelButtonText: "ΑΚΥΡΟ",
+                    confirmButtonColor: "#5cb85c",
+                    confirmButtonText: "ΑΠΟΣΤΟΛΗ",
+                    closeOnConfirm: true
+                }, function () {
+
+                    $.ajax({
+                        contentType: 'application/json',
+                        url: self.Helpers.LOCAL_API + 'Orders',
+                        type: 'POST',
+                        dataType: 'json',
+                        data: JSON.stringify(orderObj),
+                        success: function (response) {
+
+                            if (response.status === 200) {
+
+                                self.Helpers.toastr("success", "Επιτυχής καταχώρηση παραγγελίας.")
+                                $('#cash-card-btn').html("ΜΕΤΡΗΤΑ");
+                                $('#cash-card-btn').removeClass('btn-success')
+                                $('#cash-card-btn').removeClass('btn-danger')
+                                $('#cash-card-btn').addClass('btn-success')
+                                self.emptyCartAndData();
+
+                            } else {
+
+                                self.Helpers.toastr("error", "Αποτυχία αποστολής παραγγελίας. Δοκιμάστε ξανά.")
+
+                            }
+
+
+                        },
+                        error: function (jqXHR, textStatus) {
+
+                            self.Helpers.toastrServerError()
+                        }
+
+
+                    });
+                })
+
+            }
+
 
 
         }
@@ -497,6 +551,7 @@ TakeawayClass.prototype.initializeCartButtons = function () {
             self.Helpers.toastr('warning', 'Παρακαλώ επιλέξτε ένα από τα προϊόντα του καλαθιού.');
         }
     })
+
     $('#delete-product-btn').on('click', function () {
 
 
@@ -721,6 +776,69 @@ TakeawayClass.prototype.initializeCartButtons = function () {
             self.typeOfDiscount = null;
         }
 
+    })
+
+    $('#invoice-btn').on('click', function() {
+
+        if (self.cartProducts.length === 0) {
+
+            self.Helpers.toastr('warning', 'Παρακαλώ προσθέστε προιόντα για την έκδοση τιμολογίου.');
+
+
+        } else {
+            self.customersTable =  $('#customers-table').DataTable({
+                "processing": false,
+                "ajax": self.Helpers.LOCAL_API + "Customers/All",
+                "paging": true,
+                "searching": true,
+                "ordering": false,
+                "bPaginate": false,
+                "bInfo": false,
+                "columns": [
+                    {"data": "customer_fullname"},
+                    {"data": "customer_bussiness"},
+                    {"data": "customer_vat_number"},
+                    {"data": "customer_address"},
+                    {"data": "customer_address_number"},
+                    {"data": "customer_area"},
+
+
+                ]
+            });
+
+            self.customersTable.on("click", "tr", function () {
+
+                var clickedRowData = self.customersTable.row($(this)).data();
+                self.customersTable.rows().every(function() {
+                    let row = this.node()
+                    $(row).css('color', 'rgb(0, 0, 0)')
+                    $(row).css('background-color', 'rgb(255, 255, 255)')
+                })
+
+                $(this).css('color', 'rgb(255, 255, 255)')
+                $(this).css('background-color', 'rgb(0, 0, 0)')
+
+                self.selectedCustomer = clickedRowData;
+                $('#choose-customer').attr('disabled', null)
+
+            })
+            $('#invoice-modal').modal('show')
+
+        }
+
+    })
+
+    $('#close-invoice-modal').on('click', function() {
+        $('#choose-customer').attr('disabled', 'disabled')
+        self.customersTable.destroy();
+        self.selectedCustomer = null;
+        $('#invoice-modal').modal('hide')
+    })
+
+    $('#choose-customer').on('click', function() {
+        self.Helpers.toastr("success", "Έχει επιλεγεί πελάτης για αποστολή τιμολογιίου!")
+        self.customersTable.destroy();
+        $('#invoice-modal').modal('hide')
     })
 
 }
