@@ -427,7 +427,8 @@ TakeawayClass.prototype.initializeCartButtons = function () {
                         "order_payment_method": typeOfPayment,
                         "products": self.cartProducts,
                         "totals": self.orderTotals,
-                        "datetime": self.Helpers.getTodayDate()
+                        "datetime": self.Helpers.getTodayDate(),
+                        "document_number": 1
 
                     }
 
@@ -469,6 +470,24 @@ TakeawayClass.prototype.initializeCartButtons = function () {
 
             } else {
                 //this is an invoice
+
+                var orderObj = {
+
+                    orderData: {
+                        "user_id": self.Helpers.userData.user_id,
+                        "user_name": self.Helpers.userData.user_name,
+                        "customer_id": self.selectedCustomer.customer_id,
+                        "order_payment_method": typeOfPayment,
+                        "products": self.cartProducts,
+                        "totals": self.orderTotals,
+                        "datetime": self.Helpers.getTodayDate(),
+                        "document_number": 2
+
+                    }
+
+                }
+
+                console.log(orderObj)
                 swal({
                     title: "Αποστολή Τιμολογίου?",
                     text: "Είστε σίγουροι πως θέλετε να εκδώσετε τιμολόγιο? Το τιμολόγιο θα αποσταλεί στην ΑΑΔΕ για πιστοποίηση.",
