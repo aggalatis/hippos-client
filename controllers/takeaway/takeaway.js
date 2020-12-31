@@ -1,6 +1,7 @@
 let TakeawayClass = function () {
 
     this.Helpers = new HelpersClass();
+    this.GovermentAPI = new GovermentClass();
     this.Helpers.getLocalUser();
     let self = this;
     self.initializeSizes();
@@ -476,7 +477,7 @@ TakeawayClass.prototype.initializeCartButtons = function () {
                     orderData: {
                         "user_id": self.Helpers.userData.user_id,
                         "user_name": self.Helpers.userData.user_name,
-                        "customer_id": self.selectedCustomer.customer_id,
+                        "customer": self.selectedCustomer,
                         "order_payment_method": typeOfPayment,
                         "products": self.cartProducts,
                         "totals": self.orderTotals,
@@ -487,10 +488,9 @@ TakeawayClass.prototype.initializeCartButtons = function () {
 
                 }
 
-                console.log(orderObj)
                 swal({
                     title: "Αποστολή Τιμολογίου?",
-                    text: "Είστε σίγουροι πως θέλετε να εκδώσετε τιμολόγιο? Το τιμολόγιο θα αποσταλεί στην ΑΑΔΕ για πιστοποίηση.",
+                    text: "Είστε σίγουροι πως θέλετε να εκδώσετε τιμολόγιο? Το τιμολόγιο θα σταλεί αυτόματα στην ΑΑΔΕ για πιστοποίηση.",
                     type: "warning",
                     showCancelButton: true,
                     cancelButtonText: "ΑΚΥΡΟ",
@@ -499,28 +499,92 @@ TakeawayClass.prototype.initializeCartButtons = function () {
                     closeOnConfirm: true
                 }, function () {
 
+
                     $.ajax({
                         contentType: 'application/json',
-                        url: self.Helpers.LOCAL_API + 'Orders',
+                        url: self.Helpers.LOCAL_API + 'Aade/SendInvoice',
                         type: 'POST',
                         dataType: 'json',
                         data: JSON.stringify(orderObj),
                         success: function (response) {
 
-                            if (response.status === 200) {
+                            console.log(response)
+                            if (response.status == 200) {
 
-                                self.Helpers.toastr("success", "Επιτυχής καταχώρηση παραγγελίας.")
-                                $('#cash-card-btn').html("ΜΕΤΡΗΤΑ");
-                                $('#cash-card-btn').removeClass('btn-success')
-                                $('#cash-card-btn').removeClass('btn-danger')
-                                $('#cash-card-btn').addClass('btn-success')
-                                self.emptyCartAndData();
+                                swal({
+                                    title: "Επιτυχία διαβίβασης παραστατικού.",
+                                    text: "Μοναδικός αριθμός καταχώρησης (ΜΑΡΚ): " + response.invoiceMark["0"],
+                                    type: "success",
+                                    showCancelButton: false,
+                                    cancelButtonText: "ΑΚΥΡΟ",
+                                    confirmButtonColor: "#5cb85c",
+                                    confirmButtonText: "OK",
+                                    closeOnConfirm: true
+                                }, function () {
+
+                                    orderObj.orderData.invoiceMark = response.invoiceMark["0"];
+
+                                    console.log(orderObj)
+                                    $.ajax({
+                                        contentType: 'application/json',
+                                        url: self.Helpers.LOCAL_API + 'Orders',
+                                        type: 'POST',
+                                        dataType: 'json',
+                                        data: JSON.stringify(orderObj),
+                                        success: function (secondResponse) {
+
+                                            if (secondResponse.status === 200) {
+
+                                                self.Helpers.toastr("success", "Επιτυχής καταχώρηση παραγγελίας.")
+                                                $('#cash-card-btn').html("ΜΕΤΡΗΤΑ");
+                                                $('#cash-card-btn').removeClass('btn-success')
+                                                $('#cash-card-btn').removeClass('btn-danger')
+                                                $('#cash-card-btn').addClass('btn-success')
+                                                self.emptyCartAndData();
+
+                                            } else {
+
+                                                self.Helpers.toastr("error", "Αποτυχία αποστολής παραγγελίας. Δοκιμάστε ξανά.")
+
+                                            }
+
+
+                                        },
+                                        error: function (jqXHR, textStatus) {
+
+                                            self.Helpers.toastrServerError()
+
+                                        }
+                                    });
+
+                                    $('#cash-card-btn').html("ΜΕΤΡΗΤΑ");
+                                    $('#cash-card-btn').removeClass('btn-success')
+                                    $('#cash-card-btn').removeClass('btn-danger')
+                                    $('#cash-card-btn').addClass('btn-success')
+                                    self.emptyCartAndData();
+
+                                })
+
+
+
 
                             } else {
-
-                                self.Helpers.toastr("error", "Αποτυχία αποστολής παραγγελίας. Δοκιμάστε ξανά.")
+                                console.log(response.errors)
+                                swal({
+                                    title: "Σφάλμα στη διαβίβαση παραστατικού!",
+                                    text: "Κωδικός σφάλματος: " + response.statusCode["0"],
+                                    type: "error",
+                                    showCancelButton: false,
+                                    cancelButtonText: "ΑΚΥΡΟ",
+                                    confirmButtonColor: "#d9534f",
+                                    confirmButtonText: "OK",
+                                    closeOnConfirm: true
+                                })
 
                             }
+
+
+
 
 
                         },

@@ -33,7 +33,7 @@ app.on('ready', () => {
         }
     })
     win.loadFile('controllers/login/login.html')
-// win.setMenu(null); //disables the menu and all the shortcuts
+    // win.setMenu(null); //disables the menu and all the shortcuts
 win.on('closed', () => {
     // Dereference the window object, usually you would store windows
     // in an array if your app supports multi windows, this is the time
@@ -77,7 +77,8 @@ ipcMain.on('loadTakeaway', (event, arg) => {
         }})
     win_cashier.loadFile('controllers/takeaway/takeaway.html');
      win_cashier.maximize();
-    // win_cashier.setFullScreen(true);
+     // win_cashier.setFullScreen(true);
+     // win_cashier.setMenu(null);
 win_cashier.webContents.on('did-finish-load', () => {
     win_cashier.webContents.send('userData', arg)
     if (win)
@@ -97,7 +98,8 @@ win_cashier.on('closed', () => {
 ipcMain.on('loadCatalogue', (event, arg) => {
 
     win_admin.loadFile('controllers/admin/catalogue/catalogue.html')
-
+// win_admin.setFullScreen(true);
+// win_admin.setMenu(null);
 win_admin.webContents.on('did-finish-load', () => {
     win_admin.webContents.send('userData', arg)
 })
@@ -108,7 +110,8 @@ win_admin.webContents.on('did-finish-load', () => {
 ipcMain.on('loadUser', (event, arg) => {
 
     win_admin.loadFile('controllers/admin/users/users.html')
-
+// win_admin.setFullScreen(true);
+// win_admin.setMenu(null);
 win_admin.webContents.on('did-finish-load', () => {
     win_admin.webContents.send('userData', arg)
 })
@@ -119,7 +122,8 @@ win_admin.webContents.on('did-finish-load', () => {
 ipcMain.on('loadPreferences', (event, arg) => {
 
     win_admin.loadFile('controllers/admin/preferences/preferences.html')
-
+// win_admin.setFullScreen(true);
+// win_admin.setMenu(null);
 win_admin.webContents.on('did-finish-load', () => {
     win_admin.webContents.send('userData', arg)
 })
@@ -129,7 +133,8 @@ win_admin.webContents.on('did-finish-load', () => {
 ipcMain.on('loadAdminDashboard', (event, arg) => {
 
     win_admin.loadFile('controllers/admin/dashboard/dashboard.html')
-
+// win_admin.setFullScreen(true);
+// win_admin.setMenu(null);
 win_admin.webContents.on('did-finish-load', () => {
     win_admin.webContents.send('userData', arg)
 })
@@ -139,7 +144,8 @@ win_admin.webContents.on('did-finish-load', () => {
 ipcMain.on('loadCustomers', (event, arg) => {
 
     win_admin.loadFile('controllers/admin/customers/customers.html')
-
+// win_admin.setFullScreen(true);
+// win_admin.setMenu(null);
 win_admin.webContents.on('did-finish-load', () => {
     win_admin.webContents.send('userData', arg)
 })
@@ -157,7 +163,9 @@ ipcMain.on('loadDashboard', (event, arg) => {
 
         }})
     win_admin.loadFile('controllers/admin/dashboard/dashboard.html')
-win_admin.maximize();
+    win_admin.maximize();
+    // win_admin.setFullScreen(true);
+    // win_admin.setMenu(null);
 win_admin.webContents.on('did-finish-load', () => {
     win_admin.webContents.send('userData', arg)
 if (win) {
