@@ -156,6 +156,81 @@
     </div>
 </div>
 
+<div class="modal" id="customers-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Προσθήκη Πελάτη</h4>
+            </div>
+            <div class="modal-body">
+
+                <input type="text" name="customer_id" class="form-control" id="customer_id" style="display: none">
+                <div class="form-group col-md-6 col-sm-6">
+                    <label for="customer_vat_number">ΑΦΜ</label>
+                    <input type="number" name="customer_vat_number" class="form-control" id="customer_vat_number">
+                </div>
+                <div class="form-group col-md-6 col-sm-6">
+                    <label for="customer_vat_number">Αναζήτηση ΑΦΜ στην ΑΑΔΕ</label>
+                    <button name="search-customer" class="form-control btn-success" id="search-customer"><i
+                            class="fa fa-refresh"></i></button>
+                </div>
+                <div class="form-group col-md-12 col-sm-12">
+                    <label for="customer_fullname">Επωνυμία</label>
+                    <input type="text" name="customer_fullname" class="form-control" id="customer_fullname">
+                </div>
+                <div class="form-group col-md-12 col-sm-12">
+                    <label for="customer_bussiness">Δραστηριότητα</label>
+                    <input type="text" name="customer_bussiness" class="form-control" id="customer_bussiness">
+                </div>
+                <div class="form-group col-md-6 col-sm-6">
+                    <label for="customer_tax_office">ΔΟΥ</label>
+                    <input type="text" name="customer_tax_office" class="form-control" id="customer_tax_office">
+                </div>
+                <div class="form-group col-md-6 col-sm-6">
+                    <label for="customer_phone">Τηλέφωνο</label>
+                    <input type="text" name="customer_phone" class="form-control" id="customer_phone">
+                </div>
+                <div class="form-group col-md-6 col-sm-6">
+                    <label for="customer_address">Διεύθυνση</label>
+                    <input type="text" name="customer_address" class="form-control" id="customer_address">
+                </div>
+                <div class="form-group col-md-3 col-sm-3">
+                    <label for="customer_address_number">Αριθμός</label>
+                    <input type="text" name="customer_address_number" class="form-control" id="customer_address_number">
+                </div>
+                <div class="form-group col-md-3 col-sm-3">
+                    <label for="customer_address_number">Υποκατάστημα</label>
+                    <input type="number" name="customer_branch" class="form-control" id="customer_branch">
+                </div>
+                <div class="form-group col-md-6 col-sm-6">
+                    <label for="customer_area">Περιοχή</label>
+                    <input type="text" name="customer_area" class="form-control" id="customer_area">
+                </div>
+                <div class="form-group col-md-6 col-sm-6">
+                    <label for="customer_postal_code">Τ.Κ.</label>
+                    <input type="text" name="customer_postal_code" class="form-control" id="customer_postal_code">
+                </div>
+                <div class="form-group col-md-6 col-sm-6">
+                    <label for="customer_load">ΦΟΡΤΩΣΗ</label>
+                    <input type="text" name="customer_load" class="form-control" id="customer_load">
+                </div>
+                <div class="form-group col-md-6 col-sm-6">
+                    <label for="customer_destination">ΠΡΟΟΡΙΣΜΟΣ</label>
+                    <input type="text" name="customer_destination" class="form-control" id="customer_destination">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Aκύρωση
+                </button>
+                <button type="button" class="btn btn-add" id="save-customer">Αποθήκευση</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
 <!--END MODALS-->
 <!--END MODALS-->
 <!--END MODALS-->
@@ -163,13 +238,7 @@
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="container-fluid">
         <div class="navbar-header" style="margin-bottom: 21px;width: 122px">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
+
             <a class="navbar-brand" href="#" onClick="window.location.reload()"><img
                     src="../../assets/files/Setting/4aea179c3ba1a4028640514112911cf9.png" alt="logo"
                     style='max-height: 45px; max-width: 200px'></a>
@@ -178,7 +247,7 @@
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-
+                <li id="add-customer-li" class="flat-box" style="margin:12%; zoom:200%"><i class="fa fa-user-plus fa-lg"></i></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">

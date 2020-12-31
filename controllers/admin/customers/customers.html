@@ -106,9 +106,13 @@
                     <label for="customer_address">Διεύθυνση</label>
                     <input type="text" name="customer_address" class="form-control" id="customer_address">
                 </div>
-                <div class="form-group col-md-6 col-sm-6">
+                <div class="form-group col-md-3 col-sm-3">
                     <label for="customer_address_number">Αριθμός</label>
                     <input type="text" name="customer_address_number" class="form-control" id="customer_address_number">
+                </div>
+                <div class="form-group col-md-3 col-sm-3">
+                    <label for="customer_address_number">Υποκατάστημα</label>
+                    <input type="number" name="customer_branch" class="form-control" id="customer_branch">
                 </div>
                 <div class="form-group col-md-6 col-sm-6">
                     <label for="customer_area">Περιοχή</label>
@@ -204,7 +208,7 @@
 
 
 <!-- Page Content -->
-<div class="container">
+<div class="container" style="margin: 1%">
     <div class="row" style="margin-top:2%;">
         <div class="col-md-12">
             <div class="tab-pane fade active in" id="pricelists">
@@ -225,7 +229,7 @@
                         <th>Αριθμός</th>
                         <th>Περιοχή</th>
                         <th>Τ.Κ.</th>
-
+                        <th>Υποκατάστημα</th>
                         <th>Ενέργειες</th>
 
                     </tr>

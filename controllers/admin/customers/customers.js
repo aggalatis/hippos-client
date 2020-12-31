@@ -33,6 +33,7 @@ customersClass.prototype.initializeCustomersTable = function() {
             {"data": "customer_address_number"},
             {"data": "customer_area"},
             {"data": "customer_postal_code"},
+            {"data": "customer_branch"},
 
             {
                 "defaultContent": "<div class=\"btn-group categories-actions\" >\n" +
@@ -107,6 +108,7 @@ customersClass.prototype.initializeCustomersTable = function() {
             $('#customer_postal_code').val(data.customer_postal_code)
             $('#customer_load').val(data.customer_load)
             $('#customer_destination').val(data.customer_destination)
+            $('#customer_branch').val(data.customer_branch)
             $('#customers-modal').modal('show')
 
         }
@@ -128,6 +130,7 @@ customersClass.prototype.bindClickEventOnButtons = function () {
     $('#create-customer').on('click', function() {
         $('#customer_id').val(0)
         $('#customer_fullname').val('')
+        $('#customer_branch').val(0)
         $('#customer_vat_number').val('')
         $('#customer_bussiness').val('')
         $('#customer_tax_office').val('')
@@ -170,6 +173,7 @@ customersClass.prototype.submitCustomer = function() {
             customer_id: customer_id,
             customer_fullname: $('#customer_fullname').val(),
             customer_phone: $('#customer_phone').val(),
+            customer_branch: $('#customer_branch').val(),
             customer_address: $('#customer_address').val(),
             customer_address_number: $('#customer_address_number').val(),
             customer_area: $('#customer_area').val(),

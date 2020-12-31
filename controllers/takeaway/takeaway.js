@@ -1,7 +1,7 @@
 let TakeawayClass = function () {
 
     this.Helpers = new HelpersClass();
-    this.GovermentAPI = new GovermentClass();
+    this.GovermentAPI = new GovermentClass(this.Helpers);
     this.Helpers.getLocalUser();
     let self = this;
     self.initializeSizes();
@@ -18,7 +18,6 @@ let TakeawayClass = function () {
     this.selectedProductBackColor = '';
     this.fullProducts = [];
     this.cartProducts = [];
-    this.cartProductsID = [];
     this.selectedInCartProduct = null;
     this.selectedProductsForDiscount = [];
     this.typeOfDiscount = 0;
@@ -358,7 +357,6 @@ TakeawayClass.prototype.updateCartProduct = function(cartIndex, newQuantity, cur
 
 }
 
-
 TakeawayClass.prototype.refreshCartSummaries = function () {
 
     let self = this;
@@ -382,8 +380,6 @@ TakeawayClass.prototype.refreshCartSummaries = function () {
     self.orderTotals.sumQt = sumProductsQt;
 
 }
-
-
 
 TakeawayClass.prototype.emptyCartAndData = function () {
     let self = this;
@@ -424,7 +420,6 @@ TakeawayClass.prototype.initializeCartButtons = function () {
                     orderData: {
                         "user_id": self.Helpers.userData.user_id,
                         "user_name": self.Helpers.userData.user_name,
-                        "customer_id": 1,
                         "order_payment_method": typeOfPayment,
                         "products": self.cartProducts,
                         "totals": self.orderTotals,
@@ -923,6 +918,88 @@ TakeawayClass.prototype.initializeCartButtons = function () {
         self.customersTable.destroy();
         $('#invoice-modal').modal('hide')
     })
+
+    $('#add-customer-li').on('click', function() {
+        $('#customer_id').val(0)
+        $('#customer_fullname').val('')
+        $('#customer_branch').val(0)
+        $('#customer_vat_number').val('')
+        $('#customer_bussiness').val('')
+        $('#customer_tax_office').val('')
+        $('#customer_phone').val('')
+        $('#customer_address').val('')
+        $('#customer_address_number').val('')
+        $('#customer_area').val('')
+        $('#customer_postal_code').val('')
+        $('#customer_load').val('ΕΔΡΑ ΜΑΣ')
+        $('#customer_destination').val('ΕΔΡΑ ΤΟΥΣ')
+        $('#customers-modal').modal('show')
+    })
+
+    $('#search-customer').on('click',function() {
+
+        let customerAfm = $('#customer_vat_number').val()
+        self.GovermentAPI.searchAfm(customerAfm)
+
+
+    })
+
+    $('#save-customer').on('click', function() {
+
+        $('#save-customerr').attr('disabled', 'disabled');
+        $('#save-customerr').html('Αποθήκευση...');
+
+        let customerData = {
+            customerData: {
+                customer_id: 0,
+                customer_fullname: $('#customer_fullname').val(),
+                customer_phone: $('#customer_phone').val(),
+                customer_branch: $('#customer_branch').val(),
+                customer_address: $('#customer_address').val(),
+                customer_address_number: $('#customer_address_number').val(),
+                customer_area: $('#customer_area').val(),
+                customer_vat_number: $('#customer_vat_number').val(),
+                customer_tax_office: $('#customer_tax_office').val(),
+                customer_postal_code: $('#customer_postal_code').val(),
+                customer_bussiness: $('#customer_bussiness').val(),
+                customer_load: $('#customer_load').val(),
+                customer_destination: $('#customer_destination').val(),
+                customer_date_created: self.Helpers.getTodayDate()
+
+            }
+
+        }
+        $.ajax({
+
+            url: self.Helpers.LOCAL_API + "Customers",
+            type: 'POST',
+            dataType: 'json',
+            contentType: "application/json",
+            data: JSON.stringify(customerData),
+            success: function (response) {
+
+                if (response.status === 200) {
+
+                    self.Helpers.toastr('success', response.message)
+                    $('#customers-modal').modal('hide')
+                } else {
+
+                    self.Helpers.toastr('error', response.message);
+
+                }
+
+                            },
+            error: function (jqXHR, textStatus) {
+
+                self.Helpers.swalServerError();
+            }
+        });
+
+        $('#save-customerr').attr('disabled', null);
+        $('#save-customerr').html('Αποθήκευση');
+
+    })
+
 
 }
 
