@@ -1,20 +1,20 @@
 let preferencesClass = function () {
 
     this.Helpers = new HelpersClass();
-    this.Helpers.getLocalUser();
 
-    this.loadPreferencesValues();
-    this.bindEventsOnPreferencesBtns();
+    this.Helpers.getLocalUser();
+    this.initliazePreferences();
+    this.initializeButtons();
 
 
 }
 
-preferencesClass.prototype.loadPreferencesValues = function() {
+preferencesClass.prototype.initliazePreferences = function () {
+
     let self = this;
 
     $.ajax({
-
-        url: self.Helpers.LOCAL_API + "Preferences/Catalogue",
+        url: self.Helpers.LOCAL_API + "Companies",
         type: 'GET',
         dataType: 'json',
         data: '',
@@ -22,11 +22,13 @@ preferencesClass.prototype.loadPreferencesValues = function() {
 
             if (response.status === 200) {
 
-                for (i=0; i < response.data.length; i++) {
-
-                    $('#' + response.data[i].preference_name).val(response.data[i].preference_value)
-
-                }
+                $('#company_name').val(response.company.company_name)
+                $('#company_vat').val(response.company.company_vat)
+                $('#company_emails').val(response.company.company_emails)
+                $('#company_branch').val(response.company.company_branch)
+                $('#company_mydata_user_id').val(response.company.company_mydata_user_id)
+                $('#company_myData_api').val(response.company.company_myData_api),
+                $('#company_header').val(response.company.company_header)
 
             } else {
 
@@ -42,77 +44,41 @@ preferencesClass.prototype.loadPreferencesValues = function() {
         }
     });
 
-
-
 }
 
-preferencesClass.prototype.bindEventsOnPreferencesBtns = function() {
+preferencesClass.prototype.initializeButtons = function () {
 
     let self = this;
+    $('#save-company').on('click', function () {
 
-    $('#save_catelogue_preferences').on('click', function() {
+        let companyData = {
 
-        let preferencesObj = {
-
-            cataloguePrefData: {
-                "categories_per_page": $('#categories_per_page').val(),
-                "products_per_page": $('#products_per_page').val(),
-                "categories_height": $('#categories_height').val(),
-                "categories_width": $('#categories_width').val(),
-                "products_height": $('#products_height').val(),
-                "products_width": $('#products_width').val()
+            companyData: {
+                company_name: $('#company_name').val(),
+                company_vat: $('#company_vat').val(),
+                company_emails: $('#company_emails').val(),
+                company_branch: $('#company_branch').val(),
+                company_mydata_user_id: $('#company_mydata_user_id').val(),
+                company_myData_api: $('#company_myData_api').val(),
+                company_header: $('#company_header').val(),
 
             }
-
         }
 
         $.ajax({
-            contentType: 'application/json',
-            url: self.Helpers.LOCAL_API + "Preferences/Catalogue",
+            url: self.Helpers.LOCAL_API + "Companies",
             type: 'PUT',
             dataType: 'json',
-            data: JSON.stringify(preferencesObj),
+            contentType: "application/json",
+            data: JSON.stringify(companyData),
             success: function (response) {
 
                 if (response.status === 200) {
 
-                    self.Helpers.toastr("success", response.message)
-
+                    self.Helpers.toastr('success', response.message)
                 } else {
 
-                    self.Helpers.toastrServerError();
-
-                }
-
-
-            },
-            error: function (jqXHR, textStatus) {
-
-                self.Helpers.swalServerError();
-            }
-        });
-
-
-    })
-
-    $('#catelogue_restore_default').on('click', function() {
-
-
-        $.ajax({
-
-            url: self.Helpers.LOCAL_API + "Preferences/Catalogue/RestoreDefaults",
-            type: 'GET',
-            dataType: 'json',
-            data: '',
-            success: function (response) {
-
-                if (response.status === 200) {
-
-                   self.Helpers.toastr("success", response.message)
-                    self.loadPreferencesValues();
-                } else {
-
-                    self.Helpers.toastrServerError();
+                    self.Helpers.toastr('error', response.message);
 
                 }
 
@@ -125,9 +91,4 @@ preferencesClass.prototype.bindEventsOnPreferencesBtns = function() {
         });
 
     })
-
-
-
-
-
 }

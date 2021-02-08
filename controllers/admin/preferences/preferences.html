@@ -64,7 +64,6 @@
 <! MODALS-->
 
 
-
 <! END OF MODALS-->
 
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -89,7 +88,6 @@
                 <li class="flat-box waves-effect waves-block">
                     <a id="load-dashboard" href="#">
                         <i class="fa fa-align-justify">
-
                         </i> Ταμείο</a>
                 </li>
                 <li class="flat-box waves-effect waves-block">
@@ -118,7 +116,7 @@
                 </li>
             </ul>
 
-            <ul class="nav navbar-nav navbar-right" >
+            <ul class="nav navbar-nav navbar-right">
                 <li class="navbar-username"></li>
                 <li class="flat-box"><a class="logout" title="Log out"><i class="fa fa-sign-out fa-lg"></i></a></li>
             </ul>
@@ -132,45 +130,127 @@
 
 <!-- Page Content -->
 <div class="container">
-    <div class="row" style="margin-top:2%;">
+    <div class="row">
         <div class="col-md-12">
-            <div class="tab-pane fade active in" id="users-income">
-                <h4>Προτιμήσεις Καταλόγου</h4>
-                <hr/>
-                <div class="form-group col-md-6 col-sm-6">
-                    <label for="categories_per_page">Κατηγορίες ανά σελίδα:</label>
-                    <input type="number" name="categories_per_page" class="form-control" id="categories_per_page">
-                </div>
-                <div class="form-group col-md-6 col-sm-6">
-                    <label for="products_per_page">Προϊόντα ανά σελίδα:</label>
-                    <input type="number" name="products_per_page" class="form-control" id="products_per_page">
-                </div>
-                <div class="form-group col-md-3 col-sm-3">
-                    <label for="categories_height">Ύψος κατηγοριών:</label>
-                    <input type="text" name="categories_height" class="form-control" id="categories_height">
-                </div>
-                <div class="form-group col-md-3 col-sm-3">
-                    <label for="categories_width">Πλάτος κατηγοριών:</label>
-                    <input type="text" name="categories_width" class="form-control" id="categories_width">
-                </div>
-                <div class="form-group col-md-3 col-sm-3">
-                    <label for="products_height">Ύψος προϊόντων:</label>
-                    <input type="text" name="products_height" class="form-control" id="products_height">
-                </div>
-                <div class="form-group col-md-3 col-sm-3">
-                    <label for="products_width">Πλάτος προϊόντων:</label>
-                    <input type="text" name="products_width" class="form-control" id="products_width">
-                </div>
+            <!-- tab navigation -->
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#company" data-toggle="tab" aria-expanded="true">Επιχείρηση</a></li>
+                <li class=""><a href="#terminals" data-toggle="tab" aria-expanded="false">Τερματικά</a></li>
 
-                <div class="form-group col-md-12 col-sm-12" style="padding-left: 20%;padding-right: 20%">
-                    <button id="save_catelogue_preferences" class="btn btn-info"  style="width: 48%">Αποθήκευση προτιμήσεων καταλόγου</button>
-                    <button id="catelogue_restore_default" class="btn btn-warning"  style="width: 48%">Επαναφορά προεπιλεγμένων</button>
+            </ul>
+
+            <!-- tab sections -->
+            <div class="tab-content">
+                <div class="tab-pane fade active in" id="company">
+                    <div class="row">
+                        <div class="col-md-6 col-lg-6 col-sm-6"><h3>Στοιχεία καταστήματος</h3></div>
+                        <div class="col-md-6 col-lg-6 col-sm-6">
+                            <button class="btn btn-add btn-lg" style="float: right" id="save-company">Αποθήκευση στοιχείων</button>
+                        </div>
+                    </div>
+
+
+                    <hr/>
+                    <form action="">
+                        <div class="form-group col-md-6">
+                            <label for="company_name">Όνομα</label>
+                            <input type="text" name="company_name" class="form-control" id="company_name"
+                                   placeholder="Όνομα καταστήματος">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="company_vat">ΑΦΜ</label>
+                            <input type="number" name="company_vat" class="form-control" id="company_vat"
+                                   placeholder="ΑΦΜ Καταστήματος">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="company_emails">Email</label>
+                            <input type="text" name="company_emails" class="form-control" id="company_emails"
+                                   placeholder="Email Καταστήματος">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="company_branch">Αριθμός Υποκαταστήματος taxisnet</label>
+                            <input type="number" name="company_branch" class="form-control" id="company_branch"
+                                   placeholder="Αριθμός Υποκαταστήματος taxisnet">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="company_mydata_user_id">MyData User ID</label>
+                            <input type="text" name="company_mydata_user_id" class="form-control" id="company_mydata_user_id"
+                                   placeholder="MyData User ID">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="company_myData_api">MyData Κλειδί API</label>
+                            <input type="text" name="company_myData_api" class="form-control" id="company_myData_api"
+                                   placeholder="MyData Κλειδί API">
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label for="company_header">Επικεφαλίδα Παραστατικού</label>
+                            <textarea type="text" name="company_header" class="form-control" id="company_header" rows="7"
+                                      placeholder="Επικεφαλίδα παραστατικού"></textarea>
+                        </div>
+
+                    </form>
+                </div>
+                <div class="tab-pane fade" id="terminals">
+                    <table class="table">
+                        <tbody>
+                        <tr>
+                            <th>Avatar</th>
+                            <th>first Name</th>
+                            <th>Last Name</th>
+                            <th>Username</th>
+                            <th>Role</th>
+                            <th>last Active</th>
+                            <th>Action</th>
+                        </tr>
+                        <tr>
+                            <td><img class="img-circle topbar-userpic hidden-xs"
+                                     src="http://www.dar-elweb.com/demos/zarpos/files/Avatars/9fff9cc26e539214e9a5fd3b6a10cde9.jpg"
+                                     width="30px" height="30px"></td>
+                            <td>admin</td>
+                            <td>Doe</td>
+                            <td>admin</td>
+                            <td>admin</td>
+                            <td>2021-02-05 15:47:03</td>
+                            <td>
+                                <div class="btn-group">
+                                    <a class="btn btn-default" href="settings/editUser/1" data-toggle="tooltip"
+                                       data-placement="top" title="" data-original-title="Edit"><i
+                                            class="fa fa-pencil"></i></a>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><img class="img-circle topbar-userpic hidden-xs"
+                                     src="http://www.dar-elweb.com/demos/zarpos/files/Avatars/3b49aefa789efb5e6db62d5ae906a4c2.jpg"
+                                     width="30px" height="30px"></td>
+                            <td>sale</td>
+                            <td>Staff</td>
+                            <td>sale</td>
+                            <td>sales</td>
+                            <td>2021-01-25 00:05:31</td>
+                            <td>
+                                <div class="btn-group">
+                                    <a class="btn btn-default" href="settings/deleteUser/15" data-toggle="tooltip"
+                                       data-placement="top" title="" data-original-title="Delete"><i
+                                            class="fa fa-times"></i></a> <a class="btn btn-default"
+                                                                            href="settings/editUser/15"
+                                                                            data-toggle="tooltip" data-placement="top"
+                                                                            title="" data-original-title="Edit"><i
+                                        class="fa fa-pencil"></i></a>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-add btn-lg" data-toggle="modal" data-target="#AddUser">
+                        Add User
+                    </button>
                 </div>
 
             </div>
         </div>
     </div>
-</div>
 </div>
 
 <!-- /.container -->
@@ -244,6 +324,7 @@
 <script src="../../../assets/js/overhang.js-master/dist/overhang.min.js"></script>
 <script src="preferences.js"></script>
 <script src="../../helpers/helpers.js"></script>
+<script src="../../helpers/template.js"></script>
 
 
 <script type="text/javascript">
@@ -253,13 +334,9 @@
     const {app, BrowserWindow} = require('electron').remote;
     const {ipcRenderer} = electron;
 
-    let myUsers = new preferencesClass();
-
+    let myPreferences = new preferencesClass();
+    new TemplateClass();
     $(document).ready(function () {
-
-
-
-
 
 
     });
