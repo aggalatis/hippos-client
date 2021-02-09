@@ -7,7 +7,7 @@ let HelpersClass = function () {
 
 
     self.LOCAL_API = settings.LOCAL_API;
-    self.SERVER_API = settings.SERVER_API;
+    self.REMOTE_API = settings.REMOTE_API;
     self.autologin = settings.autologin;
     self.autologin_user = settings.autologin_user;
     self.autologin_password = settings.autologin_password;
@@ -18,6 +18,7 @@ let HelpersClass = function () {
     self.numpad_numbers_height = settings.numpad_numbers_height;
     self.cart_height = settings.cart_height;
     self.send_order_height = settings.send_order_height;
+    self.admin_report = settings.admin_report;
     self.userData = null;
     self.serverKeyStatus = false;
     self.bindLogout();

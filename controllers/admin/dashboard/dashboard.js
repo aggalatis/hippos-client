@@ -2,7 +2,8 @@ let DashboardClass = function () {
 
     this.Helpers = new HelpersClass();
     this.Helpers.getLocalUser();
-    this.initializeSummaryCards();
+    if (this.Helpers.admin_report == true)
+        this.initializeSummaryCards();
     this.initializeButtons();
 
     $('#load-dashboard-refresh').on('click',function() {
@@ -25,7 +26,7 @@ DashboardClass.prototype.initializeSummaryCards = function() {
         data: '',
         success: function (response) {
 
-            if (response.status === 200) {
+            if (response.status === 200 ) {
 
                 $('#last-close-date').html(response.last_day_closed);
                 for(i=0; i < response.data.length; i++) {

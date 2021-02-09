@@ -34,12 +34,11 @@ customersClass.prototype.initializeCustomersTable = function() {
             {"data": "customer_area"},
             {"data": "customer_postal_code"},
             {"data": "customer_branch"},
-
             {
                 "defaultContent": "<div class=\"btn-group categories-actions\" >\n" +
                 "                            <a class=\"btn btn-default edit-customer\"><i class=\"fa fa-pencil\"></i></a><a class=\"btn btn-default delete-customer\" ><i class=\"fa fa-times\"></i></a>                            \n" +
                 "                          </div>"
-            },
+            }
 
 
         ]

@@ -497,7 +497,7 @@ TakeawayClass.prototype.initializeCartButtons = function () {
 
                     $.ajax({
                         contentType: 'application/json',
-                        url: self.Helpers.LOCAL_API + 'Aade/SendInvoice',
+                        url: self.Helpers.REMOTE_API + 'Aade/SendInvoice',
                         type: 'POST',
                         dataType: 'json',
                         data: JSON.stringify(orderObj),
