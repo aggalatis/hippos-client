@@ -10,7 +10,7 @@
     "package-win64": "electron-packager . SPOS --overwrite --asar=true --platform=win32 --arch=all --icon=assets/icons/win/icon.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"SPOS\"",
     "package-win": "electron-packager . SPOS --overwrite --asar=true --platform=win32 --arch=ia32 --icon=assets/icons/win/icon.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"SPOS\""
   },
-  "author": "MIND TV",
+  "author": "AG",
   "license": "ISC",
   "devDependencies": {
     "electron": "^5.0.13",

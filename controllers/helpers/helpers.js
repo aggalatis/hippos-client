@@ -6,6 +6,7 @@ let HelpersClass = function () {
     let settings = settingsFile.init();
 
 
+    self.store_id = settings.store_id;
     self.LOCAL_API = settings.LOCAL_API;
     self.REMOTE_API = settings.REMOTE_API;
     self.autologin = settings.autologin;
@@ -19,6 +20,8 @@ let HelpersClass = function () {
     self.cart_height = settings.cart_height;
     self.send_order_height = settings.send_order_height;
     self.admin_report = settings.admin_report;
+    self.mydata_invoices = settings.mydata_invoices;
+    self.send_email_report = settings.send_email_report;
     self.userData = null;
     self.serverKeyStatus = false;
     self.bindLogout();
@@ -185,4 +188,13 @@ HelpersClass.prototype.submitLicense = function (uniqueID , ipAddress) {
 
 
 
+}
+
+HelpersClass.prototype.changeMysqlDateToNormal = function(dateTime) {
+
+    let explodedDatetime = dateTime.split(' ');
+
+    let dateArray = explodedDatetime[0].split('-');
+
+    return dateArray[2] + "/" + dateArray[1] + "/" + dateArray[0] + " " + explodedDatetime[1]
 }
