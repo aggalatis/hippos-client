@@ -1,5 +1,5 @@
 {
-  "name": "S-POS",
+  "name": "Hippo",
   "version": "1.0.0",
   "description": "POS System From NG INVEST",
   "main": "main.js",
@@ -7,8 +7,8 @@
     "start": "electron .",
     "install": "electron-rebuild",
     "dist": "build",
-    "package-win64": "electron-packager . SPOS --overwrite --asar=true --platform=win32 --arch=all --icon=assets/icons/win/icon.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"SPOS\"",
-    "package-win": "electron-packager . SPOS --overwrite --asar=true --platform=win32 --arch=ia32 --icon=assets/icons/win/icon.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"SPOS\""
+    "package-win64": "electron-packager . Hippo --overwrite --asar=true --platform=win32 --arch=all --icon=assets/icons/win/icon.ico --prune=true --out=release-builds",
+    "package-win": "electron-packager . Hippo --overwrite --asar=true --platform=win32 --arch=ia32 --icon=assets/icons/win/icon.ico --prune=true --out=release-builds"
   },
   "author": "AG",
   "license": "ISC",
