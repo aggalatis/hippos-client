@@ -67,52 +67,27 @@ DashboardClass.prototype.initializeButtons = function () {
             data: "",
             success: function (response) {
                 if (response.status === 200) {
-                    if (self.Helpers.send_email_report === true) {
-                        let emailData = {
-                            emailData: {
-                                store_id: self.Helpers.store_id,
-                                subject: "ΑΝΑΛΥΣΗ ΤΑΜΕΙΟΥ: ",
-                                userData: response.data,
-                                lastCloseDate: self.lastDayClose,
-                            },
-                        }
-
-                        console.log(emailData)
-                        $.ajax({
-                            url: self.Helpers.REMOTE_API + "Mail/SendEmail",
-                            type: "POST",
-                            dataType: "json",
-                            contentType: "application/json",
-                            data: JSON.stringify(emailData),
-                            success: function (response) {
-                                if (response.status === 200) {
-                                    swal({
-                                        title: "Επιτυχία Αποστολής!",
-                                        text: "Επιτυχής Αποστολή Ταμείου!",
-                                        type: "success",
-                                        showCancelButton: false,
-                                        showConfirmButton: true,
-                                        cancelButtonText: "Άκυρο",
-                                        confirmButtonColor: "#2fdc17",
-                                        confirmButtonText: "OK",
-                                    })
-                                } else {
-                                    self.Helpers.toastrServerError()
-                                }
-                            },
-                        })
+                    let responseString = ""
+                    if (response.data.mail) {
+                        responseString += "Επιτυχία αποστολής e-mail! \r\n"
                     } else {
-                        swal({
-                            title: "Επιτυχία Εκτύπωσης!",
-                            text: "Επιτυχής Εκτύπωση Ταμείου!",
-                            type: "success",
-                            showCancelButton: false,
-                            showConfirmButton: true,
-                            cancelButtonText: "Άκυρο",
-                            confirmButtonColor: "#2fdc17",
-                            confirmButtonText: "OK",
-                        })
+                        responseString += "Αποτυχία αποστολής e-mail! \r\n"
                     }
+                    if (response.data.print) {
+                        responseString += "Επιτυχία εκτύπωσης! \r\n"
+                    } else {
+                        responseString += "Αποτυχία εκτύπωσης! \r\n"
+                    }
+                    swal({
+                        title: "Επιτυχία Έκδοσης!",
+                        text: responseString,
+                        type: "success",
+                        showCancelButton: false,
+                        showConfirmButton: true,
+                        cancelButtonText: "Άκυρο",
+                        confirmButtonColor: "#2fdc17",
+                        confirmButtonText: "OK",
+                    })
                 } else {
                     self.Helpers.toastrServerError()
                 }

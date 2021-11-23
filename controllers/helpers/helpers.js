@@ -1,4 +1,4 @@
-const settingsFile = require("c:\\hippos\\client\\settings")
+const settingsFile = require("/home/aggalatis/Projects/spos-app/settings")
 let HelpersClass = function () {
     let self = this
 
@@ -73,7 +73,7 @@ HelpersClass.prototype.bindLogout = function () {
         }
         $.ajax({
             contentType: "application/json",
-            url: self.LOCAL_API + "Users/Authenticate/Logout",
+            url: self.LOCAL_API + "users/authenticate/logout",
             type: "POST",
             dataType: "json",
             data: JSON.stringify(userData),
