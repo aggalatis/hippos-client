@@ -785,7 +785,7 @@ TakeawayClass.prototype.initializeCartButtons = function () {
         } else {
             self.customersTable = $("#customers-table").DataTable({
                 processing: false,
-                ajax: self.Helpers.LOCAL_API + "Customers/All",
+                ajax: self.Helpers.LOCAL_API + "customers/all",
                 paging: true,
                 searching: true,
                 ordering: false,
@@ -870,17 +870,17 @@ TakeawayClass.prototype.initializeCartButtons = function () {
             },
         }
         $.ajax({
-            url: self.Helpers.LOCAL_API + "Customers",
+            url: self.Helpers.LOCAL_API + "customers",
             type: "POST",
             dataType: "json",
             contentType: "application/json",
             data: JSON.stringify(customerData),
             success: function (response) {
                 if (response.status === 200) {
-                    self.Helpers.toastr("success", response.message)
+                    self.Helpers.toastr("success", response.data)
                     $("#customers-modal").modal("hide")
                 } else {
-                    self.Helpers.toastr("error", response.message)
+                    self.Helpers.toastr("error", response.data)
                 }
             },
             error: function (jqXHR, textStatus) {
