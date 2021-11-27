@@ -47,6 +47,7 @@ app.on("ready", () => {
                 height: 768,
                 nodeIntegration: true,
             },
+            icon: __dirname + "/assets/icons/hippofront.ico",
         })
         win_cashier.loadFile("controllers/takeaway/takeaway.html")
         // win_cashier.maximize()
@@ -108,6 +109,7 @@ app.on("ready", () => {
             webPreferences: {
                 nodeIntegration: true,
             },
+            icon: __dirname + "/assets/icons/hippofront.ico",
         })
         win_admin.loadFile("controllers/admin/dashboard/dashboard.html")
         win_admin.maximize()
@@ -122,8 +124,7 @@ app.on("ready", () => {
     })
 
     ipcMain.on("logout", (event, arg) => {
-        const { width, height } =
-            electron.screen.getPrimaryDisplay().workAreaSize
+        const { width, height } = electron.screen.getPrimaryDisplay().workAreaSize
         global.didClientLogout = true
         win = new BrowserWindow({
             width: 1024,
@@ -131,6 +132,7 @@ app.on("ready", () => {
             webPreferences: {
                 nodeIntegration: true,
             },
+            icon: __dirname + "/assets/icons/hippofront.ico",
         })
         win.loadFile("controllers/login/login.html")
         win.webContents.on("did-finish-load", () => {

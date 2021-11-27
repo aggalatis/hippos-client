@@ -1,4 +1,4 @@
-const settingsFile = require("/home/aggalatis/Projects/spos-app/settings")
+const settingsFile = require("C:\\hippos\\client\\settings")
 let HelpersClass = function () {
     let self = this
 
