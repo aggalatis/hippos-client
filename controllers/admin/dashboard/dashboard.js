@@ -26,34 +26,32 @@ DashboardClass.prototype.initializeSummaryCards = function () {
             if (response.status === 200) {
                 self.lastDayClose = self.Helpers.changeMysqlDateToNormal(response.lastDayClose)
                 $("#last-close-date").html(self.lastDayClose)
-                if (self.Helpers.admin_report == true) {
-                    let customerSum = 0
-                    let incomeSum = 0
-                    if (response.data.length == 0) {
-                        $("#sum-cash").html("0.00 €")
-                        $("#sum-card").html("0.00 €")
-                        $("#sum-customers").html("0")
-                        $("#sum-income").html("0.00 €")
-                        return
-                    }
-                    for (i = 0; i < response.data.length; i++) {
-                        customerSum = parseFloat(customerSum) + parseFloat(response.data[i].customer_count)
-                        incomeSum = parseFloat(incomeSum) + parseFloat(response.data[i].income_count)
-
-                        switch (response.data[i].order_payment_method) {
-                            case "cash":
-                                $("#sum-cash").html(parseFloat(response.data[i].income_count).toFixed(2) + " €")
-                                break
-                            case "card":
-                                $("#sum-card").html(parseFloat(response.data[i].income_count).toFixed(2) + " €")
-                                break
-                            default:
-                                break
-                        }
-                    }
-                    $("#sum-customers").html(customerSum + "  ")
-                    $("#sum-income").html(parseFloat(incomeSum).toFixed(2) + " €")
+                let customerSum = 0
+                let incomeSum = 0
+                if (response.data.length == 0) {
+                    $("#sum-cash").html("0.00 €")
+                    $("#sum-card").html("0.00 €")
+                    $("#sum-customers").html("0")
+                    $("#sum-income").html("0.00 €")
+                    return
                 }
+                for (i = 0; i < response.data.length; i++) {
+                    customerSum = parseFloat(customerSum) + parseFloat(response.data[i].customer_count)
+                    incomeSum = parseFloat(incomeSum) + parseFloat(response.data[i].income_count)
+
+                    switch (response.data[i].order_payment_method) {
+                        case "cash":
+                            $("#sum-cash").html(parseFloat(response.data[i].income_count).toFixed(2) + " €")
+                            break
+                        case "card":
+                            $("#sum-card").html(parseFloat(response.data[i].income_count).toFixed(2) + " €")
+                            break
+                        default:
+                            break
+                    }
+                }
+                $("#sum-customers").html(customerSum + "  ")
+                $("#sum-income").html(parseFloat(incomeSum).toFixed(2) + " €")
             } else {
                 self.Helpers.toastrServerError()
             }

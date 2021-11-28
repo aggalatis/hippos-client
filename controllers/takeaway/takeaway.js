@@ -33,6 +33,9 @@ TakeawayClass.prototype.initializeSizes = function () {
     $("#delete-numpad").css("height", this.Helpers.numpad_input_height)
     $(".numpad-btn").css("height", this.Helpers.numpad_numbers_height)
     $(".confirm-numpad-btn").css("height", this.Helpers.numpad_numbers_height)
+    $("#categories-div").addClass(`col-md-${this.Helpers.categories_div} col-sm-${this.Helpers.categories_div} col-lg-${this.Helpers.categories_div}`)
+    $("#products-div").addClass(`col-md-${this.Helpers.products_div} col-sm-${this.Helpers.products_div} col-lg-${this.Helpers.products_div}`)
+    $("#cart-div").addClass(`col-md-${this.Helpers.cart_div} col-sm-${this.Helpers.cart_div} col-lg-${this.Helpers.cart_div}`)
 }
 
 TakeawayClass.prototype.initializeProducts = function () {

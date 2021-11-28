@@ -17,7 +17,9 @@ let HelpersClass = function () {
     self.numpad_numbers_height = settings.numpad_numbers_height
     self.cart_height = settings.cart_height
     self.send_order_height = settings.send_order_height
-    self.admin_report = settings.admin_report
+    self.categories_div = settings.categories_div
+    self.products_div = settings.products_div
+    self.cart_div = settings.cart_div
     self.userData = null
     self.serverKeyStatus = false
     self.bindLogout()
