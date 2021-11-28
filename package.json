@@ -7,8 +7,8 @@
     "start": "electron .",
     "install": "electron-rebuild",
     "dist": "build",
-    "package-win64": "electron-packager . Hippo --overwrite --asar=true --platform=win32 --arch=all --icon=assets/icons/hippofront.ico --prune=true --out=release-builds",
-    "package-win": "electron-packager . Hippo --overwrite --asar=true --platform=win32 --arch=ia32 --icon=assets/icons/hippofront.ico --prune=true --out=release-builds"
+    "package-win64": "electron-packager . HipPos --overwrite --asar=true --platform=win32 --arch=all --icon=assets/icons/hippofront.ico --prune=true --out=release-builds",
+    "package-win": "electron-packager . HipPos --overwrite --asar=true --platform=win32 --arch=ia32 --icon=assets/icons/hippofront.ico --prune=true --out=release-builds"
   },
   "author": "AG",
   "license": "ISC",

@@ -50,7 +50,7 @@ app.on("ready", () => {
             icon: __dirname + "/assets/icons/hippofront.ico",
         })
         win_cashier.loadFile("controllers/takeaway/takeaway.html")
-        // win_cashier.maximize()
+        win_cashier.maximize()
         // win_cashier.setFullScreen(true)
         // win_cashier.setMenu(null)
         win_cashier.webContents.on("did-finish-load", () => {

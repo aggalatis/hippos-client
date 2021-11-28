@@ -18,8 +18,6 @@ let HelpersClass = function () {
     self.cart_height = settings.cart_height
     self.send_order_height = settings.send_order_height
     self.admin_report = settings.admin_report
-    self.mydata_invoices = settings.mydata_invoices
-    self.send_email_report = settings.send_email_report
     self.userData = null
     self.serverKeyStatus = false
     self.bindLogout()
