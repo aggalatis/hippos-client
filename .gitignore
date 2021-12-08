@@ -3,3 +3,4 @@ release-builds
 .idea
 package-lock.json
 .vscode
+.prettierrc

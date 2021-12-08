@@ -20,6 +20,9 @@ let HelpersClass = function () {
     self.categories_div = settings.categories_div
     self.products_div = settings.products_div
     self.cart_div = settings.cart_div
+    self.tameiaki_view = settings.tameiaki_view
+    self.categories_width = settings.categories_width
+    self.categories_height = settings.categories_height
     self.userData = null
     self.serverKeyStatus = false
     self.bindLogout()

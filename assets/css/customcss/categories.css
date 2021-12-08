@@ -4,11 +4,11 @@
     border: 2px solid black;
 
     text-align: center;
-    outline:none;
+    outline: none;
     background-size: cover;
     padding-bottom: 10%;
     margin-top: 3%;
-    margin-right:1%;
+    margin-right: 1%;
     margin-left: 1%;
     overflow: hidden;
     -webkit-transition: all 0.3s ease-in-out 0.1s;
@@ -17,7 +17,33 @@
     -ms-transition: all 0.3s ease-in-out 0.1s;
     transition: all 0.3s ease-in-out 0.1s;
     float: left;
+}
+.product-price {
+    font-size: 15px;
+    font-weight: bold;
+    position: absolute;
+    bottom: 3%;
+    left: 38%;
+}
+.category-btn {
+    border-radius: 0%;
+    cursor: pointer;
+    border: 2px solid black;
 
+    text-align: center;
+    outline: none;
+    background-size: cover;
+    padding-bottom: 10%;
+    margin-top: 3%;
+    margin-right: 1%;
+    margin-left: 1%;
+    overflow: hidden;
+    -webkit-transition: all 0.3s ease-in-out 0.1s;
+    -moz-transition: all 0.3s ease-in-out 0.1s;
+    -o-transition: all 0.3s ease-in-out 0.1s;
+    -ms-transition: all 0.3s ease-in-out 0.1s;
+    transition: all 0.3s ease-in-out 0.1s;
+    float: left;
 }
 
 .numpad-btn {
@@ -29,7 +55,7 @@
     font-weight: bold;
     font-size: 30px;
     text-align: center;
-    outline:none;
+    outline: none;
     background-size: cover;
     margin-top: 1%;
     margin-left: 1%;
@@ -42,7 +68,6 @@
     background-color: white;
     float: left;
     width: 31%;
-
 }
 
 .confirm-numpad-btn {
@@ -54,7 +79,7 @@
     font-weight: bold;
     font-size: 30px;
     text-align: center;
-    outline:none;
+    outline: none;
     background-size: cover;
     margin-top: 1%;
     margin-left: 1%;
@@ -67,33 +92,43 @@
     background-color: #5cb85c;
     float: left;
     width: 63%;
-
 }
 
 .product-name {
     padding-top: 5%;
     word-break: break-all;
     font-weight: bold;
-
-
 }
-#append-categories{
-     flex-grow : 1;
- }
+.category-name {
+    padding-top: 5%;
+    word-break: break-all;
+    font-weight: bold;
+}
+#append-categories {
+    flex-grow: 1;
+}
+#append-products {
+    flex-grow: 1;
+}
 
 #numpad-input {
-
     font-weight: bold;
-font-size: 30px;
+    font-size: 30px;
     text-align: center;
     width: 70%;
     margin-left: 3%;
     margin-top: 1%;
-
+}
+#modal-numpad-input {
+    font-weight: bold;
+    font-size: 30px;
+    text-align: center;
+    width: 70%;
+    margin-left: 3%;
+    margin-top: 1%;
 }
 
 #delete-numpad {
-
     width: 24%;
     color: black;
     margin-top: 1%;
@@ -101,18 +136,22 @@ font-size: 30px;
     outline: none;
     font-size: 30px;
     font-weight: bold;
-
-
 }
-#append-products{
-    flex-grow : 1;
-
+#modal-delete-numpad {
+    width: 24%;
+    color: black;
+    margin-top: 1%;
+    vertical-align: unset;
+    outline: none;
+    font-size: 30px;
+    font-weight: bold;
 }
-.product-price-div{
+
+.product-price-div {
     font-size: 15px;
     color: red;
     font-weight: bold;
-    position:absolute;
+    position: absolute;
     bottom: 1px;
     width: 90%;
 }
@@ -121,15 +160,13 @@ font-size: 30px;
     padding-left: 0.5% !important;
     background-color: lightgrey;
     padding-bottom: 20px;
-    border-right: 5px solid ;
+    border-right: 5px solid;
     border-left: 5px solid black;
-
 }
 .category-shadows {
-    -webkit-box-shadow: 0px 0px 34px 0px rgba(0,0,0,0.57);
-    -moz-box-shadow: 0px 0px 34px 0px rgba(0,0,0,0.57);
-    box-shadow: 0px 0px 34px 0px rgba(0,0,0,0.57);
-
+    -webkit-box-shadow: 0px 0px 34px 0px rgba(0, 0, 0, 0.57);
+    -moz-box-shadow: 0px 0px 34px 0px rgba(0, 0, 0, 0.57);
+    box-shadow: 0px 0px 34px 0px rgba(0, 0, 0, 0.57);
 }
 #categories-div {
     min-height: 100%;
@@ -143,48 +180,41 @@ font-size: 30px;
     min-height: 100%;
     height: 100%;
 }
-.left-page-arrows{
-
+.left-page-arrows {
     height: 25px;
     width: 80px;
 
     padding-left: 1%;
-    float:left;
-
-
+    float: left;
 }
-.right-page-arrows{
-
+.right-page-arrows {
     height: 25px;
     width: 80px;
     transform: rotate(180deg);
-    float:right;
+    float: right;
 
     padding-left: 1%;
-
 }
 .group-title-div {
-    width:100%;
-    height:100%;
+    width: 100%;
+    height: 100%;
     padding-left: 1% !important;
     padding-right: 1% !important;
     text-align: center;
-
 }
-.paginator-button{
-    width:100%;
-    height:40px;
+.paginator-button {
+    width: 100%;
+    height: 40px;
     font-size: 20px;
     font-weight: bolder;
     background-color: lightgrey;
     border: none;
     outline: none;
-
 }
-#categories_paginator{
+#categories_paginator {
     text-align: center;
 }
-#products_paginator{
+#products_paginator {
     text-align: center;
 }
 #cart-header-div {
@@ -195,31 +225,31 @@ font-size: 30px;
     margin: 0 0;
     text-align: center;
 }
-#append-cart{
+#append-cart {
     height: 300px;
 }
-.cart-product-quantity-div{
+.cart-product-quantity-div {
     float: left;
     border-left: 10px solid black;
-    border-top:  1.5px solid black;
+    border-top: 1.5px solid black;
     border-right: 1.5px solid black;
     border-bottom: 3px solid black;
     width: 15%;
 }
-.cart-product-name-div{
+.cart-product-name-div {
     float: left;
 
     border: 1.5px solid black;
     border-bottom: 3px solid black;
     width: 60%;
 }
-.cart-product-price-div{
+.cart-product-price-div {
     float: left;
     border: 1.5px solid black;
     border-bottom: 3px solid black;
     width: 23.5%;
 }
-.cart-product-quantity-div-append{
+.cart-product-quantity-div-append {
     float: left;
     height: 35px;
     border-left: 10px solid black;
@@ -227,51 +257,45 @@ font-size: 30px;
     width: 15%;
     background-color: white;
 }
-.cart-product-name-div-append{
+.cart-product-name-div-append {
     float: left;
     height: 35px;
     border-bottom: 3px solid black;
     width: 60%;
     background-color: white;
 }
-.cart-product-price-div-append{
+.cart-product-price-div-append {
     float: left;
     height: 35px;
-    border-right: 5px solid black ;
+    border-right: 5px solid black;
     border-bottom: 3px solid black;
     width: 23.5%;
     background-color: white;
 }
-.cart-product-text{
+.cart-product-text {
     font-weight: bold;
     text-align: center;
-
 }
-.cart-product-quantity-text{
+.cart-product-quantity-text {
     font-weight: bold;
     text-align: center;
     margin-top: 3px !important;
     font-size: 16px;
-
 }
-.cart-product-name-text{
+.cart-product-name-text {
     font-weight: bold;
     text-align: center;
     font-size: 12px;
     word-break: break-all;
-
-
 }
-.cart-product-price-text{
+.cart-product-price-text {
     font-weight: bold;
     text-align: center;
     font-size: 16px;
     margin-top: 3px !important;
     color: red;
-
 }
-#append-cart-div{
-
+#append-cart-div {
 }
 #abilities-buttons-div {
     width: 100%;
@@ -283,21 +307,20 @@ font-size: 30px;
     border-right: 5px solid black;
     height: 50px;
 }
-.ability-btn{
+.ability-btn {
     height: 100%;
     width: 12.5%;
     border: 0.5px solid black;
     color: black !important;
     padding: 0;
     float: left;
-    outline:none;
+    outline: none;
 }
 #cash-card-btn {
     width: 37%;
     font-weight: bold;
-
 }
-#sum-order-div{
+#sum-order-div {
     width: 100%;
     overflow-x: hidden;
     margin: 0 0;
@@ -308,15 +331,13 @@ font-size: 30px;
     height: 30px;
     background-color: black;
     color: white;
-
 }
-.order-stats{
-
+.order-stats {
     width: 50%;
     float: left;
-    text-align:center;
+    text-align: center;
 }
-#send-order-btn-div{
+#send-order-btn-div {
     overflow-x: hidden;
     margin: 0 0;
     width: 100%;
@@ -333,5 +354,4 @@ font-size: 30px;
     float: left;
     font-size: 30px;
     font-weight: bold;
-
 }

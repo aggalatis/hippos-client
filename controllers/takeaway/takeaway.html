@@ -56,15 +56,6 @@
     <!-- Custom CSS -->
     <link href="../../assets/css/Style-Light.css" rel="stylesheet">
     <link href="takeaway.css" rel="stylesheet">
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-
-
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-
-    <![endif]-->
 
 
 </head>
@@ -76,6 +67,59 @@
 <!--START MODALS-->
 <!--START MODALS-->
 <!--START MODALS-->
+<div class="modal" id="keyboard-modal" tabindex="-1" role="dialog"
+           aria-labelledby="keyboardModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div id='modal-keyboard=layout'>
+                <div class="row">
+    
+                <input id="modal-numpad-input" type="text">
+                <button id="modal-delete-numpad" class="btn btn-danger">DEL</button>
+    
+                </div>
+                <div class="row">
+                    <button class='numpad-btn' data-number="1" style="margin-left: 3%">
+                        1
+                    </button>
+                    <button class='numpad-btn' data-number="2">
+                        2
+                    </button>
+                    <button class='numpad-btn' data-number="3">
+                        3
+                    </button>
+                    <button class='numpad-btn' data-number="4" style="margin-left: 3%">
+                        4
+                    </button>
+                    <button class='numpad-btn' data-number="5">
+                        5
+                    </button>
+                    <button class='numpad-btn' data-number="6">
+                        6
+                    </button>
+                    <button class='numpad-btn' data-number="7" style="margin-left: 3%">
+                        7
+                    </button>
+                    <button class='numpad-btn' data-number="8">
+                        8
+                    </button>
+                    <button class='numpad-btn' data-number="9">
+                        9
+                    </button>
+                    <button class='numpad-btn' data-number="0" style="margin-left: 3%">
+                        0
+                    </button>
+                    <button class='confirm-numpad-btn'>
+                        OK
+                    </button>
+    
+                </div>
+            </div>
+        </div>
+
+        </div>
+    </div>
+</div>
 <div class="modal" id="discount-modal" data-backdrop="static" tabindex="-1" role="dialog"
            aria-labelledby="discountModalLabel">
     <div class="modal-dialog" role="document">
@@ -268,13 +312,13 @@
         <div class="row">
             <div class="row row-horizon">
 
-                <h4 id="categories_paginator">Είδη</h4>
+                <h4 id="categories_paginator"></h4>
 
             </div>
 
         </div>
         <div class="outer-div">
-            <div id="append-products">
+            <div id="append-categories">
 
             </div>
         </div>
@@ -285,55 +329,60 @@
         <div class="row">
             <div class="row row-horizon">
 
-                <h4 id="products_paginator">Πληκτρολόγιο</h4>
+                <h4 id="products_paginator"></h4>
 
             </div>
 
         </div>
-        <div class="row">
+        <div id='keyboard-layout'>
+            <div class="row">
 
             <input id="numpad-input" type="text">
             <button id="delete-numpad" class="btn btn-danger">DEL</button>
 
+            </div>
+            <div class="row">
+                <button class='numpad-btn' data-number="1" style="margin-left: 3%">
+                    1
+                </button>
+                <button class='numpad-btn' data-number="2">
+                    2
+                </button>
+                <button class='numpad-btn' data-number="3">
+                    3
+                </button>
+                <button class='numpad-btn' data-number="4" style="margin-left: 3%">
+                    4
+                </button>
+                <button class='numpad-btn' data-number="5">
+                    5
+                </button>
+                <button class='numpad-btn' data-number="6">
+                    6
+                </button>
+                <button class='numpad-btn' data-number="7" style="margin-left: 3%">
+                    7
+                </button>
+                <button class='numpad-btn' data-number="8">
+                    8
+                </button>
+                <button class='numpad-btn' data-number="9">
+                    9
+                </button>
+                <button class='numpad-btn' data-number="0" style="margin-left: 3%">
+                    0
+                </button>
+                <button class='confirm-numpad-btn'>
+                    OK
+                </button>
+
+            </div>
         </div>
-        <div class="row">
-            <button class='numpad-btn' data-number="1" style="margin-left: 3%">
-                1
-            </button>
-            <button class='numpad-btn' data-number="2">
-                2
-            </button>
-            <button class='numpad-btn' data-number="3">
-                3
-            </button>
-            <button class='numpad-btn' data-number="4" style="margin-left: 3%">
-                4
-            </button>
-            <button class='numpad-btn' data-number="5">
-                5
-            </button>
-            <button class='numpad-btn' data-number="6">
-                6
-            </button>
-            <button class='numpad-btn' data-number="7" style="margin-left: 3%">
-                7
-            </button>
-            <button class='numpad-btn' data-number="8">
-                8
-            </button>
-            <button class='numpad-btn' data-number="9">
-                9
-            </button>
-            <button class='numpad-btn' data-number="0" style="margin-left: 3%">
-                0
-            </button>
-            <button class='confirm-numpad-btn'>
-                OK
-            </button>
+        <div class="outer-div" id="products-layout">
+            <div id="append-products">
 
+            </div>
         </div>
-
-
     </div>
     <div class="left-side" id="cart-div">
         <div class="row">

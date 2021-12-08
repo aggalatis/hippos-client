@@ -4,16 +4,27 @@ let TakeawayClass = function () {
     this.Helpers.getLocalUser()
     let self = this
     self.initializeSizes()
-    self.initializeNumpadNumbers()
-    setTimeout(function () {
-        self.initializeProducts()
+
+    setTimeout(() => {
+        if (this.Helpers.tameiaki_view == true) {
+            self.initializeProductsLikeCategories()
+            self.initializeNumpadNumbers("numpad-input")
+        } else {
+            self.initializeCategories()
+            self.initializeProducts()
+            self.initializeNumpadNumbers("modal-numpad-input")
+        }
+
         self.initializeCartButtons()
     }, 500)
 
     this.selectedProductID = null
+    this.selectedCategoryID = null
     this.selectedProductIndex = null
     this.selectedProductBackColor = ""
+    this.selectedCategoryBackColor = ""
     this.fullProducts = []
+    this.fullCategories = []
     this.cartProducts = []
     this.selectedInCartProduct = null
     this.selectedProductsForDiscount = []
@@ -26,21 +37,28 @@ let TakeawayClass = function () {
 
 TakeawayClass.prototype.initializeSizes = function () {
     let self = this
-
+    console.log(this.Helpers.numpad_input_height)
     $("#append-cart-div").css("height", this.Helpers.cart_height)
     $("#send-order-btn").css("height", this.Helpers.send_order_height)
     $("#numpad-input").css("height", this.Helpers.numpad_input_height)
+    $("#modal-numpad-input").css("height", this.Helpers.numpad_input_height)
     $("#delete-numpad").css("height", this.Helpers.numpad_input_height)
+    $("#modal-delete-numpad").css("height", this.Helpers.numpad_input_height)
     $(".numpad-btn").css("height", this.Helpers.numpad_numbers_height)
     $(".confirm-numpad-btn").css("height", this.Helpers.numpad_numbers_height)
     $("#categories-div").addClass(`col-md-${this.Helpers.categories_div} col-sm-${this.Helpers.categories_div} col-lg-${this.Helpers.categories_div}`)
     $("#products-div").addClass(`col-md-${this.Helpers.products_div} col-sm-${this.Helpers.products_div} col-lg-${this.Helpers.products_div}`)
     $("#cart-div").addClass(`col-md-${this.Helpers.cart_div} col-sm-${this.Helpers.cart_div} col-lg-${this.Helpers.cart_div}`)
+    console.log(`Sizes initialized`)
 }
 
-TakeawayClass.prototype.initializeProducts = function () {
+TakeawayClass.prototype.initializeProductsLikeCategories = function () {
     let self = this
 
+    $("#categories_paginator").html("Είδη")
+    $("#products_paginator").html("Πληκτρολόγιο")
+    $("#keyboard-layout").show()
+    $("#products-layout").hide()
     $.ajax({
         url: self.Helpers.LOCAL_API + "products",
         type: "GET",
@@ -52,7 +70,7 @@ TakeawayClass.prototype.initializeProducts = function () {
                     //push category id into array so you can manage later.
 
                     self.fullProducts.push(response.data[i])
-                    $("#append-products").append(
+                    $("#append-categories").append(
                         " <button id='product_" +
                             response.data[i].product_id +
                             "' data-product-index='" +
@@ -112,24 +130,145 @@ TakeawayClass.prototype.initializeProducts = function () {
     })
 }
 
-TakeawayClass.prototype.initializeNumpadNumbers = function () {
+TakeawayClass.prototype.initializeProducts = function () {
     let self = this
-    $("#numpad-input").val("0.00")
+
+    $.ajax({
+        url: self.Helpers.LOCAL_API + "products",
+        type: "GET",
+        dataType: "json",
+        success: function (response) {
+            if (response.status === 200) {
+                for (i = 0; i < response.data.length; i++) {
+                    //push product id into array so you can manage later.
+
+                    self.fullProducts.push(response.data[i])
+                    $("#append-products").append(
+                        `<button class='product-btn'  style='position: relative;display: none; width:${self.Helpers.products_width}; height:${self.Helpers.products_height}; background-color:${response.data[i].product_color}'
+                         id='product_${response.data[i].product_id}'  data-product-index='${i}' data-product-background='${response.data[i].product_color}' data-product-category=${response.data[i].product_category_id}>
+                            <p id='product_name_${response.data[i].product_id}' class='product-name' style='font-size:${response.data[i].product_font_size}px'>${response.data[i].product_name}</p>
+                            <p class='product-price'>${response.data[i].product_price.toFixed(2)} €</p>
+                        </button>`
+                    )
+                }
+
+                $(".product-btn").on("click", function () {
+                    var productIndex = $(this).data("product-index")
+                    self.selectedProductIndex = productIndex
+                    if (self.fullProducts[productIndex].product_free_price == 0) {
+                        self.appendProductToCart(self.fullProducts[productIndex], null, false)
+                    } else {
+                        self.clearNumpad("modal-numpad-input")
+                        $("#keyboard-modal").modal("show")
+                    }
+                })
+
+                console.log("Products initialization done.")
+            } else {
+                self.Helpers.toastrServerError()
+            }
+        },
+        error: function (jqXHR, textStatus) {
+            self.Helpers.swalServerError()
+        },
+    })
+}
+TakeawayClass.prototype.initializeCategories = function () {
+    let self = this
+
+    $("#categories_paginator").html("Κατηγορίες")
+    $("#products_paginator").html("Είδη")
+    $("#keyboard-layout").hide()
+    $("#products-layout").show()
+    $.ajax({
+        url: self.Helpers.LOCAL_API + "categories",
+        type: "GET",
+        dataType: "json",
+        data: "",
+        success: function (response) {
+            if (response.status === 200) {
+                for (i = 0; i < response.data.length; i++) {
+                    self.fullCategories.push(response.data[i])
+                    $("#append-categories").append(
+                        " <button id='category_" +
+                            response.data[i].category_id +
+                            "' data-category-index='" +
+                            i +
+                            "' data-category-background='" +
+                            response.data[i].category_color +
+                            "' class='category-btn' style='width:" +
+                            self.Helpers.categories_width +
+                            ";height:" +
+                            self.Helpers.categories_height +
+                            ";background-color: " +
+                            response.data[i].category_color +
+                            "'>" +
+                            "                        <p id='category_name_" +
+                            response.data[i].category_id +
+                            "' class='category-name' style='font-size: " +
+                            response.data[i].category_font_size +
+                            "px'>" +
+                            response.data[i].category_name +
+                            "</p>\n" +
+                            "                </button>"
+                    )
+                }
+
+                $(".category-btn").on("click", function () {
+                    var categoryIndex = $(this).data("category-index")
+                    var categoryID = self.fullCategories[categoryIndex].category_id
+                    $(this).addClass("category-shadows")
+                    $(this).attr("disabled", "disabled")
+                    $("#category_" + categoryID).css("background-color", "black")
+                    $("#category_name_" + categoryID).css("color", "white")
+                    if (self.selectedCategoryID !== 0 && self.selectedCategoryID !== categoryID) {
+                        $("#category_" + self.selectedCategoryID)
+                            .css("background-color", self.selectedCategoryBackColor)
+                            .removeClass("category-shadows")
+                            .attr("disabled", null)
+                        $("#category_name" + self.selectedCategoryID).css("color", "black")
+                    }
+                    self.selectedCategoryBackColor = $("#category_" + categoryID).data("category-background")
+                    self.selectedCategoryID = categoryID
+                    self.selectedCategoryIndex = categoryIndex
+                    for (let prod of $(".product-btn")) {
+                        $(prod).data("product-category") == categoryID ? $(prod).show() : $(prod).hide()
+                    }
+                })
+
+                console.log("Categories initialization done.")
+            } else {
+                self.Helpers.toastrServerError()
+            }
+        },
+        error: function (jqXHR, textStatus) {
+            self.Helpers.swalServerError()
+        },
+    })
+}
+
+TakeawayClass.prototype.initializeNumpadNumbers = function (selector) {
+    let self = this
+    $(`#${selector}`).val("0.00")
     $(".numpad-btn").on("click", function () {
         var typedNumber = $(this).data("number")
-        self.typeNumpad(typedNumber)
+        self.typeNumpad(typedNumber, selector)
     })
 
     $(".confirm-numpad-btn").on("click", function () {
         if (self.selectedProductIndex == null) {
             self.Helpers.toastr("warning", "Παρακαλώ επιλέξτε προϊόν.")
         } else {
-            self.appendProductToCart(self.fullProducts[self.selectedProductIndex], $("#numpad-input").val(), true)
+            self.appendProductToCart(self.fullProducts[self.selectedProductIndex], $(`#${selector}`).val(), true)
+            $("#keyboard-modal").modal("hide")
         }
     })
 
     $("#delete-numpad").on("click", function () {
-        self.clearNumpad()
+        self.clearNumpad(selector)
+    })
+    $("#modal-delete-numpad").on("click", function () {
+        self.clearNumpad(selector)
     })
 }
 
@@ -896,22 +1035,22 @@ TakeawayClass.prototype.initializeCartButtons = function () {
     })
 }
 
-TakeawayClass.prototype.typeNumpad = function (number) {
+TakeawayClass.prototype.typeNumpad = function (number, selector = "numpad-input") {
     event.preventDefault()
     let self = this
     self.countNumpadNumbers.push(number)
-    this.completeNumpadValue()
+    this.completeNumpadValue(selector)
 }
 
-TakeawayClass.prototype.clearNumpad = function () {
+TakeawayClass.prototype.clearNumpad = function (selector = "numpad-input") {
     event.preventDefault()
 
     let self = this
     self.countNumpadNumbers = []
-    this.completeNumpadValue()
+    this.completeNumpadValue(selector)
 }
 
-TakeawayClass.prototype.completeNumpadValue = function () {
+TakeawayClass.prototype.completeNumpadValue = function (selector = "numpad-input") {
     let self = this
     var input_value = ""
 
@@ -941,5 +1080,5 @@ TakeawayClass.prototype.completeNumpadValue = function () {
             }
     }
 
-    $("#numpad-input").val(input_value)
+    $(`#${selector}`).val(input_value)
 }
