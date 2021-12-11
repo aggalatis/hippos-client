@@ -1,6 +1,6 @@
 let LoginClass = function () {
     this.Helpers = new HelpersClass()
-
+    this.Helpers.initSettings()
     ipcRenderer.on("notifyLogout", (event, message) => {
         this.Helpers.toastr("success", "Επιτυχής αποσύνδεση χρήστη " + message.user_name)
         this.Helpers.autologin = false

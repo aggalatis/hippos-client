@@ -1,5 +1,6 @@
 let DashboardClass = function () {
     this.Helpers = new HelpersClass()
+    this.Helpers.initSettings()
     this.Helpers.getLocalUser()
     this.initializeSummaryCards()
     this.initializeButtons()

@@ -2,6 +2,11 @@ const settingsFile = require("C:\\hippos\\client\\settings")
 let HelpersClass = function () {
     let self = this
 
+    self.bindLogout()
+}
+
+HelpersClass.prototype.initSettings = function () {
+    let self = this
     let settings = settingsFile.init()
 
     self.store_id = settings.store_id
@@ -25,7 +30,6 @@ let HelpersClass = function () {
     self.categories_height = settings.categories_height
     self.userData = null
     self.serverKeyStatus = false
-    self.bindLogout()
 }
 
 HelpersClass.prototype.toastr = function ($type, $message) {

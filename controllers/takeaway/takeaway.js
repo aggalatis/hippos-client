@@ -1,6 +1,6 @@
 let TakeawayClass = function () {
     this.Helpers = new HelpersClass()
-    this.GovermentAPI = new GovermentClass(this.Helpers)
+    this.Helpers.initSettings()
     this.Helpers.getLocalUser()
     let self = this
     self.initializeSizes()
@@ -14,7 +14,6 @@ let TakeawayClass = function () {
             self.initializeProducts()
             self.initializeNumpadNumbers("modal-numpad-input")
         }
-
         self.initializeCartButtons()
     }, 500)
 
@@ -37,7 +36,6 @@ let TakeawayClass = function () {
 
 TakeawayClass.prototype.initializeSizes = function () {
     let self = this
-    console.log(this.Helpers.numpad_input_height)
     $("#append-cart-div").css("height", this.Helpers.cart_height)
     $("#send-order-btn").css("height", this.Helpers.send_order_height)
     $("#numpad-input").css("height", this.Helpers.numpad_input_height)
@@ -513,6 +511,7 @@ TakeawayClass.prototype.emptyCartAndData = function () {
     $("#cart-sum-start-price").html("Αρχική τιμή: 0,00 €")
     $("#cart-sum-discount").html("Έκπτωση: 0,00 €")
     $("#send-order-btn").html("0,00 €")
+    $("#send-order-btn").css("background-color", "#25c6e4")
 }
 
 TakeawayClass.prototype.initializeCartButtons = function () {
@@ -568,183 +567,56 @@ TakeawayClass.prototype.initializeCartButtons = function () {
             } else {
                 //this is an invoice
 
-                let documentLastNumber = null
-                $.ajax({
-                    url: self.Helpers.LOCAL_API + "Documents/" + 2,
-                    type: "GET",
-                    dataType: "json",
-                    contentType: "application/json",
-                    success: function (response) {
-                        if (response.status === 200) {
-                            documentLastNumber = response.document[0].document_number
-                        } else {
-                            self.Helpers.toastrServerError()
-                        }
+                var orderObj = {
+                    orderData: {
+                        user_id: self.Helpers.userData.user_id,
+                        user_name: self.Helpers.userData.user_name,
+                        customer: self.selectedCustomer,
+                        order_payment_method: typeOfPayment,
+                        products: self.cartProducts,
+                        totals: self.orderTotals,
+                        datetime: self.Helpers.getTodayDate(),
+                        document_number: 2,
+                        customer: self.selectedCustomer,
                     },
-                    error: function (jqXHR, textStatus) {
-                        self.Helpers.swalServerError()
-                    },
-                })
-
-                //Check if I should send the invoice to myData.
-                if (self.Helpers.mydata_invoices === true) {
-                    swal(
-                        {
-                            title: "Αποστολή Τιμολογίου?",
-                            text: "Είστε σίγουροι πως θέλετε να εκδώσετε τιμολόγιο? Το τιμολόγιο θα σταλεί αυτόματα στην ΑΑΔΕ για πιστοποίηση.",
-                            type: "warning",
-                            showCancelButton: true,
-                            cancelButtonText: "ΑΚΥΡΟ",
-                            confirmButtonColor: "#5cb85c",
-                            confirmButtonText: "ΑΠΟΣΤΟΛΗ",
-                            closeOnConfirm: true,
-                        },
-                        function () {
-                            var orderObj = {
-                                orderData: {
-                                    user_id: self.Helpers.userData.user_id,
-                                    user_name: self.Helpers.userData.user_name,
-                                    customer: self.selectedCustomer,
-                                    order_payment_method: typeOfPayment,
-                                    products: self.cartProducts,
-                                    totals: self.orderTotals,
-                                    datetime: self.Helpers.getTodayDate(),
-                                    document_number: documentLastNumber,
-                                    store_id: self.Helpers.store_id,
-                                },
-                            }
-
-                            $.ajax({
-                                contentType: "application/json",
-                                url: self.Helpers.REMOTE_API + "Goverment/SendInvoice",
-                                type: "POST",
-                                dataType: "json",
-                                data: JSON.stringify(orderObj),
-                                success: function (response) {
-                                    if (response.status == 200) {
-                                        swal(
-                                            {
-                                                title: "Επιτυχία διαβίβασης παραστατικού.",
-                                                text: "Μοναδικός αριθμός καταχώρησης (ΜΑΡΚ): " + response.invoiceMark["0"],
-                                                type: "success",
-                                                showCancelButton: false,
-                                                cancelButtonText: "ΑΚΥΡΟ",
-                                                confirmButtonColor: "#5cb85c",
-                                                confirmButtonText: "OK",
-                                                closeOnConfirm: true,
-                                            },
-                                            function () {
-                                                orderObj.orderData.invoiceMark = response.invoiceMark["0"]
-
-                                                $.ajax({
-                                                    contentType: "application/json",
-                                                    url: self.Helpers.LOCAL_API + "Orders",
-                                                    type: "POST",
-                                                    dataType: "json",
-                                                    data: JSON.stringify(orderObj),
-                                                    success: function (secondResponse) {
-                                                        if (secondResponse.status === 200) {
-                                                            self.Helpers.toastr("success", "Επιτυχής καταχώρηση παραγγελίας.")
-                                                            $("#cash-card-btn").html("ΜΕΤΡΗΤΑ")
-                                                            $("#cash-card-btn").removeClass("btn-success")
-                                                            $("#cash-card-btn").removeClass("btn-danger")
-                                                            $("#cash-card-btn").addClass("btn-success")
-                                                            self.emptyCartAndData()
-                                                        } else {
-                                                            self.Helpers.toastr("error", "Αποτυχία αποστολής παραγγελίας. Δοκιμάστε ξανά.")
-                                                        }
-                                                    },
-                                                    error: function (jqXHR, textStatus) {
-                                                        self.Helpers.toastrServerError()
-                                                    },
-                                                })
-
-                                                $("#cash-card-btn").html("ΜΕΤΡΗΤΑ")
-                                                $("#cash-card-btn").removeClass("btn-success")
-                                                $("#cash-card-btn").removeClass("btn-danger")
-                                                $("#cash-card-btn").addClass("btn-success")
-                                                self.emptyCartAndData()
-                                            }
-                                        )
-                                    } else {
-                                        console.log(response.errors)
-                                        swal({
-                                            title: "Σφάλμα στη διαβίβαση παραστατικού!",
-                                            text: "Κωδικός σφάλματος: " + response.statusCode["0"],
-                                            type: "error",
-                                            showCancelButton: false,
-                                            cancelButtonText: "ΑΚΥΡΟ",
-                                            confirmButtonColor: "#d9534f",
-                                            confirmButtonText: "OK",
-                                            closeOnConfirm: true,
-                                        })
-                                    }
-                                },
-                                error: function (jqXHR, textStatus) {
-                                    self.Helpers.toastrServerError()
-                                },
-                            })
-                        }
-                    )
-                } else {
-                    var orderObj = {
-                        orderData: {
-                            user_id: self.Helpers.userData.user_id,
-                            user_name: self.Helpers.userData.user_name,
-                            customer: self.selectedCustomer,
-                            order_payment_method: typeOfPayment,
-                            products: self.cartProducts,
-                            totals: self.orderTotals,
-                            datetime: self.Helpers.getTodayDate(),
-                            document_number: documentLastNumber,
-                            store_id: self.Helpers.store_id,
-                            invoiceMark: "-",
-                        },
-                    }
-
-                    swal(
-                        {
-                            title: "Αποστολή Τιμολογίου?",
-                            text: "Είστε σίγουροι πως θέλετε να εκδώσετε τιμολόγιο?",
-                            type: "warning",
-                            showCancelButton: true,
-                            cancelButtonText: "ΑΚΥΡΟ",
-                            confirmButtonColor: "#5cb85c",
-                            confirmButtonText: "ΑΠΟΣΤΟΛΗ",
-                            closeOnConfirm: true,
-                        },
-                        function () {
-                            $.ajax({
-                                contentType: "application/json",
-                                url: self.Helpers.LOCAL_API + "Orders",
-                                type: "POST",
-                                dataType: "json",
-                                data: JSON.stringify(orderObj),
-                                success: function (secondResponse) {
-                                    if (secondResponse.status === 200) {
-                                        self.Helpers.toastr("success", "Επιτυχής καταχώρηση παραγγελίας.")
-                                        $("#cash-card-btn").html("ΜΕΤΡΗΤΑ")
-                                        $("#cash-card-btn").removeClass("btn-success")
-                                        $("#cash-card-btn").removeClass("btn-danger")
-                                        $("#cash-card-btn").addClass("btn-success")
-                                        self.emptyCartAndData()
-                                    } else {
-                                        self.Helpers.toastr("error", "Αποτυχία αποστολής παραγγελίας. Δοκιμάστε ξανά.")
-                                    }
-                                },
-                                error: function (jqXHR, textStatus) {
-                                    self.Helpers.toastrServerError()
-                                },
-                            })
-
-                            $("#cash-card-btn").html("ΜΕΤΡΗΤΑ")
-                            $("#cash-card-btn").removeClass("btn-success")
-                            $("#cash-card-btn").removeClass("btn-danger")
-                            $("#cash-card-btn").addClass("btn-success")
-                            self.emptyCartAndData()
-                        }
-                    )
                 }
+                swal(
+                    {
+                        title: "Αποστολή Τιμολογίου?",
+                        text: "Είστε σίγουροι πως θέλετε να εκδώσετε τιμολόγιο?",
+                        type: "warning",
+                        showCancelButton: true,
+                        cancelButtonText: "ΑΚΥΡΟ",
+                        confirmButtonColor: "#5cb85c",
+                        confirmButtonText: "ΑΠΟΣΤΟΛΗ",
+                        closeOnConfirm: true,
+                    },
+                    function () {
+                        $.ajax({
+                            contentType: "application/json",
+                            url: self.Helpers.LOCAL_API + "orders/invoice",
+                            type: "POST",
+                            dataType: "json",
+                            data: JSON.stringify(orderObj),
+                            success: function (secondResponse) {
+                                if (secondResponse.status === 200) {
+                                    self.Helpers.toastr("success", "Επιτυχής καταχώρηση παραγγελίας.")
+                                    $("#cash-card-btn").html("ΜΕΤΡΗΤΑ")
+                                    $("#cash-card-btn").removeClass("btn-success")
+                                    $("#cash-card-btn").removeClass("btn-danger")
+                                    $("#cash-card-btn").addClass("btn-success")
+                                    self.emptyCartAndData()
+                                } else {
+                                    self.Helpers.toastr("error", "Αποτυχία αποστολής παραγγελίας. Δοκιμάστε ξανά.")
+                                }
+                            },
+                            error: function (jqXHR, textStatus) {
+                                console.log(jqXHR)
+                                self.Helpers.toastrServerError()
+                            },
+                        })
+                    }
+                )
             }
         }
     })
@@ -960,78 +832,11 @@ TakeawayClass.prototype.initializeCartButtons = function () {
         self.selectedCustomer = null
         $("#invoice-modal").modal("hide")
     })
-
     $("#choose-customer").on("click", function () {
         self.Helpers.toastr("success", "Έχει επιλεγεί πελάτης για αποστολή τιμολογιίου!")
+        $("#send-order-btn").css("background-color", "#337ab7")
         self.customersTable.destroy()
         $("#invoice-modal").modal("hide")
-    })
-
-    $("#add-customer-li").on("click", function () {
-        $("#customer_id").val(0)
-        $("#customer_fullname").val("")
-        $("#customer_branch").val(0)
-        $("#customer_vat_number").val("")
-        $("#customer_bussiness").val("")
-        $("#customer_tax_office").val("")
-        $("#customer_phone").val("")
-        $("#customer_address").val("")
-        $("#customer_address_number").val("")
-        $("#customer_area").val("")
-        $("#customer_postal_code").val("")
-        $("#customer_load").val("ΕΔΡΑ ΜΑΣ")
-        $("#customer_destination").val("ΕΔΡΑ ΤΟΥΣ")
-        $("#customers-modal").modal("show")
-    })
-
-    $("#search-customer").on("click", function () {
-        let customerAfm = $("#customer_vat_number").val()
-        self.GovermentAPI.searchAfm(customerAfm)
-    })
-
-    $("#save-customer").on("click", function () {
-        $("#save-customerr").attr("disabled", "disabled")
-        $("#save-customerr").html("Αποθήκευση...")
-
-        let customerData = {
-            customerData: {
-                customer_id: 0,
-                customer_fullname: $("#customer_fullname").val(),
-                customer_phone: $("#customer_phone").val(),
-                customer_branch: $("#customer_branch").val(),
-                customer_address: $("#customer_address").val(),
-                customer_address_number: $("#customer_address_number").val(),
-                customer_area: $("#customer_area").val(),
-                customer_vat_number: $("#customer_vat_number").val(),
-                customer_tax_office: $("#customer_tax_office").val(),
-                customer_postal_code: $("#customer_postal_code").val(),
-                customer_bussiness: $("#customer_bussiness").val(),
-                customer_load: $("#customer_load").val(),
-                customer_destination: $("#customer_destination").val(),
-                customer_date_created: self.Helpers.getTodayDate(),
-            },
-        }
-        $.ajax({
-            url: self.Helpers.LOCAL_API + "customers",
-            type: "POST",
-            dataType: "json",
-            contentType: "application/json",
-            data: JSON.stringify(customerData),
-            success: function (response) {
-                if (response.status === 200) {
-                    self.Helpers.toastr("success", response.data)
-                    $("#customers-modal").modal("hide")
-                } else {
-                    self.Helpers.toastr("error", response.data)
-                }
-            },
-            error: function (jqXHR, textStatus) {
-                self.Helpers.swalServerError()
-            },
-        })
-
-        $("#save-customerr").attr("disabled", null)
-        $("#save-customerr").html("Αποθήκευση")
     })
 }
 

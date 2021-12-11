@@ -179,15 +179,9 @@
 
                     </tr>
                     </thead>
-
-
                 </table>
-
             </div>
-
             <div class="modal-footer">
-
-
                 <button style="width: 45%" id="choose-customer" type="button" class="btn btn-warning" disabled>Επιλογή πελάτη
                 </button>
                 <button style="width: 45%" id="close-invoice-modal" type="button" class="btn btn-danger"
@@ -510,7 +504,7 @@
 <script src="takeaway.js"></script>
 <script src="../helpers/helpers.js"></script>
 <script src="../helpers/template.js"></script>
-<script src="../helpers/govermentAPI.js"></script>
+<script src="../helpers/modCustomers.js"></script>
 
 
 <script type="text/javascript">
@@ -523,7 +517,7 @@
     const {ipcRenderer} = electron;
     let myTakeaway = new TakeawayClass();
     new TemplateClass();
-
+    new ModCustomersClass();
     $(document).ready(function () {
 
 
