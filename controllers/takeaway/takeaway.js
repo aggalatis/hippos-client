@@ -571,7 +571,6 @@ TakeawayClass.prototype.initializeCartButtons = function () {
                     orderData: {
                         user_id: self.Helpers.userData.user_id,
                         user_name: self.Helpers.userData.user_name,
-                        customer: self.selectedCustomer,
                         order_payment_method: typeOfPayment,
                         products: self.cartProducts,
                         totals: self.orderTotals,

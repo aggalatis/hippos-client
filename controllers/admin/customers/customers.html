@@ -1,337 +1,283 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <title>S-POS ADMIN</title>
-    <!-- jQuery -->
-    <!-- normalize & reset style -->
-    <link href="../../../assets/datatables/css/dataTables.bootstrap.css" rel="stylesheet">
-    <link rel="stylesheet" href="../../../assets/css/normalize.min.css" type='text/css'>
-    <link rel="stylesheet" href="../../../assets/css/reset.min.css" type='text/css'>
-    <link rel="stylesheet" href="../../../assets/css/jquery-ui.css" type='text/css'>
-    <link rel="stylesheet" href="../../../assets/js/amaranjs/css/animate.min.css" type='text/css'>
-    <link rel="stylesheet" href="../../../assets/js/amaranjs/css/amaran.min.css" type='text/css'>
-    <link rel="stylesheet" href="../../../assets/vendor/toastr/toastr.min.css">
-    <!-- google lato font -->
-    <link href='https://fonts.googleapis.com/css?family=Lato:400,700,900,300' rel='stylesheet' type='text/css'>
-    <!-- Bootstrap Core CSS -->
-    <link href="../../../assets/css/bootstrap.min.css" rel="stylesheet">
-    <!-- bootstrap-horizon -->
-    <link href="../../../assets/css/bootstrap-horizon.css" rel="stylesheet">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>HipPos</title>
+        <!-- jQuery -->
+        <!-- normalize & reset style -->
+        <link href="../../../assets/datatables/css/dataTables.bootstrap.css" rel="stylesheet" />
+        <link rel="stylesheet" href="../../../assets/css/normalize.min.css" type="text/css" />
+        <link rel="stylesheet" href="../../../assets/css/reset.min.css" type="text/css" />
+        <link rel="stylesheet" href="../../../assets/css/jquery-ui.css" type="text/css" />
+        <link rel="stylesheet" href="../../../assets/js/amaranjs/css/animate.min.css" type="text/css" />
+        <link rel="stylesheet" href="../../../assets/js/amaranjs/css/amaran.min.css" type="text/css" />
+        <link rel="stylesheet" href="../../../assets/vendor/toastr/toastr.min.css" />
+        <!-- google lato font -->
+        <link href="https://fonts.googleapis.com/css?family=Lato:400,700,900,300" rel="stylesheet" type="text/css" />
+        <!-- Bootstrap Core CSS -->
+        <link href="../../../assets/css/bootstrap.min.css" rel="stylesheet" />
+        <!-- bootstrap-horizon -->
+        <link href="../../../assets/css/bootstrap-horizon.css" rel="stylesheet" />
 
-    <link href="../../../assets/datatables/datatables.min.css" rel="stylesheet">
-    <!-- font awesome -->
-    <link rel="stylesheet" href="../../../assets/css/font-awesome.min.css">
-    <link href="../../../assets/css/animate.min.css" rel="stylesheet">
+        <link href="../../../assets/datatables/datatables.min.css" rel="stylesheet" />
+        <!-- font awesome -->
+        <link rel="stylesheet" href="../../../assets/css/font-awesome.min.css" />
+        <link href="../../../assets/css/animate.min.css" rel="stylesheet" />
 
-    <!-- include summernote css-->
-    <link href="../../../assets/css/summernote.css" rel="stylesheet">
-    <!-- waves -->
-    <link rel="stylesheet" href="../../../assets/css/waves.min.css">
-    <!-- daterangepicker -->
-    <link rel="stylesheet" type="text/css" href="../../../assets/css/daterangepicker.css"/>
-    <!-- css for the preview keyset extension -->
-    <link href="../../../assets/css/keyboard-previewkeyset.css" rel="stylesheet">
-    <!-- keyboard widget style -->
-    <link href="../../../assets/css/keyboard.css" rel="stylesheet">
-    <!-- Select 2 style -->
-    <link href="../../../assets/css/select2.min.css" rel="stylesheet">
-    <!-- Sweet alert swal -->
-    <link rel="stylesheet" type="text/css" href="../../../assets/css/sweetalert.css">
-    <!-- datepicker css -->
-    <link rel="stylesheet" type="text/css" href="../../../assets/css/bootstrap-datepicker.min.css">
-    <link rel="stylesheet" type="text/css" href="../../../assets/js/notifIt/css/notifIt.css">
-    <link rel="stylesheet" type="text/css" href="../../../assets/js/overhang.js-master/dist/overhang.min.css">
-    <link href="../../../assets/css/customcss/general.css" rel="stylesheet">
-    <!--<link rel="stylesheet" type="text/css" href="../../../assets/js/Mobile-first-Virtual-Keyboard-Plugin-With-jQuery-Bootstrap-jQBTK/jqbtk.css">-->
-    <!-- Custom CSS -->
-    <link href="../../../assets/css/Style-Light.css" rel="stylesheet">
-    <link href="customers.css" rel="stylesheet">
+        <!-- include summernote css-->
+        <link href="../../../assets/css/summernote.css" rel="stylesheet" />
+        <!-- waves -->
+        <link rel="stylesheet" href="../../../assets/css/waves.min.css" />
+        <!-- daterangepicker -->
+        <link rel="stylesheet" type="text/css" href="../../../assets/css/daterangepicker.css" />
+        <!-- css for the preview keyset extension -->
+        <link href="../../../assets/css/keyboard-previewkeyset.css" rel="stylesheet" />
+        <!-- keyboard widget style -->
+        <link href="../../../assets/css/keyboard.css" rel="stylesheet" />
+        <!-- Select 2 style -->
+        <link href="../../../assets/css/select2.min.css" rel="stylesheet" />
+        <!-- Sweet alert swal -->
+        <link rel="stylesheet" type="text/css" href="../../../assets/css/sweetalert.css" />
+        <!-- datepicker css -->
+        <link rel="stylesheet" type="text/css" href="../../../assets/css/bootstrap-datepicker.min.css" />
+        <link rel="stylesheet" type="text/css" href="../../../assets/js/notifIt/css/notifIt.css" />
+        <link rel="stylesheet" type="text/css" href="../../../assets/js/overhang.js-master/dist/overhang.min.css" />
+        <link href="../../../assets/css/customcss/general.css" rel="stylesheet" />
+        <!--<link rel="stylesheet" type="text/css" href="../../../assets/js/Mobile-first-Virtual-Keyboard-Plugin-With-jQuery-Bootstrap-jQBTK/jqbtk.css">-->
+        <!-- Custom CSS -->
+        <link href="../../../assets/css/Style-Light.css" rel="stylesheet" />
+        <link href="customers.css" rel="stylesheet" />
+    </head>
 
+    <body>
+        <! MODALS-->
 
-</head>
+        <div class="modal" id="customers-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Πελάτης</h4>
+                    </div>
+                    <div class="modal-body">
+                        <input type="text" name="customer_id" class="form-control" id="customer_id" style="display: none" />
+                        <div class="form-group col-md-6 col-sm-6">
+                            <label for="customer_vat_number">ΑΦΜ</label>
+                            <input type="number" name="customer_vat_number" class="form-control" id="customer_vat_number" />
+                        </div>
+                        <div class="form-group col-md-6 col-sm-6">
+                            <label for="customer_vat_number">Αναζήτηση ΑΦΜ στην ΑΑΔΕ</label>
+                            <button name="search-customer" class="form-control btn-success" id="search-customer"><i class="fa fa-refresh"></i></button>
+                        </div>
 
-
-<body>
-
-<! MODALS-->
-
-<div class="modal " id="customers-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
-                </button>
-                <h4 class="modal-title">Πελάτης</h4>
-            </div>
-            <div class="modal-body">
-
-                <input type="text" name="customer_id" class="form-control" id="customer_id" style="display: none">
-                <div class="form-group col-md-6 col-sm-6">
-                    <label for="customer_vat_number">ΑΦΜ</label>
-                    <input type="number" name="customer_vat_number" class="form-control" id="customer_vat_number">
-                </div>
-                <div class="form-group col-md-6 col-sm-6">
-                    <label for="customer_vat_number">Αναζήτηση ΑΦΜ στην ΑΑΔΕ</label>
-                    <button name="search-customer" class="form-control btn-success" id="search-customer"><i
-                            class="fa fa-refresh"></i></button>
-                </div>
-
-
-                <div class="form-group col-md-12 col-sm-12">
-                    <label for="customer_fullname">Επωνυμία</label>
-                    <input type="text" name="customer_fullname" class="form-control" id="customer_fullname">
-                </div>
-                <div class="form-group col-md-12 col-sm-12">
-                    <label for="customer_bussiness">Δραστηριότητα</label>
-                    <input type="text" name="customer_bussiness" class="form-control" id="customer_bussiness">
-                </div>
-                <div class="form-group col-md-6 col-sm-6">
-                    <label for="customer_tax_office">ΔΟΥ</label>
-                    <input type="text" name="customer_tax_office" class="form-control" id="customer_tax_office">
-                </div>
-                <div class="form-group col-md-6 col-sm-6">
-                    <label for="customer_phone">Τηλέφωνο</label>
-                    <input type="text" name="customer_phone" class="form-control" id="customer_phone">
-                </div>
-                <div class="form-group col-md-6 col-sm-6">
-                    <label for="customer_address">Διεύθυνση</label>
-                    <input type="text" name="customer_address" class="form-control" id="customer_address">
-                </div>
-                <div class="form-group col-md-3 col-sm-3">
-                    <label for="customer_address_number">Αριθμός</label>
-                    <input type="text" name="customer_address_number" class="form-control" id="customer_address_number">
-                </div>
-                <div class="form-group col-md-3 col-sm-3">
-                    <label for="customer_address_number">Υποκατάστημα</label>
-                    <input type="number" name="customer_branch" class="form-control" id="customer_branch">
-                </div>
-                <div class="form-group col-md-6 col-sm-6">
-                    <label for="customer_area">Περιοχή</label>
-                    <input type="text" name="customer_area" class="form-control" id="customer_area">
-                </div>
-                <div class="form-group col-md-6 col-sm-6">
-                    <label for="customer_postal_code">Τ.Κ.</label>
-                    <input type="text" name="customer_postal_code" class="form-control" id="customer_postal_code">
-                </div>
-                <div class="form-group col-md-6 col-sm-6">
-                    <label for="customer_load">ΦΟΡΤΩΣΗ</label>
-                    <input type="text" name="customer_load" class="form-control" id="customer_load">
-                </div>
-                <div class="form-group col-md-6 col-sm-6">
-                    <label for="customer_destination">ΠΡΟΟΡΙΣΜΟΣ</label>
-                    <input type="text" name="customer_destination" class="form-control" id="customer_destination">
+                        <div class="form-group col-md-12 col-sm-12">
+                            <label for="customer_fullname">Επωνυμία</label>
+                            <input type="text" name="customer_fullname" class="form-control" id="customer_fullname" />
+                        </div>
+                        <div class="form-group col-md-12 col-sm-12">
+                            <label for="customer_bussiness">Δραστηριότητα</label>
+                            <input type="text" name="customer_bussiness" class="form-control" id="customer_bussiness" />
+                        </div>
+                        <div class="form-group col-md-6 col-sm-6">
+                            <label for="customer_tax_office">ΔΟΥ</label>
+                            <input type="text" name="customer_tax_office" class="form-control" id="customer_tax_office" />
+                        </div>
+                        <div class="form-group col-md-6 col-sm-6">
+                            <label for="customer_phone">Τηλέφωνο</label>
+                            <input type="text" name="customer_phone" class="form-control" id="customer_phone" />
+                        </div>
+                        <div class="form-group col-md-6 col-sm-6">
+                            <label for="customer_address">Διεύθυνση</label>
+                            <input type="text" name="customer_address" class="form-control" id="customer_address" />
+                        </div>
+                        <div class="form-group col-md-3 col-sm-3">
+                            <label for="customer_address_number">Αριθμός</label>
+                            <input type="text" name="customer_address_number" class="form-control" id="customer_address_number" />
+                        </div>
+                        <div class="form-group col-md-3 col-sm-3">
+                            <label for="customer_address_number">Υποκατάστημα</label>
+                            <input type="number" name="customer_branch" class="form-control" id="customer_branch" />
+                        </div>
+                        <div class="form-group col-md-6 col-sm-6">
+                            <label for="customer_area">Περιοχή</label>
+                            <input type="text" name="customer_area" class="form-control" id="customer_area" />
+                        </div>
+                        <div class="form-group col-md-6 col-sm-6">
+                            <label for="customer_postal_code">Τ.Κ.</label>
+                            <input type="text" name="customer_postal_code" class="form-control" id="customer_postal_code" />
+                        </div>
+                        <div class="form-group col-md-6 col-sm-6">
+                            <label for="customer_load">ΦΟΡΤΩΣΗ</label>
+                            <input type="text" name="customer_load" class="form-control" id="customer_load" />
+                        </div>
+                        <div class="form-group col-md-6 col-sm-6">
+                            <label for="customer_destination">ΠΡΟΟΡΙΣΜΟΣ</label>
+                            <input type="text" name="customer_destination" class="form-control" id="customer_destination" />
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Aκύρωση</button>
+                        <button type="button" class="btn btn-add" id="save-customer">Αποθήκευση</button>
+                    </div>
                 </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Aκύρωση
-                </button>
-                <button type="button" class="btn btn-add" id="save-customer">Αποθήκευση</button>
+        </div>
+
+        <! END OF MODALS-->
+
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-header" style="margin-bottom: 21px; width: 122px">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#"><img src="../../../assets/icons/hippofront_width.png" alt="logo" style="max-height: 45px; max-width: 200px" /></a>
+                </div>
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li class="flat-box waves-effect waves-block">
+                            <a id="load-dashboard" href="#"> <i class="fa fa-align-justify"> </i> Ταμείο</a>
+                        </li>
+                        <!-- <li class="flat-box waves-effect waves-block">
+                            <a id="load-catalogue" href="#"> <i class="fa fa-book"> </i> Κατάλογος</a>
+                        </li> -->
+                        <li class="flat-box waves-effect waves-block">
+                            <a id="load-users" href="#"> <i class="fa fa-users"> </i> Χρήστες</a>
+                        </li>
+                        <li class="flat-box waves-effect waves-block">
+                            <a id="load-customers" href="#"> <i class="fa fa-briefcase"> </i> Πελάτες</a>
+                        </li>
+                        <!-- <li class="flat-box waves-effect waves-block">
+                            <a id="load-preferences" href="#"> <i class="fa fa-cogs"> </i> Ρυθμίσεις</a>
+                        </li> -->
+                    </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="navbar-username"></li>
+                        <li class="flat-box">
+                            <a class="logout" title="Log out"><i class="fa fa-sign-out fa-lg"></i></a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Brand and toggle get grouped for better mobile display -->
             </div>
+            <!-- /.container -->
+        </nav>
 
-        </div>
-    </div>
-</div>
-
-
-<! END OF MODALS-->
-
-<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-    <div class="container-fluid">
-        <div class="navbar-header" style="margin-bottom: 21px;width: 122px">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#"><img
-                    src="../../../assets/icons/hippofront_width.png" alt="logo"
-                    style='max-height: 45px; max-width: 200px'></a>
-
-
-        </div>
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-
-                <li class="flat-box waves-effect waves-block">
-                    <a id="load-dashboard" href="#">
-                        <i class="fa fa-align-justify">
-
-                        </i> Ταμείο</a>
-                </li>
-                <li class="flat-box waves-effect waves-block">
-                    <a id="load-catalogue" href="#">
-                        <i class="fa fa-book">
-
-                        </i> Κατάλογος</a>
-                </li>
-                <li class="flat-box waves-effect waves-block">
-                    <a id="load-users" href="#">
-                        <i class="fa fa-users">
-
-                        </i> Χρήστες</a>
-                </li>
-                <li class="flat-box waves-effect waves-block">
-                    <a id="load-customers" href="#">
-                        <i class="fa fa-briefcase">
-
-                        </i> Πελάτες</a>
-                </li>
-                <li class="flat-box waves-effect waves-block">
-                    <a id="load-preferences" href="#">
-                        <i class="fa fa-cogs">
-
-                        </i> Ρυθμίσεις</a>
-                </li>
-            </ul>
-
-            <ul class="nav navbar-nav navbar-right">
-                <li class="navbar-username"></li>
-                <li class="flat-box"><a class="logout" title="Log out"><i class="fa fa-sign-out fa-lg"></i></a></li>
-            </ul>
-        </div>
-
-        <!-- Brand and toggle get grouped for better mobile display -->
-    </div>
-    <!-- /.container -->
-</nav>
-
-
-<!-- Page Content -->
-<div class="container">
-    <div class="row" style="margin-top:2%;">
-        <div class="col-md-12">
-            <div class="tab-pane fade active in" id="pricelists">
-                <button id="create-customer" type="button" class="btn btn-success" style="float: right">Δημιουργία
-                    πελάτη
-                </button>
-                <h3>Πίνακας Πελατών</h3>
-                <table id="customers-table" class="cell-border" style="width:100%">
-                    <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Επωνυμία</th>
-                        <th>Επάγγελμα</th>
-                        <th>ΑΦΜ</th>
-                        <th>ΔΟΥ</th>
-                        <th>Τηλέφωνο</th>
-                        <th>Διεύθυνση</th>
-                        <th>Αριθμός</th>
-                        <th>Περιοχή</th>
-                        <th>Τ.Κ.</th>
-                        <th>Υποκατάστημα</th>
-                        <th>Ενέργειες</th>
-
-                    </tr>
-                    </thead>
-
-
-                </table>
-
+        <!-- Page Content -->
+        <div class="container">
+            <div class="row" style="margin-top: 2%">
+                <div class="col-md-12">
+                    <div class="tab-pane fade active in" id="pricelists">
+                        <button id="create-customer" type="button" class="btn btn-success" style="float: right">Δημιουργία πελάτη</button>
+                        <h3>Λίστα Πελατών</h3>
+                        <table id="customers-table" class="cell-border" style="width: 100%">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Επωνυμία</th>
+                                    <th>Επάγγελμα</th>
+                                    <th>ΑΦΜ</th>
+                                    <th>ΔΟΥ</th>
+                                    <th>Διεύθυνση</th>
+                                    <th>Αριθμός</th>
+                                    <th>Περιοχή</th>
+                                    <th>Ενέργειες</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</div>
 
-<!-- /.container -->
+        <!-- /.container -->
 
+        <!-- slim scroll script -->
+    </body>
 
-<!-- slim scroll script -->
-</body>
+    <script>
+        if (typeof module === "object") {
+            window.module = module
+            module = undefined
+        }
+    </script>
 
-<script>if (typeof module === 'object') {
-    window.module = module;
-    module = undefined;
-}
+    <!-- normal script imports etc  -->
+    <script src="../../../assets/js/jquery-2.2.2.min.js"></script>
+    <script src="../../../assets/js/jquery-ui.min.js"></script>
 
-</script>
+    <script type="text/javascript" src="../../../assets/js/jquery-validation-1.19.0/dist/jquery.validate.js"></script>
 
-<!-- normal script imports etc  -->
-<script src="../../../assets/js/jquery-2.2.2.min.js"></script>
-<script src="../../../assets/js/jquery-ui.min.js"></script>
+    <!-- dalatable scripts -->
+    <script src="../../../assets/datatables/datatables.min.js"></script>
 
-<script type="text/javascript" src="../../../assets/js/jquery-validation-1.19.0/dist/jquery.validate.js"></script>
+    <script type="text/javascript" src="../../../assets/js/loading.js"></script>
+    <script type="text/javascript" src="../../../assets/js/jquery.slimscroll.min.js"></script>
+    <!-- waves material design effect -->
+    <script type="text/javascript" src="../../../assets/js/waves.min.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script type="text/javascript" src="../../../assets/js/bootstrap.min.js"></script>
+    <!-- keyboard widget dependencies -->
+    <script type="text/javascript" src="../../../assets/js/jquery.keyboard.js"></script>
+    <script type="text/javascript" src="../../../assets/js/jquery.keyboard.extension-all.js"></script>
+    <script type="text/javascript" src="../../../assets/js/jquery.keyboard.extension-extender.js"></script>
+    <script type="text/javascript" src="../../../assets/js/jquery.keyboard.extension-typing.js"></script>
+    <script type="text/javascript" src="../../../assets/js/jquery.mousewheel.js"></script>
 
-<!-- dalatable scripts -->
-<script src="../../../assets/datatables/datatables.min.js"></script>
+    <!-- select2 plugin script -->
+    <script type="text/javascript" src="../../../assets/js/select2.min.js"></script>
 
+    <!-- summernote js -->
+    <script src="../../../assets/js/summernote.js"></script>
+    <!-- chart.js script -->
+    <script src="../../../assets/js/Chart.js"></script>
+    <!-- moment JS -->
+    <script type="text/javascript" src="../../../assets/js/moment.min.js"></script>
+    <!-- Include Date Range Picker -->
+    <script type="text/javascript" src="../../../assets/js/daterangepicker.js"></script>
+    <!-- Sweet Alert swal -->
+    <script src="../../../assets/js/sweetalert.min.js"></script>
+    <!-- datepicker script -->
+    <script src="../../../assets/js/bootstrap-datepicker.min.js"></script>
+    <!-- creditCardValidator script -->
+    <script src="../../../assets/js/jquery.creditCardValidator.js"></script>
+    <!-- creditCardValidator script -->
+    <script src="../../../assets/js/credit-card-scanner.js"></script>
+    <script src="../../../assets/js/jquery.redirect.js"></script>
+    <script src="../../../assets/js/bootstrap-checkbox.min.js"></script>
+    <script type="text/javascript" src="../../../assets/js/mousetrap.min.js"></script>
+    <script type="text/javascript" src="../../../assets/vendor/toastr/toastr.js"></script>
+    <!--<script src="../../../assets/js/Mobile-first-Virtual-Keyboard-Plugin-With-jQuery-Bootstrap-jQBTK/jqbtk.js"></script>-->
+    <!-- ajax form -->
+    <script src="../../../assets/js/jquery.form.min.js"></script>
+    <script src="../../../assets/js/toast.js"></script>
+    <script src="../../../assets/js/jquery.mask.min.js"></script>
+    <script src="../../../assets/js/jquery.maskMoney.js"></script>
+    <script src="../../../assets/js/notifIt/js/notifIt.min.js"></script>
+    <script src="../../../assets/js/overhang.js-master/dist/overhang.min.js"></script>
+    <script src="../../../assets/js/overhang.js-master/dist/overhang.min.js"></script>
+    <script src="customers.js"></script>
+    <script src="../../helpers/helpers.js"></script>
+    <script src="../../helpers/modCustomers.js"></script>
+    <script src="../../helpers/template.js"></script>
+    <script src="../../helpers/govermentAPI.js"></script>
 
-<script type="text/javascript" src="../../../assets/js/loading.js"></script>
-<script type="text/javascript" src="../../../assets/js/jquery.slimscroll.min.js"></script>
-<!-- waves material design effect -->
-<script type="text/javascript" src="../../../assets/js/waves.min.js"></script>
-<!-- Bootstrap Core JavaScript -->
-<script type="text/javascript" src="../../../assets/js/bootstrap.min.js"></script>
-<!-- keyboard widget dependencies -->
-<script type="text/javascript" src="../../../assets/js/jquery.keyboard.js"></script>
-<script type="text/javascript" src="../../../assets/js/jquery.keyboard.extension-all.js"></script>
-<script type="text/javascript" src="../../../assets/js/jquery.keyboard.extension-extender.js"></script>
-<script type="text/javascript" src="../../../assets/js/jquery.keyboard.extension-typing.js"></script>
-<script type="text/javascript" src="../../../assets/js/jquery.mousewheel.js"></script>
-
-<!-- select2 plugin script -->
-<script type="text/javascript" src="../../../assets/js/select2.min.js"></script>
-
-
-<!-- summernote js -->
-<script src="../../../assets/js/summernote.js"></script>
-<!-- chart.js script -->
-<script src="../../../assets/js/Chart.js"></script>
-<!-- moment JS -->
-<script type="text/javascript" src="../../../assets/js/moment.min.js"></script>
-<!-- Include Date Range Picker -->
-<script type="text/javascript" src="../../../assets/js/daterangepicker.js"></script>
-<!-- Sweet Alert swal -->
-<script src="../../../assets/js/sweetalert.min.js"></script>
-<!-- datepicker script -->
-<script src="../../../assets/js/bootstrap-datepicker.min.js"></script>
-<!-- creditCardValidator script -->
-<script src="../../../assets/js/jquery.creditCardValidator.js"></script>
-<!-- creditCardValidator script -->
-<script src="../../../assets/js/credit-card-scanner.js"></script>
-<script src="../../../assets/js/jquery.redirect.js"></script>
-<script src="../../../assets/js/bootstrap-checkbox.min.js"></script>
-<script type="text/javascript" src="../../../assets/js/mousetrap.min.js"></script>
-<script type="text/javascript" src="../../../assets/vendor/toastr/toastr.js"></script>
-<!--<script src="../../../assets/js/Mobile-first-Virtual-Keyboard-Plugin-With-jQuery-Bootstrap-jQBTK/jqbtk.js"></script>-->
-<!-- ajax form -->
-<script src="../../../assets/js/jquery.form.min.js"></script>
-<script src="../../../assets/js/toast.js"></script>
-<script src="../../../assets/js/jquery.mask.min.js"></script>
-<script src="../../../assets/js/jquery.maskMoney.js"></script>
-<script src="../../../assets/js/notifIt/js/notifIt.min.js"></script>
-<script src="../../../assets/js/overhang.js-master/dist/overhang.min.js"></script>
-<script src="../../../assets/js/overhang.js-master/dist/overhang.min.js"></script>
-<script src="customers.js"></script>
-<script src="../../helpers/helpers.js"></script>
-<script src="../../helpers/template.js"></script>
-<script src="../../helpers/govermentAPI.js"></script>
-
-
-<script type="text/javascript">
-    const {remote} = require('electron')
-    const electron = require('electron')
-    const session = require('electron')
-    const {app, BrowserWindow} = require('electron').remote;
-    const {ipcRenderer} = electron;
-    new TemplateClass();
-    let myCustomers = new customersClass();
-
-    $(document).ready(function () {
-
-        myCustomers.bindClickEventOnButtons();
-
-
-    });
-
-
-</script>
-
-
+    <script type="text/javascript">
+        const { remote } = require("electron")
+        const electron = require("electron")
+        const session = require("electron")
+        const { app, BrowserWindow } = require("electron").remote
+        const { ipcRenderer } = electron
+        new customersClass()
+        new TemplateClass()
+    </script>
 </html>
