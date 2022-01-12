@@ -116,12 +116,9 @@
                         <li class="flat-box waves-effect waves-block">
                             <a id="load-dashboard" href="#"> <i class="fa fa-align-justify"> </i> Ταμείο</a>
                         </li>
-                        <!-- <li class="flat-box waves-effect waves-block">
-                    <a id="load-catalogue" href="#">
-                        <i class="fa fa-book">
-
-                        </i> Κατάλογος</a>
-                </li> -->
+                        <li class="flat-box waves-effect waves-block">
+                            <a id="load-catalogue" href="#"> <i class="fa fa-book"> </i> Κατάλογος</a>
+                        </li>
                         <li class="flat-box waves-effect waves-block">
                             <a id="load-users" href="#"> <i class="fa fa-users"> </i> Χρήστες</a>
                         </li>
@@ -180,7 +177,7 @@
     </body>
 
     <script>
-        if (typeof module === "object") {
+        if (typeof module === 'object') {
             window.module = module
             module = undefined
         }
@@ -245,10 +242,10 @@
     <script src="../../helpers/template.js"></script>
 
     <script type="text/javascript">
-        const { remote } = require("electron")
-        const electron = require("electron")
-        const session = require("electron")
-        const { app, BrowserWindow } = require("electron").remote
+        const { remote } = require('electron')
+        const electron = require('electron')
+        const session = require('electron')
+        const { app, BrowserWindow } = require('electron').remote
         const { ipcRenderer } = electron
         new TemplateClass()
         let myUsers = new usersClass()

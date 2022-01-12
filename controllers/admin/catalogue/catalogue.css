@@ -1,0 +1,12 @@
+.catalogue-image {
+    height: 25%;
+    width: 25%;
+}
+
+.catalogue-category {
+    cursor: pointer;
+}
+
+.table-header {
+    margin-bottom: 3%;
+}
