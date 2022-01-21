@@ -1,119 +1,93 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="UTF-8">
-    <title>HipPos</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- normalize & reset style -->
-    <link rel="stylesheet" href="../../assets/css/jquery-ui.css" type='text/css'>
-    <link rel="stylesheet" href="../../assets/numpad/css/easy-numpad.css">
-    <link rel="stylesheet" href="../../assets/css/normalize.min.css" type='text/css'>
-    <link rel="stylesheet" href="../../assets/css/reset.min.css" type='text/css'>
-    <!-- Bootstrap Core CSS -->
-    <link href="../../assets/css/bootstrap.css" rel="stylesheet">
-    <link rel="stylesheet" href="../../assets/vendor/toastr/toastr.min.css">
-    <link rel="stylesheet" href="../../assets/vendor/sweetalert/sweetalert.css"/>
-    <!-- Custom CSS -->
-    <link href="../../assets/css/Style-Light.css" rel="stylesheet">
-    <link href="../../assets/css/customcss/login.css" rel="stylesheet">
-    <link href="../../assets/css/customcss/general.css" rel="stylesheet">
-    <style media="screen">
-    </style>
-    <style>
-        .version {
-            font-weight: bolder;
-        }
-    </style>
-</head>
-<body>
-<div class="modal fade" id="login-modal" tabindex="-1" role="dialog">
-    <div class="modal-dialog">
-        <div class="loginmodal-container">
-            <img class="login-img" src="../../assets/icons/hippofront.png" alt="logo"><br>
-            <p class='version'>Version: 0.0.1</p>
-            <div class="modal-body">
-                <form id="login-form">
-                    <input type="text" id="username" name="username" placeholder="Όνομα χρήστη" required disabled>
-                    <div class="easy-get">
-                        <input type="password" class="easy-put" name="password" id="password" placeholder="Κωδικός πρόσβασης"
-                               required>
+    <head>
+        <meta charset="UTF-8" />
+        <title>HipPos</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <!-- normalize & reset style -->
+        <link rel="stylesheet" href="../../assets/css/jquery-ui.css" type="text/css" />
+        <link rel="stylesheet" href="../../assets/numpad/css/easy-numpad.css" />
+        <link rel="stylesheet" href="../../assets/css/normalize.min.css" type="text/css" />
+        <link rel="stylesheet" href="../../assets/css/reset.min.css" type="text/css" />
+        <!-- Bootstrap Core CSS -->
+        <link href="../../assets/css/bootstrap.css" rel="stylesheet" />
+        <link rel="stylesheet" href="../../assets/vendor/toastr/toastr.min.css" />
+        <link rel="stylesheet" href="../../assets/vendor/sweetalert/sweetalert.css" />
+        <!-- Custom CSS -->
+        <link href="../../assets/css/Style-Light.css" rel="stylesheet" />
+        <link href="../../assets/css/customcss/login.css" rel="stylesheet" />
+        <link href="../../assets/css/customcss/general.css" rel="stylesheet" />
+        <style media="screen"></style>
+        <style>
+            .version {
+                font-weight: bolder;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="modal fade" id="login-modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog">
+                <div class="loginmodal-container">
+                    <img class="login-img" src="../../assets/icons/hippofront.png" alt="logo" /><br />
+                    <p class="version">Version: 1.0.0</p>
+                    <div class="modal-body">
+                        <form id="login-form">
+                            <input type="text" id="username" name="username" placeholder="Όνομα χρήστη" required disabled />
+                            <div class="easy-get">
+                                <input type="password" class="easy-put" name="password" id="password" placeholder="Κωδικός πρόσβασης" required />
+                            </div>
+                            <button type="button" class="btn btn-success btn-block" id="submit-login">Σύνδεση</button>
+                        </form>
                     </div>
-                    <button type='button' class="btn btn-success btn-block" id="submit-login">Σύνδεση</button>
-                </form>
+                    <h3 class="user-header"><b>Χρήστες</b></h3>
+                    <br />
 
+                    <div class="row" id="users-div"></div>
+                </div>
             </div>
-            <h3 class="user-header"><b>Χρήστες</b></h3>
-            <br>
-
-            <div class="row" id="users-div">
-
-            </div>
-
-
         </div>
-    </div>
-</div>
+    </body>
 
-</body>
+    <script>
+        if (typeof module === 'object') {
+            window.module = module
+            module = undefined
+        }
+    </script>
 
-<script>
+    <!-- jQuery -->
+    <script src="../../assets/js/jquery-2.2.2.min.js"></script>
+    <!-- waves material design effect -->
+    <script type="text/javascript" src="../../assets/js/waves.min.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script type="text/javascript" src="../../assets/js/bootstrap.min.js"></script>
+    <!--<script type="text/javascript" src="../../../assets/js/mousetrap.min.js"></script>-->
 
+    <script type="text/javascript" src="../../assets/numpad/js/easy-numpad.js"></script>
+    <script type="text/javascript" src="../../assets/vendor/sweetalert/sweetalert.min.js"></script>
+    <!-- SweetAlert Plugin Js -->
+    <script type="text/javascript" src="../../assets/vendor/toastr/toastr.js"></script>
+    <!-- My classes -->
+    <script type="text/javascript" src="../helpers/helpers.js"></script>
+    <script type="text/javascript" src="login.js"></script>
+    <script type="text/javascript" src="../helpers/user.js"></script>
 
-    if (typeof module === 'object') {
-        window.module = module;
-        module = undefined;
-    }
+    <script type="text/javascript">
+        const electron = require('electron')
+        const { ipcRenderer } = electron
 
-</script>
+        let myLogin = new LoginClass()
 
-<!-- jQuery -->
-<script src="../../assets/js/jquery-2.2.2.min.js"></script>
-<!-- waves material design effect -->
-<script type="text/javascript" src="../../assets/js/waves.min.js"></script>
-<!-- Bootstrap Core JavaScript -->
-<script type="text/javascript" src="../../assets/js/bootstrap.min.js"></script>
-<!--<script type="text/javascript" src="../../../assets/js/mousetrap.min.js"></script>-->
+        $(document).ready(function () {
+            $('#login-modal')
+                .modal('show')
+                .on('hide.bs.modal', function (e) {
+                    e.preventDefault()
+                })
 
-
-<script type="text/javascript" src="../../assets/numpad/js/easy-numpad.js"></script>
-<script type="text/javascript" src="../../assets/vendor/sweetalert/sweetalert.min.js"></script>
-<!-- SweetAlert Plugin Js -->
-<script type="text/javascript" src="../../assets/vendor/toastr/toastr.js"></script>
-<!-- My classes -->
-<script type="text/javascript" src="../helpers/helpers.js"></script>
-<script type="text/javascript" src="login.js"></script>
-<script type="text/javascript" src="../helpers/user.js"></script>
-
-
-<script type="text/javascript">
-
-    const electron = require('electron')
-    const {ipcRenderer} = electron;
-
-
-    let myLogin = new LoginClass();
-
-
-    $(document).ready(function () {
-
-
-        $('#login-modal').modal('show').on('hide.bs.modal', function (e) {
-            e.preventDefault();
-        });
-
-
-
-        $('#submit-login').on('click', function () {
-
-            myLogin.submitLoginForm();
-
+            $('#submit-login').on('click', function () {
+                myLogin.submitLoginForm()
+            })
         })
-
-
-    });
-
-
-</script>
-
-
+    </script>
 </html>
